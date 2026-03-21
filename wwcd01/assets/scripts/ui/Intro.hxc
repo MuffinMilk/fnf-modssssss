@@ -1,0 +1,184 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import flixel.input.gamepad.FlxGamepad;
+import funkin.ui.MusicBeatState;
+import funkin.audio.FunkinSound;
+import funkin.Paths;
+import funkin.Conductor;
+import funkin.ui.mainmenu.MainMenuState;
+import funkin.util.HapticUtil;
+import lime.app.Application;
+
+class CustomTitleState extends MusicBeatState
+{
+    public static var initialized:Bool = false;
+
+    var RJP:FlxSprite;
+    var theJohnHimslef:FlxSprite;
+    var mdpLogo:FlxSprite;
+    var textTop:FlxText;
+    var blackScreen:FlxSprite;
+
+    var skippedIntro:Bool = false;
+    var transitioning:Bool = false;
+
+    override public function create():Void
+    {
+        super.create();
+
+        FlxG.sound.cache(Paths.sound('menu/johnJingle'));
+        FlxG.sound.cache(Paths.sound('menu/mdpJingle'));
+
+        startIntro();
+    }
+
+    function startIntro():Void
+    {
+        if (!initialized || FlxG.sound.music == null) {
+            FunkinSound.playMusic('freakyMenu', {
+                startingVolume: 0.0,
+                overrideExisting: true,
+                restartTrack: false,
+                persist: true
+            });
+        }
+
+        persistentUpdate = true;
+
+        RJP = new FlxSprite().loadGraphic(Paths.image('intro/backcircle'));
+        RJP.antialiasing = true;
+        RJP.scale.set(0.75, 0.75);
+        RJP.updateHitbox();
+        RJP.x = (FlxG.width - RJP.width) / 2;
+        RJP.y = (FlxG.height - RJP.height) / 2;
+        add(RJP);
+
+        theJohnHimslef = new FlxSprite(0, 115);
+        theJohnHimslef.frames = Paths.getSparrowAtlas("intro/JohnnyAnimate");
+        theJohnHimslef.animation.addByPrefix("yay", "rainbow john", 24, true);
+        theJohnHimslef.antialiasing = true;
+        theJohnHimslef.scale.set(0.75, 0.75);
+        theJohnHimslef.x = (FlxG.width - theJohnHimslef.width) / 2 - 240;
+        add(theJohnHimslef);
+
+        mdpLogo = new FlxSprite().loadGraphic(Paths.image('intro/mdpEnglishLogo'));
+        mdpLogo.antialiasing = true;
+        mdpLogo.scale.set(0.26, 0.26);
+        mdpLogo.updateHitbox();
+        mdpLogo.x = (FlxG.width - mdpLogo.width) / 2;
+        mdpLogo.y = (FlxG.height - mdpLogo.height) / 2;
+        mdpLogo.alpha = 0;
+        add(mdpLogo);
+
+        textTop = new FlxText(0, 70, FlxG.width, "based on:", 50);
+        textTop.setFormat(Paths.font("MDP.ttf"), 50, FlxColor.WHITE, "center");
+        textTop.borderStyle = FlxTextBorderStyle.OUTLINE;
+        textTop.borderColor = FlxColor.BLACK;
+        textTop.borderSize = 1.7;
+        textTop.alpha = 0;
+        add(textTop);
+
+        blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        blackScreen.alpha = 1;
+        add(blackScreen);
+
+        FlxG.mouse.visible = false;
+
+        if (initialized) skipIntro();
+        else initialized = true;
+    }
+
+    override function update(elapsed:Float):Void
+    {
+        Conductor.instance.update();
+
+        if (FlxG.keys.justPressed.ESCAPE) Application.current.window.close();
+
+        var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
+
+        var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
+        if (gamepad != null) if (gamepad.justPressed.START || gamepad.justPressed.ACCEPT) pressedEnter = true;
+
+        var touch = FlxG.touches.getFirst();
+        if (touch != null && touch.justPressed) pressedEnter = true;
+
+        if (pressedEnter && !transitioning && skippedIntro) startTransition();
+        if (pressedEnter && !skippedIntro && initialized) skipIntro();
+
+        super.update(elapsed);
+    }
+
+    override function beatHit():Bool
+    {
+        super.beatHit();
+
+        if (!skippedIntro)
+        {
+            switch(Conductor.instance.currentBeat)
+            {
+                case 1:
+                    fadeThing(blackScreen, 0, 0.4);
+                    FunkinSound.playOnce(Paths.sound("menu/johnJingle"));
+                    theJohnHimslef.animation.play("yay");
+                case 5:
+                    fadeThing(blackScreen, 1, 0.67);
+                case 6:
+                    theJohnHimslef.visible = false;
+                    RJP.visible = false;
+                    blackScreen.visible = false;
+                    fadeThing(textTop, 1, 0.67);
+                case 8:
+                    FunkinSound.playOnce(Paths.sound("menu/mdpJingle"));
+                    fadeThing(mdpLogo, 1, 0.2);
+                case 12:
+                    fadeThing(textTop, 0, 0.67);
+                    fadeThing(mdpLogo, 0, 0.67);
+                case 15:
+                    skipIntro();
+            }
+        }
+
+        return true;
+    }
+
+    function fadeThing(obj:FlxSprite, targetAlpha:Float, duration:Float):Void
+    {
+        FlxTween.cancelTweensOf(obj);
+        FlxTween.tween(obj, {alpha: targetAlpha}, duration, {ease: FlxEase.cubeOut});
+    }
+
+    function skipIntro():Void
+    {
+        if (!skippedIntro)
+        {
+            remove(blackScreen);
+            remove(theJohnHimslef);
+            remove(RJP);
+            mdpLogo.alpha = 0;
+            textTop.alpha = 0;
+
+            skippedIntro = true;
+
+            startTransition();
+        }
+    }
+
+    function startTransition():Void
+    {
+        if (transitioning) return;
+
+        transitioning = true;
+
+        FlxG.sound.list.forEachAlive(function(snd) {
+            if (snd != FlxG.sound.music) snd.stop();
+        });
+
+        FlxG.switchState(() -> new MainMenuState());
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "version": "2.2.0",
+  "songName": "One Last Bite",
+  "artist": "Brayfruit",
+  "charter": "Boruidk",
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {},
+    "vocals": {}
+  },
+  "playData": {
+    "songVariations": [],
+    "difficulties": [
+      "hard"
+    ],
+    "characters": {
+      "player": "nugmdp",
+      "girlfriend": "no-gf",
+      "opponent": "maxmdp",
+      "instrumental": "",
+      "altInstrumentals": [],
+      "opponentVocals": [
+        "max"
+      ],
+      "playerVocals": [
+        "nugget"
+      ],
+      "album": "OneLastBite"
+    },
+    "stage": "youtubeland",
+    "noteStyle": "MdpNote",
+    "ratings": {
+      "hard": 8
+    },
+    "album": "OneLastBite",
+    "previewStart": 0,
+    "previewEnd": 15000
+  },
+  "generatedBy": "Manual Wey",
+  "timeFormat": "ms",
+  "timeChanges": [
+    { "t": 0, "bpm": 145 },
+    { "t": 21517.2413793103, "bpm": 150 },
+    { "t": 29517.2413793103, "bpm": 155 },
+    { "t": 83323.6929922136, "bpm": 160 },
+    { "t": 107698.692992214, "bpm": 155 },
+    { "t": 121634.176863181, "bpm": 136 },
+    { "t": 153398.882745535, "bpm": 167 }
+  ]
+}

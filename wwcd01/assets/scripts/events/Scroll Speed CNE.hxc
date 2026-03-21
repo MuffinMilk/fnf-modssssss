@@ -1,0 +1,110 @@
+import funkin.play.PlayState;
+import funkin.data.event.SongEventSchema;
+import funkin.play.event.ScriptedSongEvent;
+import funkin.Conductor;
+import flixel.tweens.FlxEase;
+
+class CNEScrollSpeedEvent extends ScriptedSongEvent {
+    public function new() {
+        super('CNE Scroll Speed');
+    }
+
+    public override function handleEvent(data:SongEventData):Void {
+        if (PlayState.instance == null) return;
+
+        var isTween:Bool = data.getBool('isTween');
+        var targetScroll:Float = data.getFloat('scroll');
+        var durationInSteps:Float = data.getFloat('duration');
+        var easeName:String = data.getString('ease');
+        var easeStyle:String = data.getString('style');
+        var isRelative:Bool = data.getBool('isRelative');
+
+        var game = PlayState.instance;
+        var finalScroll:Float = targetScroll;
+
+        if (isRelative) {
+            finalScroll = targetScroll * (game.currentChart?.scrollSpeed ?? 1.0);
+        }
+
+        var easeFunction:Float->Float = FlxEase.linear;
+
+        switch (easeName) {
+            case 'sine':
+                if (easeStyle == "In") easeFunction = FlxEase.sineIn;
+                else if (easeStyle == "Out") easeFunction = FlxEase.sineOut;
+                else if (easeStyle == "InOut") easeFunction = FlxEase.sineInOut;
+            case 'quad':
+                if (easeStyle == "In") easeFunction = FlxEase.quadIn;
+                else if (easeStyle == "Out") easeFunction = FlxEase.quadOut;
+                else if (easeStyle == "InOut") easeFunction = FlxEase.quadInOut;
+            case 'cube':
+                if (easeStyle == "In") easeFunction = FlxEase.cubeIn;
+                else if (easeStyle == "Out") easeFunction = FlxEase.cubeOut;
+                else if (easeStyle == "InOut") easeFunction = FlxEase.cubeInOut;
+            case 'expo':
+                if (easeStyle == "In") easeFunction = FlxEase.expoIn;
+                else if (easeStyle == "Out") easeFunction = FlxEase.expoOut;
+                else if (easeStyle == "InOut") easeFunction = FlxEase.expoInOut;
+            case 'elastic':
+                if (easeStyle == "In") easeFunction = FlxEase.elasticIn;
+                else if (easeStyle == "Out") easeFunction = FlxEase.elasticOut;
+                else if (easeStyle == "InOut") easeFunction = FlxEase.elasticInOut;
+            default:
+                easeFunction = FlxEase.linear;
+        }
+
+        if (!isTween) {
+            game.tweenScrollSpeed(finalScroll, 0, null, ['playerStrumline', 'opponentStrumline']);
+        } else {
+            var durationInSeconds:Float = (Conductor.instance.stepLengthMs / 1000) * durationInSteps;
+            game.tweenScrollSpeed(finalScroll, durationInSeconds, easeFunction, ['playerStrumline', 'opponentStrumline']);
+        }
+    }
+
+    public override function getTitle():String {
+        return 'CNE Scroll Speed';
+    }
+
+    public override function getEventSchema():SongEventSchema {
+        return new SongEventSchema([
+            {
+                name: 'isTween',
+                title: 'Smooth Transition',
+                defaultValue: true,
+                type: 'bool' 
+            },
+            {
+                name: 'scroll',
+                title: 'Scroll Value',
+                defaultValue: 2.4,
+                type: 'float'
+            },
+            {
+                name: 'duration',
+                title: 'Duration (Steps)',
+                defaultValue: 18,
+                type: 'float'
+            },
+            {
+                name: 'ease',
+                title: 'Ease Type',
+                defaultValue: 'linear',
+                type: 'enum',
+                keys: ['Linear' => 'linear', 'Sine' => 'sine', 'Quad' => 'quad', 'Cube' => 'cube', 'Expo' => 'expo', 'Elastic' => 'elastic']
+            },
+            {
+                name: 'style',
+                title: 'Ease Style',
+                defaultValue: 'In',
+                type: 'enum',
+                keys: ['None' => 'None', 'In' => 'In', 'Out' => 'Out', 'InOut' => 'InOut']
+            },
+            {
+                name: 'isRelative',
+                title: 'Multiplicative',
+                defaultValue: false,
+                type: 'bool'
+            }
+        ]);
+    }
+}

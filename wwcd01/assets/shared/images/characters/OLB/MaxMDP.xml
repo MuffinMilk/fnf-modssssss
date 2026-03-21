@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="MaxMDP.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<!-- SPRITES BY KATPIZZA MABEL! RIG BY RAINSLAIN! CREATED FOR FNF WINNER WINNER CHICKEN DINNER! -->
+	<SubTexture name="idle 10000" x="2" y="2" width="586" height="839" pivotX="186.5" pivotY="528.25" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="idle 10001" x="2" y="2" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="idle 10002" x="590" y="2" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="left 10000" x="1178" y="2" width="587" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="left 10001" x="1767" y="2" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="up 10000" x="2355" y="2" width="586" height="840" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="up 10001" x="2943" y="2" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="right 10000" x="3531" y="2" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="right 10001" x="2" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="down 10000" x="590" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="down 10001" x="1178" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10000" x="1766" y="844" width="587" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10001" x="2355" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10002" x="2355" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10003" x="2943" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10004" x="3531" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10005" x="3531" y="844" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10006" x="2" y="1685" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10007" x="590" y="1685" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10008" x="1178" y="1685" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10009" x="1766" y="1685" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+	<SubTexture name="leftalt 10010" x="2354" y="1685" width="586" height="839" frameX="0" frameY="0" frameWidth="587" frameHeight="840"/>
+</TextureAtlas>

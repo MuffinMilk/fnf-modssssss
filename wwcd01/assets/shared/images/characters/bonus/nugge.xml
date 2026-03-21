@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="nugge.png">
+<SubTexture name="nugge idle0000" x="1585" y="0" width="407" height="513" frameX="-459" frameY="-475" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge idle0001" x="1165" y="0" width="420" height="514" frameX="-450" frameY="-474" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge idle0002" x="1165" y="514" width="414" height="514" frameX="-457" frameY="-477" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge idle0003" x="1585" y="513" width="399" height="504" frameX="-468" frameY="-483" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge idle0004" x="752" y="0" width="413" height="519" frameX="-457" frameY="-464" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge idle0005" x="0" y="576" width="414" height="515" frameX="-458" frameY="-478" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge miss0000" x="1992" y="0" width="414" height="466" frameX="-455" frameY="-539" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singDOWN0000" x="0" y="1597" width="446" height="451" frameX="-449" frameY="-548" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singDOWN0001" x="1305" y="1091" width="442" height="470" frameX="-454" frameY="-527" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singLEFT0000" x="414" y="576" width="431" height="515" frameX="-381" frameY="-457" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singLEFT0001" x="0" y="1091" width="417" height="506" frameX="-409" frameY="-470" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singRIGHT0000" x="859" y="1091" width="446" height="488" frameX="-504" frameY="-497" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singRIGHT0001" x="417" y="1091" width="442" height="499" frameX="-496" frameY="-482" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singUP0000" x="0" y="0" width="369" height="576" frameX="-490" frameY="-410" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="nugge singUP0001" x="369" y="0" width="383" height="543" frameX="-474" frameY="-439" frameWidth="1280" frameHeight="1280" />
+</TextureAtlas>

@@ -1,0 +1,54 @@
+import flixel.FlxG;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.FlxSprite;
+import flixel.addons.display.FlxBackdrop;
+
+import funkin.ui.mainmenu.MainMenuState;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.ui.options.OptionsState;
+import funkin.ui.title.TitleState;
+import funkin.ui.MusicBeatState;
+import funkin.ui.story.StoryMenuState;
+
+import funkin.Conductor;
+
+import funkin.audio.FunkinSound;
+
+import funkin.modding.base.ScriptedMusicBeatState;
+import funkin.modding.base.MusicBeatState;
+import funkin.modding.module.Module;
+
+import funkin.Paths;
+
+import Std;
+
+class TitleScreenReplace extends Module
+{
+	public function new()
+	{
+		super('TitleScreenReplace');
+	}
+
+	var initialized:Bool = false;
+
+	function setInitialized(bool:Bool)
+	{
+		initialized = bool;
+	}
+
+	function onStateChangeEnd(event:StateChangeScriptEvent)
+	{
+		super.onStateChangeEnd(event);
+
+		if (Std.isOfType(FlxG.state, TitleState))
+		{
+			TitleState.initialized = true;
+			if (FlxG.sound.music != null) FlxG.sound.music.stop();
+			FlxG.switchState(ScriptedMusicBeatState.init("CustomTitleState"));
+		}
+		else if (Std.isOfType(FlxG.state, MainMenuState))
+		{
+			initialized = true;
+		}
+	}
+}

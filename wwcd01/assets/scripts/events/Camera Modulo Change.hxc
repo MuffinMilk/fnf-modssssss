@@ -1,0 +1,94 @@
+import funkin.play.PlayState;
+import funkin.data.event.SongEventSchema;
+import funkin.play.event.ScriptedSongEvent;
+import funkin.Conductor;
+
+class CameraModuloChange extends ScriptedSongEvent
+{
+  static var interval:Float = 4.0;
+  static var strength:Float = 1.0;
+  static var every:String = "BEAT";
+  static var offset:Float = 0.0;
+  static var lastBop:Int = -1;
+
+  public function new()
+  {
+    super('Camera Modulo Change');
+  }
+
+  public override function handleEvent(data:SongEventData):Void
+  {
+    if (PlayState.instance == null) return;
+
+    interval = data.getFloat('interval') ?? 4.0;
+    strength = data.getFloat('strength') ?? 1.0;
+    every = data.getString('every') ?? "BEAT";
+    offset = data.getFloat('offset') ?? 0.0;
+  }
+
+  public override function onUpdate(elapsed:Float):Void
+  {
+    var game = PlayState.instance;
+    if (game == null || !game.camZooming) return;
+
+    var curTime:Float = 0;
+    switch (every.toUpperCase()) 
+    {
+      case 'STEP': 
+        curTime = Conductor.instance.curStep;
+      case 'MEASURE': 
+        curTime = Conductor.instance.curStep / 16;
+      default: 
+        curTime = Conductor.instance.curBeat;
+    }
+
+    var bopIndex:Int = Math.floor((curTime - offset) / interval);
+
+    if (bopIndex != lastBop && bopIndex >= 0) 
+    {
+      lastBop = bopIndex;
+      
+      game.camGame.zoom += 0.015 * strength;
+      game.camHUD.zoom += 0.03 * strength;
+    }
+  }
+
+  public override function getTitle():String
+  {
+    return 'Camera Modulo Change';
+  }
+
+  public override function getEventSchema():SongEventSchema
+  {
+    return new SongEventSchema([
+      {
+        name: 'interval',
+        title: 'Interval',
+        defaultValue: 4.0,
+        type: 'float',
+        units: 'units'
+      },
+      {
+        name: 'strength',
+        title: 'Bop Strength',
+        defaultValue: 1.0,
+        type: 'float',
+        units: 'x'
+      },
+      {
+        name: 'every',
+        title: 'Every (Unit)',
+        defaultValue: 'BEAT',
+        type: 'enum',
+        keys: ['Step' => 'STEP', 'Beat' => 'BEAT', 'Measure' => 'MEASURE']
+      },
+      {
+        name: 'offset',
+        title: 'Offset',
+        defaultValue: 0.0,
+        type: 'float',
+        units: 'units'
+      }
+    ]);
+  }
+}

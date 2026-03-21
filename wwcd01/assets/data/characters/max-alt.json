@@ -1,0 +1,80 @@
+{
+  "version": "1.0.0",
+  "name": "Max",
+  "assetPath": "characters/OLB/Max",
+  "singTime": 6.1,
+  "offsets": [200, 40],
+  "cameraOffsets": [185, 0],
+  "animations": [
+    {
+      "name": "idle-alt",
+      "prefix": "!MAX_IDLE",
+      "offsets": [0, 0]
+    },
+
+    {
+      "name": "singUP-alt",
+      "prefix": "!MAX_UP",
+      "offsets": [-89, 50]
+    },
+    {
+      "name": "singRIGHT-alt",
+      "prefix": "!MAX_RIGHT",
+      "offsets": [-115, 8]
+    },
+    {
+      "name": "singLEFT-alt",
+      "prefix": "!MAX_LEFT",
+      "offsets": [94, -9]
+    },
+    {
+      "name": "singDOWN-alt",
+      "prefix": "!MAX_DOWN",
+      "offsets": [-22, -134]
+    },
+
+    {
+      "name": "laugh",
+      "prefix": "!MAX_LAUGH",
+      "frameRate": 28,
+      "offsets": [7, 17]
+    },
+    {
+      "name": "saw",
+      "prefix": "!MAX_SAW",
+      "offsets": [86, 150]
+    },
+
+    {
+      "name": "idle",
+      "prefix": "!MAXMAD_IDLE",
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "!MAXMAD_UP",
+      "offsets": [-89, 50]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "!MAXMAD_RIGHT",
+      "offsets": [-116, 8]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "!MAX_LEFT",
+      "offsets": [94, -9]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "!MAXMAD_DOWN",
+      "offsets": [-22, -134]
+    },
+    {
+      "name": "laugh",
+      "prefix": "!MAXMAD_LAUGH",
+      "frameRate": 30,
+      "offsets": [0, -4]
+    }
+  ]
+}

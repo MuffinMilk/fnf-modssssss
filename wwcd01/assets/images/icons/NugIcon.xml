@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NugIcon.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="NUGGET0000" x="3" y="3" width="223" height="246"/>
+	<SubTexture name="NUGGET0001" x="230" y="3" width="223" height="246"/>
+	<SubTexture name="NUGGET0002" x="3" y="253" width="223" height="246"/>
+	<SubTexture name="NUGGET0003" x="230" y="253" width="223" height="246"/>
+</TextureAtlas>

@@ -1,0 +1,279 @@
+import funkin.play.PlayState;
+import funkin.ui.MusicBeatState;
+import funkin.modding.base.ScriptedMusicBeatState;
+import funkin.ui.mainmenu.MainMenuState;
+import funkin.backend.assets.Paths;
+import funkin.save.Save;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxCamera;
+import flixel.text.FlxText;
+import flixel.group.FlxTypedSpriteGroup;
+import flixel.math.FlxPoint;
+import flixel.math.FlxMath;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.util.FlxSort;
+import funkin.audio.FunkinSound;
+import funkin.util.TouchUtil;
+import funkin.ui.FullScreenScaleMode;
+
+class SoccerMenuState extends ScriptedMusicBeatState {
+    
+    public var camMenu:FlxCamera;
+
+    var options:Array<String> = ["Enter to play!", "Change skin"];
+    var menuItems:FlxTypedSpriteGroup<FlxText>; 
+    
+    var skinPanelGroup:FlxTypedSpriteGroup<FlxSprite>;
+    var skinBox:FlxSprite;
+    var skinNameText:FlxText;
+    var customBackButton:FlxSprite;
+
+    var leftArrow:FlxText;
+    var rightArrow:FlxText;
+
+    var curSelected:Int = 0;
+    var curSkin:Int = 0;
+    var panelOpened:Bool = false;
+    var isExiting:Bool = false;
+
+    var skins:Array<Dynamic> = [
+        {name: "Jimmy", color: 0xFF47A6FF},
+        {name: "Ollie", color: 0xFF00AA99},
+        {name: "Duncan", color: 0xFF606060},
+        {name: "TrifleJimmy", color: 0xFF00578F},
+        {name: "Oxaya", color: 0xFFFFD700},
+        {name: "Bubby", color: 0xFF9A3F2A}
+    ];
+
+    public function new() {
+        super();
+    }
+
+    override function create() {
+        camMenu = new FlxCamera();
+        FlxG.cameras.reset(camMenu);
+        FlxG.cameras.add(camMenu, false);
+        FlxCamera.defaultCameras = [camMenu];
+
+        super.create();
+
+        if (Save.instance.modOptions.get("jimmySkin") == null) {
+            Save.instance.modOptions.set("jimmySkin", 0);
+            Save.instance.flush();
+        }
+        curSkin = Save.instance.modOptions.get("jimmySkin");
+
+        if (FlxG.sound.music != null) FlxG.sound.music.stop();
+        FlxG.sound.playMusic(Paths.music("soccerTime"), 1, true);
+
+        if (FlxG.onMobile) FlxG.mouse.visible = false;
+
+        var bg = new FlxSprite().loadGraphic(Paths.image("soccer/menubg"));
+        bg.setGraphicSize(FlxG.width);
+        bg.updateHitbox();
+        bg.screenCenter();
+        bg.zIndex = 0;
+        add(bg);
+
+        var logo = new FlxSprite(0, -100).loadGraphic(Paths.image("soccer/logo"));
+        logo.scale.set(0.67, 0.67);
+        logo.screenCenter(0x01);
+        logo.zIndex = 5;
+        add(logo);
+
+        menuItems = new FlxTypedSpriteGroup();
+        menuItems.zIndex = 10;
+        add(menuItems);
+
+        for (i in 0...options.length) {
+            var txt = new FlxText(0, 500 + (i * 100), FlxG.width, options[i]);
+            txt.setFormat(Paths.font("MDP.ttf"), 48, FlxColor.BLACK, "center");
+            txt.ID = i;
+            menuItems.add(txt);
+        }
+
+        setupSkinPanel();
+
+        if (FlxG.onMobile) {
+            initCustomBackButton();
+        }
+
+        refreshOrder();
+        changeSelection(0);
+    }
+
+    function initCustomBackButton():Void {
+        customBackButton = new FlxSprite();
+        customBackButton.frames = Paths.getSparrowAtlas('menu/story/backButton');
+        customBackButton.animation.addByIndices('idle', 'back0', [0], "", 24, false);
+        customBackButton.animation.addByPrefix('press', 'back0', 24, false);
+        customBackButton.animation.play('idle');
+        customBackButton.scrollFactor.set(0, 0); 
+        customBackButton.scale.set(0.7, 0.7); 
+        customBackButton.updateHitbox();
+        customBackButton.x = FlxG.width - customBackButton.width - 25;
+        customBackButton.y = FlxG.height - customBackButton.height - 10;
+        customBackButton.zIndex = 100;
+        add(customBackButton);
+    }
+
+    function setupSkinPanel() {
+        skinPanelGroup = new FlxTypedSpriteGroup();
+        skinPanelGroup.zIndex = 50;
+        skinPanelGroup.visible = false;
+        add(skinPanelGroup);
+
+        var blackOverlay = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        blackOverlay.alpha = 0.7;
+        skinPanelGroup.add(blackOverlay);
+
+        var panelBg = new FlxSprite().makeGraphic(600, 400, 0xFFBBBBBB);
+        panelBg.screenCenter();
+        skinPanelGroup.add(panelBg);
+
+        skinBox = new FlxSprite();
+        skinBox.frames = Paths.getSparrowAtlas("soccer/icons");
+        for (s in skins) skinBox.animation.addByPrefix(s.name, s.name, 0, false);
+        skinBox.screenCenter(); 
+        skinPanelGroup.add(skinBox);
+
+        leftArrow = new FlxText(skinBox.x - 50, skinBox.y + 50, 0, "<", 48);
+        leftArrow.color = 0xFF000000;
+        skinPanelGroup.add(leftArrow);
+
+        rightArrow = new FlxText(skinBox.x + 150, skinBox.y + 50, 0, ">", 48);
+        rightArrow.color = 0xFF000000;
+        skinPanelGroup.add(rightArrow);
+
+        skinNameText = new FlxText(0, skinBox.y + 160, FlxG.width, "");
+        skinNameText.setFormat(Paths.font("MDP.ttf"), 32, FlxColor.BLACK, "center");
+        skinPanelGroup.add(skinNameText);
+
+        updateSkinVisuals();
+    }
+
+    override function update(elapsed:Float) {
+        super.update(elapsed);
+
+        if (!isExiting) {
+            handleInput();
+        }
+
+        var inputX = (FlxG.onMobile && FlxG.touches.list.length > 0) ? FlxG.touches.list[0].screenX : FlxG.mouse.screenX;
+        var inputY = (FlxG.onMobile && FlxG.touches.list.length > 0) ? FlxG.touches.list[0].screenY : FlxG.mouse.screenY;
+
+        camMenu.scroll.x = FlxMath.lerp(camMenu.scroll.x, (inputX - (FlxG.width / 2)) * 0.01, FlxMath.bound(elapsed * 6, 0, 1));
+        camMenu.scroll.y = FlxMath.lerp(camMenu.scroll.y, (inputY - (FlxG.height / 2)) * 0.01, FlxMath.bound(elapsed * 6, 0, 1));
+    }
+
+    function handleInput() {
+        var isJustPressed = (FlxG.onMobile) ? TouchUtil.justPressed : FlxG.mouse.justPressed;
+
+        if (controls.BACK) {
+            triggerBackAction();
+            return;
+        }
+
+        if (FlxG.onMobile && TouchUtil.overlaps(customBackButton, camMenu) && TouchUtil.justPressed) {
+            triggerBackAction();
+            return;
+        }
+
+        if (panelOpened) {
+            if (controls.UI_LEFT_P) changeSkin(-1);
+            if (controls.UI_RIGHT_P) changeSkin(1);
+            if (controls.ACCEPT) closeSkinPanel();
+
+            if (isJustPressed) {
+                if (TouchUtil.overlaps(leftArrow, camMenu)) {
+                    changeSkin(-1);
+                } else if (TouchUtil.overlaps(rightArrow, camMenu)) {
+                    changeSkin(1);
+                } else if (!TouchUtil.overlaps(skinBox, camMenu)) {
+                    closeSkinPanel();
+                }
+            }
+        } else {
+            if (controls.UI_UP_P) changeSelection(-1);
+            if (controls.UI_DOWN_P) changeSelection(1);
+            if (controls.ACCEPT) selectOption();
+
+            if (isJustPressed) {
+                for (item in menuItems.members) {
+                    if (TouchUtil.overlaps(item, camMenu)) {
+                        if (curSelected == item.ID) selectOption();
+                        else {
+                            curSelected = item.ID;
+                            changeSelection(0);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function changeSelection(change:Int) {
+        curSelected = FlxMath.wrap(curSelected + change, 0, options.length - 1);
+        FunkinSound.playOnce(Paths.sound("menu/scroll"), 0.5);
+
+        for (item in menuItems.members) {
+            item.alpha = (item.ID == curSelected) ? 1 : 0.6;
+            item.text = (item.ID == curSelected) ? "> " + options[item.ID] : options[item.ID];
+        }
+    }
+
+    function selectOption() {
+        if (curSelected == 0) {
+            FunkinSound.playOnce(Paths.sound('confirmMenu'));
+            var state = ScriptedMusicBeatState.init('SoccerModeSelectState');
+				FlxG.switchState(state);
+        } else {
+            panelOpened = true;
+            skinPanelGroup.visible = true;
+            updateSkinVisuals();
+        }
+    }
+
+    function changeSkin(change:Int) {
+        curSkin = FlxMath.wrap(curSkin + change, 0, skins.length - 1);
+        FunkinSound.playOnce(Paths.sound("menu/scroll"), 0.5);
+        updateSkinVisuals();
+        
+        Save.instance.modOptions.set("jimmySkin", curSkin);
+        Save.instance.flush();
+    }
+
+    function updateSkinVisuals() {
+        skinBox.animation.play(skins[curSkin].name);
+        skinNameText.text = "Skin: " + skins[curSkin].name;
+    }
+
+    function closeSkinPanel() {
+        panelOpened = false;
+        skinPanelGroup.visible = false;
+        FunkinSound.playOnce(Paths.sound("confirmMenu"));
+    }
+
+    function triggerBackAction() {
+        if (panelOpened) {
+            closeSkinPanel();
+        } else {
+            isExiting = true;
+            if (customBackButton != null) customBackButton.animation.play('press');
+            FunkinSound.playOnce(Paths.sound("menu/cancel"));
+            new FlxTimer().start(0.4, function(tmr:FlxTimer) {
+                FlxG.switchState(() -> new MainMenuState());
+            });
+        }
+    }
+
+    public function refreshOrder():Void {
+        sort(function(order:Int, obj1:FlxSprite, obj2:FlxSprite) {
+            return FlxSort.byValues(FlxSort.ASCENDING, obj1.zIndex, obj2.zIndex);
+        });
+    }
+}

@@ -1,0 +1,90 @@
+{
+  "props": [
+    {
+      "danceEvery": 0,
+      "zIndex": 10,
+      "position": [40, -172],
+      "scale": [2.31, 2.31],
+      "name": "bg",
+      "isPixel": false,
+      "assetPath": "stages/abbey/street",
+      "scroll": [0.95, 0.95],
+      "animations": []
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 20,
+      "position": [-449, -306],
+      "scale": [5.7, 5.7],
+      "name": "back",
+      "isPixel": false,
+      "assetPath": "stages/abbey/thing/back",
+      "scroll": [0.4, 0.4],
+      "animations": []
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 30,
+      "position": [-548.7, -282],
+      "scale": [2.54, 2.54],
+      "name": "face",
+      "isPixel": false,
+      "assetPath": "stages/abbey/thing/face",
+      "scroll": [0.67, 0.67],
+      "animations": []
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 40,
+      "position": [-441, -307],
+      "scale": [2.35, 2.35],
+      "name": "signs",
+      "isPixel": false,
+      "assetPath": "stages/abbey/thing/signs",
+      "scroll": [0.78, 0.78],
+      "animations": []
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 50,
+      "position": [-340, -203],
+      "scale": [2.5, 2.5],
+      "name": "iloveyou",
+      "isPixel": false,
+      "assetPath": "stages/abbey/thing/iloveyou",
+      "scroll": [0.88, 0.88],
+      "animations": []
+    },
+    {
+      "danceEvery": 0,
+      "zIndex": 60,
+      "position": [-383, -219.5],
+      "scale": [2.2, 2.2],
+      "name": "ground",
+      "isPixel": false,
+      "assetPath": "stages/abbey/thing/ground",
+      "scroll": [1, 1],
+      "animations": []
+    }
+  ],
+  "cameraZoom": 0.4,
+  "version": "1.0.0",
+  "characters": {
+    "dad": {
+      "zIndex": 100,
+      "position": [920, 1673],
+      "cameraOffsets": [0, 0]
+    },
+    "bf": {
+      "zIndex": 110,
+      "position": [1920, 1743],
+      "cameraOffsets": [0, -50]
+    },
+    "gf": {
+      "zIndex": 90,
+      "position": [400, 130],
+      "cameraOffsets": [0, 0]
+    }
+  },
+  "name": "Abbey"
+}

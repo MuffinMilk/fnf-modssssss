@@ -1,0 +1,171 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import funkin.ui.MusicBeatState;
+import funkin.backend.assets.Paths;
+import funkin.modding.base.ScriptedMusicBeatState;
+import funkin.save.Save;
+import funkin.util.TouchUtil;
+import flixel.util.FlxTimer;
+
+class SoccerModeSelectState extends ScriptedMusicBeatState {
+    var modes:Array<String> = ["Normal", "Super Fast"];
+    var modeIDs:Array<String> = ["normal", "super fast"]; 
+    
+    var modeSprites:Array<FlxSprite> = [];
+    var curSelected:Int = 0;
+    var bg:FlxSprite;
+    var customBackButton:FlxSprite;
+    var isTransitioning:Bool = false;
+
+    public function new() {
+        super();
+    }
+
+    override function create() {
+        super.create();
+
+        bg = new FlxSprite(0, 0).loadGraphic(Paths.image("soccer/menubg"));
+        bg.setGraphicSize(FlxG.width, FlxG.height);
+        bg.updateHitbox();
+        bg.screenCenter();
+        add(bg);
+
+        var title:FlxText = new FlxText(0, 50, FlxG.width, "GAME MODES");
+        title.setFormat(Paths.font("MDP.ttf"), 54, 0xFF000000, "center");
+        add(title);
+
+        for (i in 0...modes.length) {
+            var spacing:Int = 400;
+            var startX:Float = (FlxG.width / 2) - (spacing / 2);
+            
+            var spr:FlxSprite = new FlxSprite(startX + (i * spacing) - 100, 250);
+            spr.loadGraphic(Paths.image("soccer/" + modes[i]));
+            spr.setGraphicSize(200, 200); 
+            spr.updateHitbox();
+            spr.ID = i; 
+            
+            add(spr);
+            modeSprites.push(spr);
+
+            var txt:FlxText = new FlxText(spr.x, spr.y + 210, 200, modes[i]);
+            txt.setFormat(Paths.font("MDP.ttf"), 32, 0xFF000000, "center");
+            add(txt);
+        }
+
+        if (FlxG.onMobile) {
+            customBackButton = new FlxSprite();
+            customBackButton.frames = Paths.getSparrowAtlas('menu/story/backButton');
+            customBackButton.animation.addByIndices('idle', 'back0', [0], "", 24, false);
+            customBackButton.animation.addByPrefix('press', 'back0', 24, false);
+            customBackButton.animation.play('idle');
+            customBackButton.scale.set(0.7, 0.7);
+            customBackButton.updateHitbox();
+            customBackButton.x = FlxG.width - customBackButton.width - 25;
+            customBackButton.y = FlxG.height - customBackButton.height - 10;
+            add(customBackButton);
+        }
+        
+        updateVisuals();
+    }
+
+    override function update(elapsed:Float) {
+        super.update(elapsed);
+
+        if (isTransitioning) return;
+
+        handleInput();
+    }
+
+    function handleInput() {
+        if (controls.BACK || FlxG.keys.justPressed.BACK) {
+            triggerBackAction();
+            return;
+        }
+
+        if (controls.UI_LEFT_P) changeSelection(-1);
+        if (controls.UI_RIGHT_P) changeSelection(1);
+        if (controls.ACCEPT) {
+            selectMode();
+            return;
+        }
+
+        var isJustPressed = (FlxG.onMobile) ? TouchUtil.justPressed : FlxG.mouse.justPressed;
+
+        if (isJustPressed) {
+            if (FlxG.onMobile && customBackButton != null && TouchUtil.overlaps(customBackButton)) {
+                triggerBackAction();
+                return;
+            }
+
+            for (spr in modeSprites) {
+                if (TouchUtil.overlaps(spr)) {
+                    if (curSelected == spr.ID) {
+                        selectMode();
+                    } else {
+                        changeSelection(spr.ID, true);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    function triggerBackAction() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        if (customBackButton != null) customBackButton.animation.play('press');
+        FlxG.sound.play(Paths.sound("menu/cancel"));
+        
+        new FlxTimer().start(0.4, function(tmr:FlxTimer) {
+            var state = ScriptedMusicBeatState.init("SoccerMenuState");
+            FlxG.switchState(state);
+        });
+    }
+
+    function selectMode() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        
+        Save.instance.data.soccerModeIndex = curSelected;
+        Save.instance.data.soccerModeID = modeIDs[curSelected]; 
+        Save.instance.flush(); 
+        
+        FlxG.sound.play(Paths.sound('confirmMenu'));
+        
+        new FlxTimer().start(0.5, function(tmr:FlxTimer) {
+            var state = ScriptedMusicBeatState.init('SoccerGameState');
+            FlxG.switchState(state);
+        });
+    }
+
+    function changeSelection(change:Int, force:Bool = false) {
+        var sound = FlxG.sound.play(Paths.sound("menu/scroll"));
+        sound.pitch = FlxG.random.float(0.8, 1.2);
+        sound.volume = 0.7;
+
+        if (force) {
+            curSelected = change;
+        } else {
+            curSelected += change;
+            if (curSelected < 0) curSelected = modes.length - 1;
+            if (curSelected >= modes.length) curSelected = 0;
+        }
+        
+        updateVisuals();
+    }
+
+    function updateVisuals() {
+        for (i in 0...modeSprites.length) {
+            if (i == curSelected) {
+                modeSprites[i].alpha = 1; 
+                modeSprites[i].color = 0xFFFFFFFF;
+            } else {
+                modeSprites[i].alpha = 0.6; 
+                modeSprites[i].color = 0xFF888888;
+            }
+        }
+    }
+}

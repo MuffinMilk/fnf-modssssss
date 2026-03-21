@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "name": "Max MDP",
+  "assetPath": "characters/OLB/MaxMDP",
+  "singTime": 6.1,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "frameRate": 7,
+      "offsets": [0, -9]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "frameRate": 7,
+      "offsets": [-7, 0]
+    },
+    {
+      "name": "singLEFT-alt",
+      "prefix": "left",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "frameRate": 7,
+      "offsets": [-4, 0]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "leftalt",
+      "frameRate": 9,
+      "offsets": [0, 0]
+    }
+  ]
+}

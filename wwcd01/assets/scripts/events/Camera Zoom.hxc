@@ -1,0 +1,167 @@
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import funkin.play.PlayState;
+import funkin.data.event.SongEventSchema;
+import funkin.play.event.ScriptedSongEvent;
+import funkin.Conductor;
+
+class CameraZoomSongEvent extends ScriptedSongEvent
+{
+  public function new()
+  {
+    super('Camera Zoom');
+  }
+
+  public override function handleEvent(data:SongEventData):Void
+  {
+    if (PlayState.instance == null) return;
+    var game = PlayState.instance;
+
+    var isTween:Bool = data.getBool('isTween') ?? true;
+    var zoomValue:Float = data.getFloat('zoom') ?? 1.0;
+    var targetCam:String = data.getString('camera') ?? 'camGame';
+    var duration:Float = data.getFloat('duration') ?? 4.0;
+    var easeName:String = data.getString('ease') ?? 'linear';
+    var easeStyle:String = data.getString('style') ?? 'In';
+    var mode:String = data.getString('mode') ?? 'stage';
+    var isRelative:Bool = data.getBool('isRelative') ?? false;
+
+    var cam = (targetCam == 'camHUD') ? game.camHUD : game.camGame;
+
+    var baseZoom:Float = (mode == 'direct') ? 1.0 : (game.currentChart?.stageZoom ?? 1.0);
+    var finalZoom:Float = zoomValue * baseZoom;
+
+    if (isRelative) {
+        finalZoom = zoomValue * cam.zoom;
+    }
+
+    var easeFunction:Float->Float = FlxEase.linear;
+
+    switch (easeName) {
+        case 'sine':
+            if (easeStyle == "In") easeFunction = FlxEase.sineIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.sineOut;
+            else easeFunction = FlxEase.sineInOut;
+        case 'quad':
+            if (easeStyle == "In") easeFunction = FlxEase.quadIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.quadOut;
+            else easeFunction = FlxEase.quadInOut;
+        case 'cube':
+            if (easeStyle == "In") easeFunction = FlxEase.cubeIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.cubeOut;
+            else easeFunction = FlxEase.cubeInOut;
+        case 'expo':
+            if (easeStyle == "In") easeFunction = FlxEase.expoIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.expoOut;
+            else easeFunction = FlxEase.expoInOut;
+        case 'back':
+            if (easeStyle == "In") easeFunction = FlxEase.backIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.backOut;
+            else easeFunction = FlxEase.backInOut;
+        case 'circ':
+            if (easeStyle == "In") easeFunction = FlxEase.circIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.circOut;
+            else easeFunction = FlxEase.circInOut;
+        case 'smoothStep':
+            if (easeStyle == "In") easeFunction = FlxEase.smoothStepIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.smoothStepOut;
+            else easeFunction = FlxEase.smoothStepInOut;
+        case 'elastic':
+            if (easeStyle == "In") easeFunction = FlxEase.elasticIn;
+            else if (easeStyle == "Out") easeFunction = FlxEase.elasticOut;
+            else easeFunction = FlxEase.elasticInOut;
+        default:
+            easeFunction = FlxEase.linear;
+    }
+
+    if (!isTween || duration <= 0) {
+        if (targetCam == 'camGame') game.currentCameraZoom = finalZoom;
+        cam.zoom = finalZoom;
+    } else {
+        var durSeconds = (Conductor.instance.stepLengthMs / 1000) * duration;
+
+        if (targetCam == 'camGame') {
+            FlxTween.tween(game, {currentCameraZoom: finalZoom}, durSeconds, {
+                ease: easeFunction,
+                onUpdate: function(twn:FlxTween) {
+                    cam.zoom = game.currentCameraZoom;
+                }
+            });
+        } else {
+            FlxTween.tween(cam, {zoom: finalZoom}, durSeconds, {ease: easeFunction});
+        }
+    }
+  }
+
+  public override function getTitle():String {
+    return 'Camera Zoom';
+  }
+
+  public override function getEventSchema():SongEventSchema
+  {
+    return new SongEventSchema([
+      {
+        name: 'isTween',
+        title: 'Smooth Transition',
+        defaultValue: true,
+        type: 'bool'
+      },
+      {
+        name: 'zoom',
+        title: 'Zoom Amount',
+        defaultValue: 1.0,
+        type: 'float'
+      },
+      {
+        name: 'camera',
+        title: 'Target Camera',
+        defaultValue: 'camGame',
+        type: 'enum',
+        keys: ['Game' => 'camGame', 'HUD' => 'camHUD']
+      },
+      {
+        name: 'duration',
+        title: 'Duration (Steps)',
+        defaultValue: 4.0,
+        type: 'float'
+      },
+      {
+        name: 'ease',
+        title: 'Ease Type',
+        defaultValue: 'linear',
+        type: 'enum',
+        keys: [
+            'Linear' => 'linear',
+            'Sine' => 'sine',
+            'Quad' => 'quad',
+            'Cube' => 'cube',
+            'Expo' => 'expo',
+            'Back' => 'back',
+            'Circ' => 'circ',
+            'SmoothStep' => 'smoothStep',
+            'Elastic' => 'elastic'
+        ]
+      },
+      {
+        name: 'style',
+        title: 'Ease Style',
+        defaultValue: 'In',
+        type: 'enum',
+        keys: ['In' => 'In', 'Out' => 'Out', 'InOut' => 'InOut']
+      },
+      {
+        name: 'mode',
+        title: 'Zoom Mode',
+        defaultValue: 'direct',
+        type: 'enum',
+        keys: ['Direct (1.0)' => 'direct', 'Stage (Default)' => 'stage']
+      },
+      {
+        name: 'isRelative',
+        title: 'Relative (Multiplicative)',
+        defaultValue: false,
+        type: 'bool'
+      }
+    ]);
+  }
+}

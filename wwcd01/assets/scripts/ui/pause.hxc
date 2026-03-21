@@ -1,0 +1,195 @@
+import funkin.modding.module.Module;
+import funkin.play.PauseSubState;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.addons.display.FlxBackdrop;
+import funkin.Paths;
+import funkin.audio.FunkinSound;
+import funkin.modding.events.StateChangeScriptEvent;
+import funkin.ui.options.OptionsState;
+import funkin.play.PlayStatePlaylist;
+import funkin.ui.story.StoryMenuState;
+import funkin.ui.freeplay.FreeplayState;
+import funkin.ui.transition.stickers.StickerSubState;
+import funkin.play.cutscene.VideoCutscene;
+
+class PauseModule extends Module
+{
+    var bgTile:FlxBackdrop;
+    var blackScreen:FlxSprite;
+    var centerBox:FlxSprite;
+    var pausedText:FlxSprite;
+    var pointerThing:FlxSprite;
+    var goofyAhhText:FlxText;
+
+    var textItems:Array<FlxText> = [];
+    var pauseMusic:FunkinSound;
+    var isChangingState:Bool = false;
+    public static var returnToPlay:Bool = false;
+
+    public function new() {
+        super("PauseModule");
+    }
+
+    override function onSubStateOpenEnd(event:StateChangeScriptEvent)
+    {
+        if (PlayState.instance == null || PlayState.instance.currentStage == null) return;
+
+        var song = PlayState.instance.currentSong.id;
+        if (song != "one-last-bite" && song != "to-you") return;
+
+        if (Std.isOfType(event.targetState, PauseSubState))
+        {
+            var state:Dynamic = event.targetState;
+            isChangingState = false;
+
+            var myFixedEntries:Array<Dynamic> = [];
+            myFixedEntries.push({ text: "resume", callback: function() { resumeGame(state); } });
+            myFixedEntries.push({ text: "restart", callback: function() { restartSong(state); } });
+            // myFixedEntries.push({text: 'BotPlay', callback: function() { setBotplay(state); } });
+            myFixedEntries.push({ text: "options", callback: function() { openOptions(); } });
+            myFixedEntries.push({ text: "quit", callback: function() { exitMenu(state); } });
+
+            state.currentMenuEntries = myFixedEntries;
+            state.clearAndAddMenuEntries();
+
+            if (state.background != null) state.background.visible = false;
+            if (state.metadata != null) state.metadata.visible = false;
+            if (state.menuEntryText != null) state.menuEntryText.visible = false;
+
+            blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+            blackScreen.alpha = 0.7;
+            state.add(blackScreen);
+
+            bgTile = new FlxBackdrop(Paths.image("menu/menuPattern"));
+            bgTile.velocity.set(30, 20);
+            bgTile.scale.set(2, 2);
+            bgTile.alpha = 0.2;
+            bgTile.color = 0xFF3C59FF;
+            state.add(bgTile);
+
+            centerBox = new FlxSprite().makeGraphic(500, FlxG.height, FlxColor.BLACK);
+            centerBox.screenCenter(0x01);
+            state.add(centerBox);
+
+            pausedText = new FlxSprite(centerBox.x - 33, 10);
+            pausedText.loadGraphic(Paths.image('menu/pauseText'));
+            pausedText.scale.set(0.8, 0.8);
+            state.add(pausedText);
+
+            var songText = new FlxText(centerBox.x, pausedText.y + 143, centerBox.width, PlayState.instance.currentChart.songName.toUpperCase(), 50);
+            songText.setFormat(Paths.font("MDP.ttf"), 50, 0xFFF7F1DF, "center");
+            state.add(songText);
+
+            var composer = "Unknown";
+            var charter = "Unknown";
+            if (PlayState.instance.currentChart != null) {
+                composer = PlayState.instance.currentChart.songArtist;
+                charter = PlayState.instance.currentChart.charter;
+            }
+
+            goofyAhhText = new FlxText(centerBox.x, songText.y + 67, centerBox.width, 'Composer: '+ composer + '\nChart: '+ charter, 20);
+            goofyAhhText.setFormat(Paths.font("MDP.ttf"), 20, 0xFFA39A7E, "center");
+            state.add(goofyAhhText);
+
+            textItems = [];
+            for (i in 0...myFixedEntries.length) {
+                var optionText = new FlxText(centerBox.x, centerBox.y + 320 + (i * 90), centerBox.width, myFixedEntries[i].text, 40);
+                optionText.setFormat(Paths.font("MDP.ttf"), 40, 0xFFF7F1DF, "center");
+                optionText.antialiasing = true;
+                optionText.ID = i;
+                optionText.updateHitbox();
+                state.add(optionText);
+                textItems.push(optionText);
+            }
+
+            pointerThing = new FlxSprite();
+            pointerThing.loadGraphic(Paths.image('menu/pausePointer'));
+            state.add(pointerThing);
+        }
+    }
+
+    override function onUpdate(event:funkin.modding.events.UpdateScriptEvent)
+    {
+        if (returnToPlay && FlxG.keys.enabled == false) {
+            FlxG.switchState(() -> new PlayState());
+            returnToPlay = false;
+            FlxG.keys.enabled = true;
+            return;
+        }
+
+        if (isChangingState) return;
+
+        var state:Dynamic = FlxG.state.subState;
+        if (state != null && Std.isOfType(state, PauseSubState) && textItems.length > 0)
+        {
+            var curSelected = state.currentEntry;
+
+            for (i in 0...textItems.length)
+            {
+                var item = textItems[i];
+                if (item == null) continue;
+
+                var isOver = false;
+                #if mobile
+                for (t in FlxG.touches.list) if (t.overlaps(item, state.cameras[0])) isOver = true;
+                #else
+                if (FlxG.mouse.overlaps(item, state.cameras[0])) isOver = true;
+                #end
+
+                if ((FlxG.mouse.justPressed #if mobile || FlxG.touches.justStarted().length > 0 #end) && isOver)
+                {
+                    if (state.currentEntry == i) {
+                        state.currentMenuEntries[i].callback();
+                    } else {
+                        state.currentEntry = i;
+                        state.changeSelection(0);
+                        var s = FlxG.sound.play(Paths.sound("menu/scroll"));
+                        if(s != null) s.pitch = FlxG.random.float(0.8, 1.2);
+                    }
+                }
+
+                if (i == curSelected) {
+                    item.color = 0xFFF9CF51;
+                    item.scale.set(1.5, 1.5);
+
+                    if (pointerThing != null) {
+                        var textLeftEdge:Float = item.x + (item.width / 2) - (item.fieldWidth / 4);
+                        var offset:Float = 0;
+                        if (curSelected == 0) offset = -5;
+                        else if (curSelected == 1) offset = 5;
+                        else if (curSelected == 2) offset = 5;
+                        else if (curSelected == 3) offset = -10;
+
+                        FlxTween.cancelTweensOf(pointerThing);
+                        FlxTween.tween(pointerThing, {
+                            x: textLeftEdge - pointerThing.width - offset,
+                            y: item.y + 5
+                        }, 0.2, {ease: FlxEase.expoOut});
+                    }
+                } else {
+                    item.color = 0xFFF7F1DF;
+                    item.scale.set(1.2, 1.2);
+                }
+            }
+        }
+    }
+
+    function resumeGame(state:Dynamic) { isChangingState = true; if (pauseMusic != null) pauseMusic.stop(); FunkinSound.playOnce(Paths.sound('menu/cancel')); VideoCutscene.resumeVideo(); state.close(); }
+    function restartSong(state:Dynamic) { isChangingState = true; if (pauseMusic != null) pauseMusic.stop(); FunkinSound.playOnce(Paths.sound('menu/cancel')); PlayState.instance.needsReset = true; state.close(); }
+    // function setBotplay(state:Dynamic) { if (pauseMusic != null) pauseMusic.stop(); FunkinSound.playOnce(Paths.sound('menu/cancel')); PlayState.instance.needsReset = true; state.close(); }
+    function openOptions() { isChangingState = true; if (pauseMusic != null) pauseMusic.stop(); returnToPlay = true; FlxG.switchState(() -> new OptionsState()); }
+    function exitMenu(state:Dynamic) {
+        isChangingState = true; if (pauseMusic != null) pauseMusic.stop(); FunkinSound.playOnce(Paths.sound('menu/cancel'));
+        if (PlayState.instance != null) PlayState.instance.deathCounter = 0;
+        if (PlayStatePlaylist.isStoryMode) PlayStatePlaylist.reset();
+        var target = function(s:StickerSubState) { return PlayStatePlaylist.isStoryMode ? new StoryMenuState(s) : FreeplayState.build(null, s); };
+        var pack = (PlayState.instance.currentChart != null) ? PlayState.instance.currentChart.stickerPack : null;
+        state.openSubState(new StickerSubState({targetState: target, stickerPack: pack}));
+    }
+}

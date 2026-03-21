@@ -1,0 +1,72 @@
+import funkin.graphics.video.FlxVideo;
+import funkin.play.PlayState;
+import funkin.play.GameOverSubState;
+import funkin.modding.module.Module;
+import flixel.FlxG;
+import funkin.play.character.CharacterType;
+import funkin.Paths;
+
+class OneLastBiteModule extends Module {
+
+    private var videoLayer:FlxVideo;
+    private final TARGET_SONG:String = "one-last-bite";
+    private final VIDEO_FILE:String = "death/OneLastBiteGameOver";
+
+    function new() {
+        super("One Last Bite Game Over Module");
+    }
+
+    override function onSubStateOpenEnd(event:SubStateScriptEvent) {
+        super.onSubStateOpenEnd(event);
+        if (Std.isOfType(event.targetState, GameOverSubState) && (PlayState.instance.currentSong.id == TARGET_SONG || PlayState.instance.currentSong.id == "to-you")) {
+            setupCustomGameOver();
+        }
+    }
+
+    private function setupCustomGameOver() {
+        var subState = GameOverSubState.instance;
+        if (subState == null) return;
+
+        subState.mustNotExit = true;
+        GameOverSubState.blueBallSuffix = 'silence';
+        GameOverSubState.musicSuffix = 'silence';
+
+        try {
+            // Use FlxVideo for HTML5 compatibility - strip library prefix
+            var videoPath:String = Paths.stripLibrary(Paths.videos(VIDEO_FILE));
+            videoLayer = new FlxVideo(videoPath);
+
+            // Video auto-fills screen from position 0,0
+            videoLayer.cameras = [PlayState.instance.camCutscene];
+            videoLayer.zIndex = 1000;
+
+            // Set callback for when video ends
+            videoLayer.finishCallback = completeGameOver;
+
+            subState.add(videoLayer);
+        } catch (e:Dynamic) {
+            trace("Failed to load game over video: " + e);
+            // If video fails, complete game over immediately
+            completeGameOver();
+        }
+    }
+
+    private function completeGameOver() {
+        var subState = GameOverSubState.instance;
+        if (subState == null) return;
+
+        if (videoLayer != null) {
+            subState.remove(videoLayer);
+            videoLayer.destroy();
+            videoLayer = null;
+        }
+
+        subState.mustNotExit = false;
+        subState.remove(subState.boyfriend);
+        PlayState.instance.currentStage.addCharacter(subState.boyfriend, CharacterType.BF);
+
+        PlayState.instance.needsReset = true;
+        subState.resetCameraZoom();
+        subState.close();
+    }
+}

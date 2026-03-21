@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="loveBorders.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Symbol 1 instance 10000" x="2" y="2" width="344" height="959" pivotX="178.1" pivotY="479.4" frameX="-7" frameY="0" frameWidth="358" frameHeight="959"/>
+	<SubTexture name="Symbol 1 instance 10004" x="348" y="2" width="352" height="932" frameX="-6" frameY="-14" frameWidth="358" frameHeight="959"/>
+	<SubTexture name="Symbol 1 instance 10008" x="702" y="2" width="351" height="944" frameX="0" frameY="-10" frameWidth="358" frameHeight="959"/>
+</TextureAtlas>

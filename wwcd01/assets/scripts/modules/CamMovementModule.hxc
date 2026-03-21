@@ -1,0 +1,109 @@
+import funkin.play.PlayState;
+import funkin.modding.module.Module;
+import flixel.FlxG;
+import funkin.modding.events.ScriptEvent; 
+
+class CamMovementModule extends Module {
+    
+    public static var noteOffset:Float = 25; 
+    public var dadNoteOffset:Float = 25; 
+    public var bfNoteOffset:Float = 25;
+
+    public var disableMovement:Bool = false;
+    public var game:PlayState;
+
+    public function new() {
+        super("Camera Movement Module");
+    }
+
+    override function onUpdate(event:Float) {
+        super.onUpdate(event);
+        if (PlayState.instance == null || PlayState.instance.currentStage == null) return;
+        
+        var song = PlayState.instance.currentSong.id;
+        if (song != "one-last-bite" && song != "to-you") return;
+
+        if (disableMovement) {
+            FlxG.camera.targetOffset.set(0, 0);
+            return;
+        }
+
+        var isPlayerTurn = PlayState.instance.playerStrumline.active;
+        var curChar = isPlayerTurn ? 
+            PlayState.instance.currentStage.getBoyfriend() : 
+            PlayState.instance.currentStage.getDad();
+
+        if (curChar != null && curChar.getCurrentAnimation() == "idle") {
+            FlxG.camera.targetOffset.x *= 0.9;
+            FlxG.camera.targetOffset.y *= 0.9;
+            if (Math.abs(FlxG.camera.targetOffset.x) < 0.5) FlxG.camera.targetOffset.x = 0;
+            if (Math.abs(FlxG.camera.targetOffset.y) < 0.5) FlxG.camera.targetOffset.y = 0;
+        }
+    }
+
+    override function onNoteHit(event) {
+        super.onNoteHit(event);
+        if (PlayState.instance == null) return;
+        
+        var song = PlayState.instance.currentSong.id;
+        if (song != "one-last-bite" && song != "to-you") return;
+        if (disableMovement) return;
+
+        var isPlayerNote = event.note.noteData.getMustHitNote();
+        var isPlayerTurn = PlayState.instance.playerStrumline.active;
+
+        // Aquí se decide cuál offset usar
+        var currentOffset:Float = (song == "to-you") ? 
+            (isPlayerNote ? bfNoteOffset : dadNoteOffset) : 
+            noteOffset;
+
+        if (isPlayerNote == isPlayerTurn) {
+            FlxG.camera.targetOffset.set(0, 0);
+            switch(event.note.direction) {
+                case 0: FlxG.camera.targetOffset.x = -currentOffset;
+                case 1: FlxG.camera.targetOffset.y = currentOffset;
+                case 2: FlxG.camera.targetOffset.y = -currentOffset;
+                case 3: FlxG.camera.targetOffset.x = currentOffset;
+            }
+        }
+    }
+
+    override function onSongLoaded() {
+        super.onSongLoaded();
+        if (FlxG.camera != null) FlxG.camera.targetOffset.set(0, 0);
+    }
+
+    override function onBeatHit(event:SongTimeScriptEvent) {
+        super.onBeatHit(event);
+        if (PlayState.instance == null || disableMovement) return;
+
+        switch(PlayState.instance.currentSong.id) {
+            case "one-last-bite":
+                switch(event.beat) {
+                    case 212: noteOffset = 0;
+                    case 386: noteOffset = 25;
+                }
+            
+            case "to-you":
+                switch(event.beat) {
+                    case 203:
+                        dadNoteOffset = 75;
+                        bfNoteOffset = 25;
+                }
+        }
+    }
+
+    override function onStepHit(event:SongTimeScriptEvent) {
+        super.onStepHit(event);
+        if (PlayState.instance == null || PlayState.instance.currentSong.id != "to-you") return;
+
+        game = PlayState.instance;
+        var curStep = event.step;
+
+        switch(curStep) {
+            case 1152:
+                dadNoteOffset = 0;
+                bfNoteOffset = 0;
+        }
+    }
+}

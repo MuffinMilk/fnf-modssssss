@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ultragay.png">
+<SubTexture name="ultragay idle0000" x="2265" y="1614" width="1095" height="1054" frameX="-444" frameY="-609" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0001" x="1797" y="3086" width="1071" height="1030" frameX="-446" frameY="-633" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0002" x="0" y="4126" width="1151" height="1013" frameX="-432" frameY="-641" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0003" x="2868" y="3086" width="1244" height="1026" frameX="-443" frameY="-641" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0004" x="3472" y="1054" width="1201" height="1037" frameX="-438" frameY="-614" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0005" x="4750" y="0" width="1139" height="1016" frameX="-438" frameY="-657" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0006" x="4750" y="1016" width="1109" height="999" frameX="-439" frameY="-652" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay idle0007" x="4750" y="2015" width="1110" height="989" frameX="-442" frameY="-662" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay boss0000" x="4750" y="3004" width="175" height="308" frameX="-906" frameY="-878" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singDOWN0000" x="0" y="0" width="1073" height="1614" frameX="-454" frameY="-141" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singDOWN0001" x="0" y="1614" width="935" height="1472" frameX="-518" frameY="-243" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singLEFT0000" x="0" y="3086" width="1797" height="1040" frameX="-82" frameY="-598" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singLEFT0001" x="1151" y="4126" width="1808" height="1002" frameX="-70" frameY="-638" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singRIGHT0000" x="935" y="1614" width="1330" height="1073" frameX="-710" frameY="-590" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singRIGHT0001" x="3472" y="0" width="1278" height="1054" frameX="-737" frameY="-617" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singUP0000" x="2248" y="0" width="1224" height="1531" frameX="-324" frameY="-99" frameWidth="2000" frameHeight="2000" />
+<SubTexture name="ultragay singUP0001" x="1073" y="0" width="1175" height="1566" frameX="-394" frameY="-84" frameWidth="2000" frameHeight="2000" />
+</TextureAtlas>

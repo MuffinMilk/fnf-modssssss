@@ -1,0 +1,262 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxColor;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.math.FlxMath;
+import flixel.math.FlxRect;
+import funkin.modding.module.Module;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import funkin.play.PlayState;
+import funkin.play.stage.Stage;
+import funkin.Paths;
+import funkin.Conductor;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.FunkinCamera;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import openfl.utils.Assets;
+import flixel.ui.FlxButton;
+import funkin.Highscore;
+import funkin.modding.events.ScriptEvent;
+import funkin.Preferences;
+import funkin.play.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import funkin.play.components.HealthIcon;
+import flixel.util.FlxTimer;
+
+class AbbeyStage extends Stage
+{
+    public static var MDP:Bool = true;
+
+    var char1:FlxSprite;
+    var heart:FlxSprite;
+    var frameHUD:FlxSprite;
+    var love:FlxSprite;
+    var Abbeyaspect:FlxSprite;
+    var borderL:FlxSprite;
+    var borderR:FlxSprite;
+    var box:FlxSprite;
+
+    var realStageGroup:Array<String> = ['ground', 'iloveyou', 'signs', 'face', 'back'];
+    var fakeStageGroup:Array<String> = ['bg'];
+
+    public function new() {
+        super('Abbey');
+    }
+
+    override function onCreate(event) {
+        super.onCreate(event);
+        game = PlayState.instance;
+
+        char1 = new FlxSprite();
+        char1.frames = Paths.getSparrowAtlas("characters/bonus/ultragay");
+        char1.cameras = [game.camCutscene];
+        add(char1);
+        new FlxTimer().start(0.1, function(_) {
+            remove(char1);
+        });
+
+        setupHUD();
+        setupStageElements();
+
+        realStage(false);
+        MDP = true;
+    }
+
+    function setupHUD() {
+        game = PlayState.instance;
+        if (game.healthBar != null) game.healthBar.visible = false;
+        if (game.healthBarBG != null) game.healthBarBG.visible = false;
+        if (game.scoreText != null) game.scoreText.visible = false;
+        if (game.songProgress != null) game.songProgress.visible = false;
+
+        if (FlxG.onMobile) {
+            if (game.opponentStrumline != null) game.opponentStrumline.visible = false;
+        } else {
+            if (game.opponentStrumline != null) game.opponentStrumline.visible = false;
+            if (game.playerStrumline != null) {
+                var strumWidth:Float = 448;
+                game.playerStrumline.x = (FlxG.width / 2) - (strumWidth / 2);
+                game.playerStrumline.zIndex = 1000;
+            }
+        }
+
+        frameHUD = new FlxSprite(0, 0);
+        frameHUD.loadGraphic(Paths.image('stages/abbey/frame'));
+        frameHUD.scale.set(0.67, 0.67);
+        frameHUD.screenCenter();
+        frameHUD.alpha = 0.00001;
+        frameHUD.antialiasing = true;
+        frameHUD.zIndex = 900;
+        add(frameHUD);
+        frameHUD.cameras = [game.camHUD];
+    }
+
+    function setupStageElements() {
+        heart = new FlxSprite(0, 0);
+        heart.frames = Paths.getSparrowAtlas("stages/abbey/heart");
+        heart.animation.addByPrefix("start", "heart start", 9, true);
+        heart.animation.addByPrefix("anim", "heart anim", 9, false);
+        heart.animation.addByPrefix("stay", "heart stay", 9, true);
+        heart.alpha = 0.00001;
+        heart.antialiasing = true;
+        heart.zIndex = 890;
+        heart.screenCenter();
+        add(heart);
+        heart.cameras = [game.camCutscene];
+        heart.animation.play("start");
+
+        love = new FlxSprite(0, 0);
+        love.loadGraphic(Paths.image('stages/abbey/Love'));
+        love.scale.set(1.7, 1.7);
+        love.antialiasing = true;
+        love.alpha = 0.00001;
+        love.screenCenter();
+        love.zIndex = 1000;
+        add(love);
+        love.cameras = [game.camCutscene];
+
+        var margin:Float = 120;
+        var borderOffset:Float = FlxG.onMobile ? 0 : -100;
+
+        borderL = new FlxSprite(0, 0);
+        borderL.frames = Paths.getSparrowAtlas("stages/abbey/loveBorders");
+        borderL.animation.addByPrefix("loop", "Symbol", 3, true);
+        borderL.scale.set(0.7, 0.7);
+        borderL.updateHitbox();
+        borderL.x = margin + borderOffset;
+        borderL.alpha = 0.0001;
+        borderL.antialiasing = true;
+        borderL.zIndex = 910;
+        add(borderL);
+        borderL.cameras = [game.camCutscene];
+        borderL.animation.play("loop");
+
+        borderR = new FlxSprite(0, 0);
+        borderR.frames = Paths.getSparrowAtlas("stages/abbey/loveBorders");
+        borderR.animation.addByPrefix("loop", "Symbol", 3, true);
+        borderR.scale.set(-0.7, 0.7);
+        borderR.updateHitbox();
+        borderR.x = FlxG.width - borderR.width - margin - borderOffset;
+        borderR.alpha = 0.00001;
+        borderR.antialiasing = true;
+        borderR.zIndex = 911;
+        add(borderR);
+        borderR.cameras = [game.camCutscene];
+        borderR.animation.play("loop");
+
+        Abbeyaspect = new FlxSprite(0, 0);
+        Abbeyaspect.loadGraphic(Paths.image('stages/abbey/aspect'));
+        Abbeyaspect.zIndex = 900;
+        Abbeyaspect.screenCenter();
+        add(Abbeyaspect);
+        Abbeyaspect.cameras = [game.camCutscene];
+
+        box = new FlxSprite(0, 0);
+        box.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        box.zIndex = 880;
+        box.screenCenter();
+        add(box);
+        box.cameras = [game.camCutscene];
+    }
+
+    override function onUpdate(elapsed:Float) {
+        super.onUpdate(elapsed);
+        game = PlayState.instance;
+
+        if (game.iconP1 != null) { game.iconP1.visible = false; game.iconP1.zIndex = 0; }
+        if (game.iconP2 != null) { game.iconP2.visible = false; game.iconP2.zIndex = 0; }
+
+        if (heart != null && heart.animation.curAnim != null) {
+            if (heart.animation.curAnim.name == "anim" && heart.animation.finished) {
+                heart.animation.play("stay");
+            }
+        }
+    }
+
+    override function onCountdownStart(event):Void {
+        event.cancel();
+        super.onCountdownStart(event);
+        PlayState.instance.isInCountdown = true;
+        PlayState.instance.mayPauseGame = true;
+        PlayState.instance.startSong();
+    }
+
+    override function onSongStart() {
+        super.onSongStart();
+        game = PlayState.instance;
+
+        if (!FlxG.onMobile && game.playerStrumline != null) {
+            var strumWidth:Float = 448;
+            game.playerStrumline.x = (FlxG.width / 2) - (strumWidth / 2);
+            // game.playerStrumline.y += 40;
+        }
+
+        game.playerStrumline.zIndex = 1000;
+        game.comboPopUps.visible = false;
+        game.cameraZoomRate = 100000;
+
+        FlxTween.tween(heart, {alpha: 1}, 2.5, {ease: FlxEase.cubeInOut});
+    }
+
+    public override function onStepHit(event:SongTimeScriptEvent):Void {
+        super.onStepHit(event);
+        game = PlayState.instance;
+
+        switch(event.step) {
+            case 5:
+                heart.animation.play("anim");
+            case 25:
+                FlxTween.tween(heart, {y: heart.y + 480, alpha: 0}, 1.8, {ease: FlxEase.quartIn});
+            case 48:
+                FlxTween.tween(frameHUD, {alpha: 1}, 1, {ease: FlxEase.quartOut});
+                FlxTween.tween(box, {alpha: 0}, 1, {ease: FlxEase.quartOut});
+                game.playerStrumline.cameras = [game.camCutscene];
+            case 816:
+                realStage(true);
+                var bf = getBoyfriend();
+                bf.x = bf.x + 400;
+                bf.y = bf.y + 80;
+                FlxTween.tween(borderL, {alpha: 1}, 1.8, {ease:FlxEase.quartOut});
+                FlxTween.tween(borderR, {alpha: 1}, 1.8, {ease:FlxEase.quartOut});
+            case 1152:
+                game.playerStrumline.visible = false;
+                box.alpha = 1;
+                love.alpha = 1;
+                FlxTween.tween(frameHUD, {alpha: 0}, 0.5, {ease: FlxEase.quartOut});
+                FlxTween.tween(borderL, {alpha: 0}, 0.5, {ease: FlxEase.quartOut});
+                FlxTween.tween(borderR, {alpha: 0}, 0.5, {ease: FlxEase.quartOut});
+            case 1176:
+                FlxTween.tween(love, {alpha: 0}, 0.15, {ease: FlxEase.quartOut});
+        }
+    }
+
+    function realStage(show:Bool) {
+        for (elementName in realStageGroup) {
+            var sprite = getNamedProp(elementName);
+            if (sprite != null) sprite.visible = show;
+        }
+        for (elementName in fakeStageGroup) {
+            var sprite = getNamedProp(elementName);
+            if (sprite != null) sprite.visible = !show;
+        }
+    }
+
+    override public function onPause(event) {
+        super.onPause(event);
+        FlxTween.globalManager.forEach(function(twn:FlxTween) if(!twn.finished) twn.active = false);
+    }
+
+    override public function onResume(event) {
+        super.onResume(event);
+        FlxTween.globalManager.forEach(function(twn:FlxTween) if(!twn.finished) twn.active = true);
+    }
+
+    override public function onSongRetry(event)
+    {
+        super.onSongRetry(event);
+        FlxG.resetState();
+    }
+}

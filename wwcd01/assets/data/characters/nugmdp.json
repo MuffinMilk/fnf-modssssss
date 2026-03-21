@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "name": "Nugget MDP",
+  "scale": 0.9,
+  "assetPath": "characters/OLB/NugMDP",
+  "singTime": 6.1,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "idle",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "down",
+      "frameRate": 7,
+      "offsets": [15, 5]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "right",
+      "frameRate": 7,
+      "offsets": [15, 7]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "left",
+      "frameRate": 7,
+      "offsets": [8, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "up",
+      "frameRate": 7,
+      "offsets": [10, 0]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "missdown",
+      "frameRate": 24,
+      "offsets": [15, 5]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "missright",
+      "frameRate": 24,
+      "offsets": [15, 7]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "missleft",
+      "frameRate": 24,
+      "offsets": [8, 0]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "missup",
+      "frameRate": 24,
+      "offsets": [10, 0]
+    }
+  ]
+}

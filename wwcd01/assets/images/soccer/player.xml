@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="player.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Bubby_Idle 10000" x="175" y="2" width="148" height="149" pivotX="88.25" pivotY="105.25" frameX="-1" frameY="-59" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Idle 10001" x="175" y="2" width="148" height="149" frameX="-2" frameY="-40" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Idle 10002" x="175" y="2" width="148" height="149" frameX="-1" frameY="0" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Idle 10003" x="175" y="2" width="148" height="149" frameX="0" frameY="-22" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Run 10000" x="2" y="2" width="171" height="171" pivotX="88.25" pivotY="105.25" frameX="-6" frameY="-4" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Run 10001" x="175" y="2" width="148" height="149" frameX="-15" frameY="-31" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Run 10002" x="325" y="2" width="173" height="172" frameX="0" frameY="0" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Bubby_Run 10003" x="175" y="2" width="148" height="149" frameX="-15" frameY="-31" frameWidth="177" frameHeight="180"/>
+	<SubTexture name="Duncan_Idle 10000" x="500" y="2" width="154" height="216" pivotX="76.9" pivotY="212.8" frameX="-1" frameY="-8" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10001" x="500" y="2" width="154" height="216" frameX="-1" frameY="-8" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10002" x="500" y="2" width="154" height="216" frameX="-1" frameY="-8" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10003" x="656" y="2" width="153" height="211" frameX="0" frameY="-13" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10004" x="656" y="2" width="153" height="211" frameX="0" frameY="-13" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10005" x="811" y="2" width="138" height="217" frameX="-7" frameY="-7" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10006" x="811" y="2" width="138" height="217" frameX="-7" frameY="-7" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10007" x="951" y="2" width="139" height="224" frameX="-8" frameY="0" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Idle 10008" x="951" y="2" width="139" height="224" frameX="-8" frameY="0" frameWidth="155" frameHeight="224"/>
+	<SubTexture name="Duncan_Run 10000" x="1092" y="2" width="135" height="225" pivotX="75.55" pivotY="151.7" frameX="-2" frameY="-5" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10001" x="1229" y="2" width="129" height="221" frameX="-12" frameY="-8" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10002" x="1360" y="2" width="141" height="231" frameX="-11" frameY="-3" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10003" x="1503" y="2" width="128" height="220" frameX="-18" frameY="0" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10004" x="1633" y="2" width="122" height="233" frameX="-25" frameY="-1" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10005" x="1757" y="2" width="135" height="228" frameX="-14" frameY="-5" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="Duncan_Run 10006" x="1894" y="2" width="144" height="224" frameX="0" frameY="-4" frameWidth="152" frameHeight="234"/>
+	<SubTexture name="TrifleJimmy_Idle 10000" x="2" y="237" width="157" height="210" pivotX="78.6" pivotY="209" frameX="-1" frameY="-9" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10001" x="2" y="237" width="157" height="210" frameX="-1" frameY="-9" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10002" x="2" y="237" width="157" height="210" frameX="-1" frameY="-9" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10003" x="161" y="237" width="157" height="204" frameX="0" frameY="-15" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10004" x="161" y="237" width="157" height="204" frameX="0" frameY="-15" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10005" x="320" y="237" width="142" height="213" frameX="-7" frameY="-6" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10006" x="320" y="237" width="142" height="213" frameX="-7" frameY="-6" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10007" x="464" y="237" width="143" height="219" frameX="-8" frameY="0" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Idle 10008" x="464" y="237" width="143" height="219" frameX="-8" frameY="0" frameWidth="158" frameHeight="219"/>
+	<SubTexture name="TrifleJimmy_Run 10000" x="609" y="237" width="128" height="208" pivotX="72.1" pivotY="136.5" frameX="-2" frameY="-4" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10001" x="739" y="237" width="123" height="202" frameX="-11" frameY="-8" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10002" x="864" y="237" width="135" height="213" frameX="-10" frameY="-2" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10003" x="1001" y="237" width="122" height="203" frameX="-17" frameY="0" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10004" x="1125" y="237" width="116" height="215" frameX="-24" frameY="-1" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10005" x="1243" y="237" width="129" height="210" frameX="-13" frameY="-4" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="TrifleJimmy_Run 10006" x="1374" y="237" width="137" height="207" frameX="0" frameY="-3" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Idle 10000" x="1513" y="237" width="152" height="204" pivotX="76.2" pivotY="202.6" frameX="-1" frameY="-9" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10001" x="1513" y="237" width="152" height="204" frameX="-1" frameY="-9" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10002" x="1513" y="237" width="152" height="204" frameX="-1" frameY="-9" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10003" x="1667" y="237" width="152" height="198" frameX="0" frameY="-15" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10004" x="1667" y="237" width="152" height="198" frameX="0" frameY="-15" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10005" x="1821" y="237" width="137" height="206" frameX="-7" frameY="-7" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10006" x="1821" y="237" width="137" height="206" frameX="-7" frameY="-7" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10007" x="2" y="458" width="138" height="213" frameX="-8" frameY="0" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Idle 10008" x="2" y="458" width="138" height="213" frameX="-8" frameY="0" frameWidth="153" frameHeight="213"/>
+	<SubTexture name="Jimmy_Run 10000" x="142" y="458" width="128" height="207" pivotX="72.1" pivotY="136.5" frameX="-3" frameY="-5" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10001" x="272" y="458" width="123" height="203" frameX="-12" frameY="-8" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10002" x="397" y="458" width="134" height="213" frameX="-11" frameY="-3" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10003" x="533" y="458" width="123" height="203" frameX="-17" frameY="0" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10004" x="658" y="458" width="117" height="215" frameX="-24" frameY="-1" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10005" x="777" y="458" width="128" height="210" frameX="-14" frameY="-5" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Jimmy_Run 10006" x="907" y="458" width="138" height="207" frameX="0" frameY="-4" frameWidth="145" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10000" x="1047" y="458" width="152" height="207" pivotX="76.2" pivotY="206.05" frameX="-1" frameY="-9" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10001" x="1047" y="458" width="152" height="207" frameX="-1" frameY="-9" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10002" x="1047" y="458" width="152" height="207" frameX="-1" frameY="-9" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10003" x="1201" y="458" width="152" height="202" frameX="0" frameY="-14" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10004" x="1201" y="458" width="152" height="202" frameX="0" frameY="-14" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10005" x="1355" y="458" width="137" height="209" frameX="-7" frameY="-7" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10006" x="1355" y="458" width="137" height="209" frameX="-7" frameY="-7" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10007" x="1494" y="458" width="138" height="216" frameX="-8" frameY="0" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Idle 10008" x="1494" y="458" width="138" height="216" frameX="-8" frameY="0" frameWidth="153" frameHeight="216"/>
+	<SubTexture name="Oxaya_Run 10000" x="1634" y="458" width="128" height="209" pivotX="72.1" pivotY="139.15" frameX="-3" frameY="-5" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10001" x="1764" y="458" width="123" height="204" frameX="-12" frameY="-8" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10002" x="1889" y="458" width="134" height="214" frameX="-11" frameY="-3" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10003" x="2" y="676" width="123" height="205" frameX="-17" frameY="0" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10004" x="127" y="676" width="117" height="217" frameX="-24" frameY="-1" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10005" x="246" y="676" width="128" height="211" frameX="-14" frameY="-5" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Oxaya_Run 10006" x="376" y="676" width="138" height="208" frameX="0" frameY="-4" frameWidth="145" frameHeight="218"/>
+	<SubTexture name="Ollie_Idle 10000" x="516" y="676" width="151" height="205" pivotX="75.2" pivotY="202.05" frameX="0" frameY="-7" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10001" x="516" y="676" width="151" height="205" frameX="0" frameY="-7" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10002" x="516" y="676" width="151" height="205" frameX="0" frameY="-7" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10003" x="669" y="676" width="150" height="200" frameX="0" frameY="-12" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10004" x="669" y="676" width="150" height="200" frameX="0" frameY="-12" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10005" x="821" y="676" width="135" height="205" frameX="-7" frameY="-7" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10006" x="821" y="676" width="135" height="205" frameX="-7" frameY="-7" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10007" x="958" y="676" width="137" height="212" frameX="-7" frameY="0" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Idle 10008" x="958" y="676" width="137" height="212" frameX="-7" frameY="0" frameWidth="151" frameHeight="212"/>
+	<SubTexture name="Ollie_Run 10000" x="1097" y="676" width="126" height="205" pivotX="70.5" pivotY="136.2" frameX="-2" frameY="-5" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10001" x="1225" y="676" width="121" height="201" frameX="-11" frameY="-8" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10002" x="1348" y="676" width="132" height="211" frameX="-10" frameY="-3" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10003" x="1482" y="676" width="121" height="201" frameX="-16" frameY="0" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10004" x="1605" y="676" width="115" height="213" frameX="-23" frameY="-1" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10005" x="1722" y="676" width="126" height="208" frameX="-13" frameY="-5" frameWidth="142" frameHeight="214"/>
+	<SubTexture name="Ollie_Run 10006" x="1850" y="676" width="135" height="205" frameX="0" frameY="-4" frameWidth="142" frameHeight="214"/>
+</TextureAtlas>

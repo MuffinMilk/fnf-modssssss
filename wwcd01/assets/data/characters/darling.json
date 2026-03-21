@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "name": "Nugge",
+  "assetPath": "characters/bonus/nugge",
+  "singTime": 6.1,
+  "offsets": [0, 0],
+  "cameraOffsets": [0, 0],
+  "flipX": true,
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "nugge idle",
+      "frameRate": 6,
+      "looped": true,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "nugge singDOWN",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "nugge singRIGHT",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "nugge singLEFT",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "nugge singUP",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singDOWNmiss",
+      "prefix": "nugge miss",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singRIGHTmiss",
+      "prefix": "nugge miss",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singLEFTmiss",
+      "prefix": "nugge miss",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUPmiss",
+      "prefix": "nugge miss",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    }
+  ]
+}

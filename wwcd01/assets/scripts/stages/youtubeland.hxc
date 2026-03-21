@@ -1,0 +1,700 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.util.FlxColor;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.math.FlxMath;
+import flixel.math.FlxRect;
+import funkin.save.Save;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import funkin.play.PlayState;
+import funkin.play.stage.Stage;
+import funkin.Paths;
+import funkin.Conductor;
+import funkin.graphics.video.FlxVideo;
+import funkin.graphics.FunkinSprite;
+import funkin.graphics.FunkinCamera;
+import flixel.addons.display.FlxRuntimeShader;
+import openfl.filters.ShaderFilter;
+import openfl.utils.Assets;
+import flixel.ui.FlxButton;
+import funkin.save.Save;
+import funkin.modding.module.ModuleHandler;
+import funkin.Highscore;
+import funkin.modding.events.ScriptEvent;
+import funkin.Preferences;
+import funkin.play.character.CharacterDataParser;
+import funkin.play.character.CharacterType;
+import funkin.play.components.HealthIcon;
+
+class OneLastBiteStage extends Stage
+{
+    public static var MDP:Bool = true;
+    var unlockedGoodEnding:Bool = false;
+    var healthPercentButActually:Float = 1;
+    var dontZoomYet:Bool = true;
+
+    var playerAlpha:Float = 1.0;
+    var playerAlphaTween:FlxTween;
+
+    var batteryBorder:FlxSprite;
+    var batteryBG:FlxSprite;
+    var batteryGradient:FlxSprite;
+    var shortGradientTop:FlxSprite;
+    var shortGradientBottom:FlxSprite;
+    var watermark:FlxText;
+    var scoreText:FlxText;
+    var missText:FlxText;
+    var lyricsTextChidas:FlxText;
+    var healthIcon:FlxSprite;
+    var leftBar:FlxSprite;
+    var rightBar:FlxSprite;
+    var _clipRect:FlxRect;
+    final BATTERY_WIDTH = 210;
+    final BATTERY_HEIGHT = 100;
+
+    // HTML5-compatible video using FlxVideo
+    var lyricsLol:FlxVideo;
+    var lyricsGood:FlxVideo;
+    var videoLoaded:Bool = false;
+
+    var maxRun:FlxSprite;
+    var nugRun:FlxSprite;
+    var songLogo:FlxSprite;
+    var blackScreen:FlxSprite;
+    var blackScreen2:FlxSprite;
+    var yellowScreen:FlxSprite;
+    var broDied:FlxSprite;
+    var pibbuh:FlxSprite;
+    var redTint:FlxSprite;
+    var blueBG:FlxSprite;
+    var yellowBG:FlxSprite;
+
+    var likeButton:FlxButton;
+    var likeCount:Int = 0;
+
+    var sharpen:FlxRuntimeShader;
+    var saturation:FlxRuntimeShader;
+
+    var realStageGroup:Array<String> = [
+        'Sky', 'Clouds', 'CityLeft', 'CityRight', 'Road',
+        'Buildings', 'maxshadow', 'nugshadow', 'TreeRight', 'TreeLeft'
+    ];
+
+    function new() {
+        super('youtubeland');
+    }
+
+    function triggerEvent(notUsed:String, character:String, characterName:String) {
+        var charData = CharacterDataParser.parseCharacterData(characterName.toLowerCase());
+        CharacterDataParser.characterCache.h[CharacterDataParser.characterCache.h.length + 1] = charData;
+
+        switch(character) {
+            case 'bf':
+                var zIndex = PlayState.instance.currentStage.getBoyfriend().zIndex;
+                PlayState.instance.currentStage.getBoyfriend().destroy();
+                var boyfriend = CharacterDataParser.fetchCharacter(characterName.toLowerCase());
+                if (boyfriend != null) {
+                    boyfriend.set_characterType(CharacterType.BF);
+                    boyfriend.initHealthIcon(false);
+                    PlayState.instance.currentStage.addCharacter(boyfriend, CharacterType.BF);
+                    PlayState.instance.currentStage.getBoyfriend().zIndex = zIndex;
+                }
+            case 'gf':
+                var zIndex = PlayState.instance.currentStage.getGirlfriend().zIndex;
+                PlayState.instance.currentStage.getGirlfriend().destroy();
+                var girlfriend = CharacterDataParser.fetchCharacter(characterName.toLowerCase());
+                if (girlfriend != null) {
+                    girlfriend.set_characterType(CharacterType.GF);
+                    girlfriend.initHealthIcon(false);
+                    PlayState.instance.currentStage.addCharacter(girlfriend, CharacterType.GF);
+                    PlayState.instance.currentStage.getGirlfriend().zIndex = zIndex;
+                }
+            case 'dad':
+                var zIndex = PlayState.instance.currentStage.getDad().zIndex;
+                PlayState.instance.currentStage.getDad().destroy();
+                var dad = CharacterDataParser.fetchCharacter(characterName.toLowerCase());
+                if (dad != null) {
+                    dad.set_characterType(CharacterType.DAD);
+                    dad.initHealthIcon(true);
+                    PlayState.instance.currentStage.addCharacter(dad, CharacterType.DAD);
+                    PlayState.instance.currentStage.getDad().zIndex = zIndex;
+                }
+        }
+        PlayState.instance.currentStage.refresh();
+    }
+
+    override function onCreate(event) {
+        super.onCreate(event);
+        _clipRect = new FlxRect(0, 0, 0, BATTERY_HEIGHT);
+        game = PlayState.instance;
+
+        // Initialize shaders safely
+        try {
+            sharpen = new FlxRuntimeShader(Assets.getText(Paths.frag("sharpen")));
+            saturation = new FlxRuntimeShader(Assets.getText(Paths.frag("saturation")));
+            PlayState.instance.camGame.filters = [new ShaderFilter(sharpen), new ShaderFilter(saturation)];
+        } catch (e:Dynamic) {
+            trace("Shader loading failed, continuing without shaders: " + e);
+        }
+
+        // char1 = new FlxSprite();
+        // char1.frames = Paths.getSparrowAtlas("characters/OLB/NugRUN");
+        // char1.cameras = [game.camCutscene];
+        // add(char1);
+        // char2 = new FlxSprite();
+        // char2.frames = Paths.getSparrowAtlas("characters/OLB/Nugget");
+        // char2.cameras = [game.camCutscene];
+        // add(char2);
+        // char3 = new FlxSprite();
+        // char3.frames = Paths.getSparrowAtlas("characters/OLB/Max");
+        // char3.cameras = [game.camCutscene];
+        // add(char3);
+        // char4 = new FlxSprite();
+        // char4.frames = Paths.getSparrowAtlas("characters/OLB/MaxRUN");
+        // char4.cameras = [game.camCutscene];
+        // add(char4);
+
+        // new FlxTimer().start(0.1, function(_) {
+        //     // remove(char1);
+        // });
+
+
+        setupHUD();
+        setupCineBars();
+        setupStageElements();
+        // Videos are loaded on-demand for HTML5 compatibility
+        realStage(false);
+        MDP = true;
+
+        // PlayState.instance.add(lyricsGood);
+        // PlayState.instance.add(lyricsLol);
+    }
+
+    override function onSongStart(event) {
+        super.onSongStart(event);
+        game.playerStrumline.cameras = [game.camVideo];
+        // game.playerStrumline.zIndex = 9999;
+
+        if (!FlxG.onMobile) {
+            game.playerStrumline.x = FlxG.width - 448;
+        }
+    }
+
+    function setupHUD() {
+        game = PlayState.instance;
+        if (game.healthBar != null) game.healthBar.visible = false;
+        if (game.healthBarBG != null) game.healthBarBG.visible = false;
+        if (game.scoreText != null) game.scoreText.visible = false;
+        if (game.songProgress != null) game.songProgress.visible = false;
+        if (game.opponentStrumline != null) game.opponentStrumline.visible = false;
+
+        var batteryX = (FlxG.width / 2) - (BATTERY_WIDTH / 2);
+        var isDown = FlxG.onMobile || Preferences.downscroll;
+        var batteryY = isDown ? 25 : 600;
+
+        batteryBG = new FlxSprite(batteryX, batteryY).makeGraphic(BATTERY_WIDTH, BATTERY_HEIGHT, 0xAA000000);
+        batteryBG.cameras = [PlayState.instance.camHUD];
+        batteryBG.zIndex = 300;
+        PlayState.instance.add(batteryBG);
+
+        batteryGradient = new FlxSprite(batteryX, batteryY).loadGraphic(Paths.image('ui/batteryGradient'));
+        batteryGradient.antialiasing = true;
+        batteryGradient.cameras = [PlayState.instance.camHUD];
+        batteryGradient.zIndex = 301;
+        PlayState.instance.add(batteryGradient);
+
+        batteryBorder = new FlxSprite(batteryX - 5, batteryY - 10).loadGraphic(Paths.image('ui/batteryHealth'));
+        batteryBorder.scale.set(0.7, 0.7);
+        batteryBorder.antialiasing = true;
+        batteryBorder.updateHitbox();
+        batteryBorder.cameras = [PlayState.instance.camHUD];
+        batteryBorder.zIndex = 302;
+        PlayState.instance.add(batteryBorder);
+
+        var gradTopY = isDown ? 590 : 0;
+        var gradBotY = isDown ? 40 : 650;
+
+        shortGradientTop = new FlxSprite(batteryX - 50, gradTopY).loadGraphic(Paths.image('ui/shortGradient'));
+        shortGradientTop.scale.set(2.1, 2.1);
+        shortGradientTop.flipY = isDown;
+        shortGradientTop.cameras = [PlayState.instance.camCutscene];
+        shortGradientTop.zIndex = 400;
+        PlayState.instance.add(shortGradientTop);
+
+        shortGradientBottom = new FlxSprite(batteryX - 50, gradBotY).loadGraphic(Paths.image('ui/shortGradient'));
+        shortGradientBottom.scale.set(2.1, 2.1);
+        shortGradientBottom.flipY = !isDown;
+        shortGradientBottom.cameras = [PlayState.instance.camCutscene];
+        shortGradientBottom.zIndex = 401;
+        PlayState.instance.add(shortGradientBottom);
+
+        watermark = new FlxText(0, (isDown ? 180 : 550), 0, "@MaxDesignPro", 32);
+        watermark.setFormat(Paths.font('watermark.ttf'), 32, 0x0e0500);
+        watermark.scale.set(0.5, 0.5);
+        watermark.alpha = 0.32;
+        watermark.screenCenter(0x01);
+        watermark.cameras = [PlayState.instance.camCutscene];
+        watermark.zIndex = 405;
+        PlayState.instance.add(watermark);
+
+        healthIcon = new FlxSprite(30, FlxG.height - 260);
+        healthIcon.frames = Paths.getSparrowAtlas('icons/NugIcon');
+        healthIcon.animation.addByPrefix('full', 'NUGGET0000', 24, false);
+        healthIcon.animation.addByPrefix('good', 'NUGGET0001', 24, false);
+        healthIcon.animation.addByPrefix('warning', 'NUGGET0002', 24, false);
+        healthIcon.animation.addByPrefix('danger', 'NUGGET0003', 24, false);
+        healthIcon.cameras = [PlayState.instance.camHUD];
+        healthIcon.zIndex = 310;
+        healthIcon.scale.set(0.8, 0.8);
+        PlayState.instance.add(healthIcon);
+
+        scoreText = new FlxText(healthIcon.x + 190, healthIcon.y + 120, 0, "Score: 0", 30);
+        scoreText.setFormat(Paths.font("MDP.ttf"), 30, 0xFFF7F1DF, 'left', FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        scoreText.borderSize = 2;
+        scoreText.cameras = [PlayState.instance.camHUD];
+        scoreText.zIndex = 311;
+        PlayState.instance.add(scoreText);
+
+        missText = new FlxText(scoreText.x, scoreText.y + 40, 0, "Misses: 0", 30);
+        missText.setFormat(Paths.font("MDP.ttf"), 30, 0xFFF7F1DF, 'left', FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        missText.borderSize = 2;
+        missText.cameras = [PlayState.instance.camHUD];
+        missText.zIndex = 312;
+        PlayState.instance.add(missText);
+    }
+
+    function setupCineBars() {
+        var barWidth = Math.ceil((FlxG.width - (9 / 16 * FlxG.height)) / 2);
+        leftBar = new FlxSprite(0, 0).makeGraphic(barWidth, FlxG.height, 0xFF0f0f0f);
+        rightBar = new FlxSprite(FlxG.width - barWidth, 0).makeGraphic(barWidth, FlxG.height, 0xFF0f0f0f);
+        leftBar.cameras = rightBar.cameras = [PlayState.instance.camCutscene];
+        leftBar.zIndex = 600;
+        rightBar.zIndex = 601;
+        PlayState.instance.add(leftBar);
+        PlayState.instance.add(rightBar);
+    }
+
+    function setupStageElements() {
+        blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        blackScreen.cameras = [PlayState.instance.camCutscene];
+        blackScreen.zIndex = 1100;
+        PlayState.instance.add(blackScreen);
+
+        blackScreen2 = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+        blackScreen2.cameras = [PlayState.instance.camCutscene];
+        blackScreen2.alpha = 0;
+        blackScreen2.zIndex = 1101;
+        PlayState.instance.add(blackScreen2);
+
+        yellowScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xffffd900);
+        yellowScreen.cameras = [PlayState.instance.camCutscene];
+        yellowScreen.visible = false;
+        yellowScreen.zIndex = 1102;
+        PlayState.instance.add(yellowScreen);
+
+        songLogo = new FlxSprite(0, 0).loadGraphic(Paths.image('logo/OLBWHITE'));
+        songLogo.scale.set(0.4, 0.4);
+        songLogo.cameras = [PlayState.instance.camCutscene];
+        songLogo.screenCenter();
+        songLogo.visible = false;
+        songLogo.zIndex = 1110;
+        PlayState.instance.add(songLogo);
+
+        broDied = new FlxSprite(0, 0).loadGraphic(Paths.image('characters/OLB/broDied'));
+        broDied.cameras = [PlayState.instance.camCutscene];
+        broDied.screenCenter();
+        broDied.visible = false;
+        broDied.zIndex = 1105;
+        PlayState.instance.add(broDied);
+
+        maxRun = new FlxSprite(-800, 220);
+        maxRun.frames = Paths.getSparrowAtlas("characters/OLB/MaxRUN");
+        maxRun.animation.addByPrefix("run", "!!!mak pro and", 22, true);
+        maxRun.animation.addByPrefix("huh", "!!!mak pro HUH", 16, false);
+        maxRun.animation.addByPrefix("crank", "!!!mak pro crank", 20, true);
+        maxRun.visible = false;
+        game.add(maxRun);
+        maxRun.zIndex = 500;
+
+        nugRun = new FlxSprite(-200, 550);
+        nugRun.frames = Paths.getSparrowAtlas("characters/OLB/NugRUN");
+        nugRun.animation.addByPrefix("run", "!NUGGETRUN", 22, true);
+        nugRun.animation.addByPrefix("slide", "!NUGGETslid", 22, true);
+        nugRun.animation.addByPrefix("what", "!NUGGETWHAT", 22, false);
+        nugRun.animation.addByPrefix("help", "!NUGGETHELP", 23.6, true);
+        nugRun.visible = false;
+        game.add(nugRun);
+        nugRun.zIndex = 501;
+
+        pibbuh = new FlxSprite(-250, -20);
+        pibbuh.frames = Paths.getSparrowAtlas("characters/pibbyGlitch");
+        pibbuh.animation.addByPrefix("scary", "pibbyGlitch glitch", 22, true);
+        pibbuh.scale.set(1.5, 1.5);
+        pibbuh.alpha = 0.5;
+        pibbuh.blend = 9;
+        pibbuh.visible = false;
+        add(pibbuh);
+        pibbuh.zIndex = 1400;
+    }
+
+    // Load and play video on demand for HTML5 compatibility
+    function loadAndPlayVideo(isGoodEnding:Bool) {
+        game = PlayState.instance;
+
+        // For HTML5, strip the library prefix from the path
+        var videoPath:String = isGoodEnding ? Paths.videos("OLB-Good") : Paths.videos("OLB-Bad");
+        videoPath = Paths.stripLibrary(videoPath);
+
+        try {
+            if (isGoodEnding) {
+                lyricsGood = new FlxVideo(videoPath);
+                lyricsGood.cameras = [game.camCutscene];
+                lyricsGood.zIndex = 2001;
+                //lyricsGood.screenCenter();
+                PlayState.instance.add(lyricsGood);
+                videoLoaded = true;
+            } else {
+                lyricsLol = new FlxVideo(videoPath);
+                lyricsLol.cameras = [game.camCutscene];
+                lyricsLol.zIndex = 2000;
+                //lyricsLol.screenCenter();
+                PlayState.instance.add(lyricsLol);
+                videoLoaded = true;
+            }
+        } catch (e:Dynamic) {
+            trace("Video loading failed: " + e);
+            videoLoaded = false;
+        }
+    }
+
+    function setupLikeButton() {
+        var game = PlayState.instance;
+        likeButton = new FlxButton(FlxG.width / 3, -10, "", function() {
+            likeCount++;
+            game.songScore += 100;
+            game.health += 0.02;
+            if (likeCount >= 25) unlockedGoodEnding = true;
+            FlxTween.num(0.65, 0.7, 0.15, {ease: FlxEase.cubeOut}, function(t) {
+                likeButton.scale.set(t, t);
+            });
+        });
+        likeButton.loadGraphic(Paths.image('ui/helpMeBruh'));
+        likeButton.scale.set(0.7, 0.7);
+        likeButton.cameras = [game.camCutscene];
+        likeButton.scrollFactor.set(0, 0);
+        likeButton.zIndex = 1200;
+        PlayState.instance.add(likeButton);
+        FlxTween.tween(likeButton, {y: 90}, 1, {ease: FlxEase.cubeOut});
+    }
+
+    override function onCountdownStart(event):Void {
+        super.onCountdownStart(event);
+        event.cancel();
+        PlayState.instance.isInCountdown = true;
+        PlayState.instance.mayPauseGame = true;
+        PlayState.instance.startSong();
+    }
+
+    override function onSongEvent(event:ScriptEvent):Void {
+        super.onSongEvent(event);
+        var ev = event.eventData;
+        if (ev == null) return;
+
+        if (ev.eventKind == "lyricschidas") {
+            var text:String = ev.value.text ?? "";
+            if (text == "" || text == " ") {
+                if (lyricsTextChidas != null) lyricsTextChidas.visible = false;
+                return;
+            }
+            if (lyricsTextChidas == null || !lyricsTextChidas.exists) {
+                lyricsTextChidas = new FlxText(0, 630, FlxG.width, "");
+                lyricsTextChidas.setFormat(Paths.font("MDP.ttf"), 50, 0xFFF7F1DF, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                lyricsTextChidas.borderSize = 1.7;
+                lyricsTextChidas.antialiasing = true;
+                lyricsTextChidas.scale.set(0.85, 0.85);
+                lyricsTextChidas.cameras = [PlayState.instance.camCutscene];
+                lyricsTextChidas.zIndex = 10000;
+                PlayState.instance.add(lyricsTextChidas);
+            }
+            lyricsTextChidas.text = text;
+            lyricsTextChidas.visible = true;
+            lyricsTextChidas.screenCenter(0x01);
+        }
+    }
+
+    override function onUpdate(elapsed:Float) {
+        super.onUpdate(elapsed);
+        game = PlayState.instance;
+        if (game.iconP1 != null) { game.iconP1.visible = false; game.iconP1.zIndex = 0; }
+        if (game.iconP2 != null) { game.iconP2.visible = false; game.iconP2.zIndex = 0; }
+
+        var targetHP:Float = FlxMath.bound(game.health / 2, 0, 1);
+        healthPercentButActually = FlxMath.lerp(healthPercentButActually, targetHP, 0.1);
+
+        if (batteryGradient != null) {
+            _clipRect.width = BATTERY_WIDTH * healthPercentButActually;
+            _clipRect.height = BATTERY_HEIGHT;
+            batteryGradient.clipRect = _clipRect;
+        }
+
+        var targetAnim:String = 'danger';
+        if (healthPercentButActually > 0.75) targetAnim = 'full';
+        else if (healthPercentButActually > 0.50) targetAnim = 'good';
+        else if (healthPercentButActually > 0.25) targetAnim = 'warning';
+
+        if (healthIcon.animation.curAnim == null || healthIcon.animation.curAnim.name != targetAnim) {
+            healthIcon.animation.play(targetAnim);
+        }
+
+        scoreText.text = "Score: " + formatScore(game.songScore);
+        missText.text = "Misses: " + Highscore.tallies.missed;
+
+        updateHUDVisibility();
+
+        var mdpSpr = getNamedProp('MDP');
+        if (mdpSpr != null) {
+            var sky = getNamedProp('Sky');
+            mdpSpr.visible = (sky != null && !sky.visible);
+        }
+    }
+
+    function updateHUDVisibility() {
+        var targetAnim = (healthPercentButActually > 0.75) ? 'full' : (healthPercentButActually > 0.50) ? 'good' : (healthPercentButActually > 0.25) ? 'warning' : 'danger';
+        if (healthIcon.animation.curAnim == null || healthIcon.animation.curAnim.name != targetAnim) healthIcon.animation.play(targetAnim);
+
+        watermark.visible = batteryGradient.visible = batteryBG.visible = batteryBorder.visible = MDP;
+        rightBar.visible = leftBar.visible = shortGradientTop.visible = shortGradientBottom.visible = MDP;
+        healthIcon.visible = scoreText.visible = missText.visible = !MDP;
+
+        if (!MDP) {
+            dontZoomYet = false;
+            PlayState.instance.camGame.filters = [];
+        }
+    }
+
+    override function onBeatHit(event:SongTimeScriptEvent) {
+        super.onBeatHit(event);
+        game = PlayState.instance;
+        switch(event.beat) {
+            case 1:
+                FlxTween.tween(blackScreen, {alpha: 0}, 2);
+            case 2:
+                FlxTween.tween(game.camHUD, {alpha: 1}, 2);
+            case 65:
+                FlxTween.tween(game.camHUD, {alpha: 0}, 1, {ease: FlxEase.cubeIn});
+                tweenPlayerAlpha(0, 1);
+            case 66:
+                FlxTween.tween(blackScreen, {alpha: 1}, 0.67, {ease: FlxEase.quintIn});
+                pibbuh.visible = true;
+                pibbuh.animation.play("scary");
+            case 70:
+                realStage(true);
+                pibbuh.visible = false;
+                MDP = false;
+            case 72, 73, 74, 75, 77, 78, 79:
+                blackScreen.alpha = 0;
+            case 76:
+                FlxTween.tween(game.camHUD, {alpha: 1}, 1, {ease: FlxEase.cubeIn});
+                tweenPlayerAlpha(1, 1);
+            case 212:
+                realStage(false);
+                getBoyfriend().alpha = getDad().alpha = 0;
+                yellowBG = new FlxSprite(-850, -400).makeGraphic(4000, 3000, 0xFFfff000);
+                yellowBG.zIndex = 90; add(yellowBG);
+                blueBG = new FlxSprite(-850, -400).makeGraphic(4000, 3000, 0xFF3e99ff);
+                blueBG.alpha = 0; blueBG.zIndex = 91; add(blueBG);
+                nugRun.visible = maxRun.visible = true;
+                maxRun.animation.play("run"); nugRun.animation.play("run");
+                FlxTween.tween(maxRun, {x: 25}, 2, {ease: FlxEase.quartOut});
+                FlxTween.tween(nugRun, {x: 985}, 1.8, {ease: FlxEase.quartOut});
+            case 274:
+                maxRun.animation.play("huh");
+                nugRun.offset.set(30, -80);
+                nugRun.animation.play("slide");
+                FlxTween.tween(maxRun, {x: -250}, 1.5, {ease: FlxEase.quartOut});
+                FlxTween.tween(nugRun, {x: 800}, 1.2, {ease: FlxEase.quartOut});
+                FlxTween.tween(game.camHUD, {alpha: 0}, 1, {ease: FlxEase.cubeInOut});
+            case 275:
+                nugRun.animation.play("what");
+                nugRun.offset.set(0, -80);
+            case 276:
+                maxRun.animation.play("crank");
+                maxRun.offset.set(100, -50);
+                nugRun.animation.play("help");
+                FlxTween.tween(blueBG, {alpha: 1}, 10, {ease: FlxEase.sineInOut});
+                setupLikeButton();
+                FlxG.mouse.visible = true;
+                tweenPlayerAlpha(0, 1);
+            case 306:
+                if (likeButton != null) FlxTween.tween(likeButton, {y: -150}, 0.5, {ease: FlxEase.cubeIn});
+                FlxTween.tween(blackScreen, {alpha: 1}, 0.2, {ease: FlxEase.cubeIn});
+            case 310:
+                if (unlockedGoodEnding) {
+                    FlxG.sound.play(Paths.sound("goodSFX"));
+                    FlxG.save.data.OLB_GoodEnd = true;
+                    FlxG.save.data.lastEnding = "Good";
+                } else {
+                    FlxG.save.data.OLB_BadEnd = true;
+                    FlxG.save.data.lastEnding = "Bad";
+                }
+                FlxG.save.flush();
+                yellowBG.visible = blueBG.visible = maxRun.visible = nugRun.visible = false;
+            case 312:
+                // Load and play video on-demand for HTML5 compatibility
+                loadAndPlayVideo(unlockedGoodEnding);
+                // game.playerStrumline.zIndex = 2500; game.refresh();
+                FlxG.mouse.visible = false;
+                changeStrumsAlpha(0);
+            case 328:
+                tweenPlayerAlpha(0.67, 1);
+            case 368:
+                tweenPlayerAlpha(0, 1);
+            case 386:
+                MDP = false; realStage(true);
+                // Hide and cleanup videos
+                if (lyricsGood != null) { lyricsGood.visible = false; lyricsGood.destroy(); lyricsGood = null; }
+                if (lyricsLol != null) { lyricsLol.visible = false; lyricsLol.destroy(); lyricsLol = null; }
+                FlxTween.tween(blackScreen, {alpha: 0}, 0.3, {ease: FlxEase.cubeOut});
+                getBoyfriend().alpha = getDad().alpha = 1;
+                if (unlockedGoodEnding) {
+                    triggerEvent('Change Character', 'bf', 'nugget-alt');
+                }
+                tweenPlayerAlpha(1, 1);
+                FlxTween.tween(game.camHUD, {alpha: 1}, 1, {ease: FlxEase.cubeInOut});
+                game.playerStrumline.zIndex = 1000; game.refresh();
+                redTint = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width), Std.int(FlxG.height), 0xffff1616);
+                redTint.cameras = [game.camHUD];
+                redTint.alpha = 0.3; redTint.blend = 9; redTint.zIndex = 1150;
+                game.add(redTint);
+            case 460:
+                if (!unlockedGoodEnding) {
+                    game.camHUD.visible = false;
+                    broDied.visible = true;
+                }
+            case 462:
+                tweenPlayerAlpha(0, 0.5);
+                if (unlockedGoodEnding) blackScreen.alpha = 1; else {
+                    yellowScreen.visible = true;
+                    songLogo.loadGraphic(Paths.image('logo/OLBWHITE'));
+                }
+                songLogo.visible = true;
+                game.camHUD.visible = redTint.visible = broDied.visible = false;
+                FlxG.save.flush();
+            case 464:
+                FlxTween.tween(blackScreen2, {alpha: 1}, 1.5);
+        }
+    }
+
+    function realStage(show:Bool) {
+        for (name in realStageGroup) {
+            var spr = getNamedProp(name);
+            if (spr != null) { spr.visible = show; }
+        }
+        var mdpSpr = getNamedProp('MDP');
+        if (mdpSpr != null) mdpSpr.visible = !show;
+    }
+
+    function formatScore(score:Int):String {
+        var scoreStr = Std.string(score);
+        var result = "";
+        var len = scoreStr.length;
+        for (i in 0...len) {
+            result += scoreStr.charAt(i);
+            var rev = len - 1 - i;
+            if (rev > 0 && rev % 3 == 0) result += ",";
+        }
+        return result;
+    }
+
+    override function onNoteHit(event) {
+        super.onNoteHit(event);
+
+        var game = PlayState.instance;
+        var beatDur:Float = 60 / Conductor.instance.bpm;
+        var curBeat:Float = (Conductor.instance.songPosition / 1000) / beatDur;
+
+        if (!event.note.noteData.getMustHitNote()) {
+            if (curBeat > 70 && curBeat < 386) {
+                if (game.health > 0.4) {
+                    game.health -= 0.019;
+                }
+            }
+
+            if (curBeat > 386) {
+                if (!unlockedGoodEnding) {
+                    if (game.health > 0.4)
+                        game.health -= 0.023;
+                }
+            }
+        }
+    }
+
+    override public function onPause(event) {
+        super.onPause(event);
+        // FlxVideo uses pauseVideo() method for HTML5
+        if (lyricsLol != null) lyricsLol.pauseVideo();
+        if (lyricsGood != null) lyricsGood.pauseVideo();
+        FlxTween.globalManager.forEach(function(twn:FlxTween) if(!twn.finished) twn.active = false);
+    }
+
+    override public function onResume(event) {
+        super.onResume(event);
+        // FlxVideo uses resumeVideo() method for HTML5
+        if (lyricsLol != null) lyricsLol.resumeVideo();
+        if (lyricsGood != null) lyricsGood.resumeVideo();
+        FlxTween.globalManager.forEach(function(twn:FlxTween) if(!twn.finished) twn.active = true);
+    }
+
+    override public function onSongRetry(event) {
+        super.onSongRetry(event);
+        if (lyricsTextChidas != null) {
+            lyricsTextChidas.visible = false;
+            lyricsTextChidas.text = "";
+        }
+        if (lyricsLol != null) { lyricsLol.destroy(); lyricsLol = null; }
+        if (lyricsGood != null) { lyricsGood.destroy(); lyricsGood = null; }
+        FlxG.resetState();
+    }
+
+    function tweenPlayerAlpha(target:Float, duration:Float) {
+        if (playerAlphaTween != null) playerAlphaTween.cancel();
+        playerAlphaTween = FlxTween.num(playerAlpha, target, duration, {
+            ease: FlxEase.cubeInOut,
+            onUpdate: function(twn:FlxTween) {
+                playerAlpha = twn.value;
+                if (game.playerStrumline != null) {
+                    game.playerStrumline.alpha = playerAlpha;
+                    game.playerStrumline.notes.forEach(function(n) n.alpha = playerAlpha);
+                }
+            }
+        });
+    }
+
+    function changeStrumsAlpha(newAlpha:Float) {
+        playerAlpha = newAlpha;
+        if (game.playerStrumline != null) {
+            game.playerStrumline.alpha = playerAlpha;
+            game.playerStrumline.notes.forEach(function(n) n.alpha = playerAlpha);
+        }
+        if (game.opponentStrumline != null) {
+            game.opponentStrumline.alpha = newAlpha;
+            game.opponentStrumline.notes.forEach(function(n) n.alpha = newAlpha);
+        }
+    }
+
+    override function onNoteCreation(event) {
+        super.onNoteCreation(event);
+        if (event.note.strumLine == game.playerStrumline) {
+            event.note.alpha = playerAlpha;
+        } else {
+            event.note.alpha = game.opponentStrumline.alpha;
+        }
+    }
+
+    override function onSongEnd(event) {
+        super.onSongEnd(event);
+        // Let the game handle the song end normally (goes to results/freeplay)
+    }
+}

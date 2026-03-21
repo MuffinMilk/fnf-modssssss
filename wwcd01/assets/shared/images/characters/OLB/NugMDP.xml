@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NugMDP.png">
+	<!-- Created with Adobe Animate version 24.0.10.14 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<!-- SPRITES BY KATPIZZA MABEL! RIG BY RAINSLAIN! CREATED FOR FNF WINNER WINNER CHICKEN DINNER! -->
+	<SubTexture name="idle 10000" x="0" y="0" width="642" height="574" pivotX="-32.05" pivotY="-10.6" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="idle 10001" x="0" y="0" width="642" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="idle 10002" x="642" y="0" width="635" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="idle 10003" x="642" y="0" width="635" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="idle 10004" x="642" y="0" width="635" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="left 10005" x="1277" y="0" width="690" height="574"/>
+	<SubTexture name="left 10006" x="1967" y="0" width="670" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="right 10007" x="2637" y="0" width="569" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="right 10008" x="3206" y="0" width="576" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="up 10009" x="0" y="574" width="644" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="up 10010" x="644" y="574" width="643" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="down 10011" x="1287" y="574" width="631" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="down 10012" x="1918" y="574" width="622" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missleft 10012" x="1277" y="0" width="690" height="574"/>
+	<SubTexture name="missleft 10013" x="2540" y="574" width="567" height="531" frameX="-123" frameY="-35" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missleft 10014" x="2540" y="574" width="567" height="531" frameX="-123" frameY="-35" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missleft 10015" x="3107" y="574" width="549" height="528" frameX="-121" frameY="-38" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missleft 10016" x="3107" y="574" width="549" height="528" frameX="-121" frameY="-38" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missright 10007" x="2637" y="0" width="569" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missright 10015" x="0" y="1148" width="547" height="512" frameX="-22" frameY="-59" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missright 10016" x="0" y="1148" width="547" height="512" frameX="-22" frameY="-59" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missright 10017" x="547" y="1148" width="537" height="513" frameX="-39" frameY="-58" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missright 10018" x="547" y="1148" width="537" height="513" frameX="-39" frameY="-58" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missup 10009" x="0" y="574" width="644" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missup 10017" x="1084" y="1148" width="563" height="556" frameX="-76" frameY="-10" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missup 10018" x="1084" y="1148" width="563" height="556" frameX="-76" frameY="-10" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missup 10019" x="1647" y="1148" width="562" height="542" frameX="-76" frameY="-24" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missup 10020" x="1647" y="1148" width="562" height="542" frameX="-76" frameY="-24" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missdown 10011" x="1287" y="574" width="631" height="574" frameX="0" frameY="0" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missdown 10019" x="2209" y="1148" width="561" height="484" frameX="-70" frameY="-82" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missdown 10020" x="2209" y="1148" width="561" height="484" frameX="-70" frameY="-82" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missdown 10021" x="2770" y="1148" width="544" height="487" frameX="-78" frameY="-79" frameWidth="690" frameHeight="574"/>
+	<SubTexture name="missdown 10022" x="2770" y="1148" width="544" height="487" frameX="-78" frameY="-79" frameWidth="690" frameHeight="574"/>
+</TextureAtlas>

@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "name": "Jax",
+  "assetPath": "characters/bonus/jax",
+  "singTime": 6.1,
+  "offsets": [0, 0],
+  "cameraOffsets": [0, 0],
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "jax idle",
+      "frameRate": 6,
+      "looped": true,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "jax singDOWN",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "jax singRIGHT",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "jax singLEFT",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "jax singUP",
+      "frameRate": 7,
+      "offsets": [0, 0]
+    }
+  ]
+}

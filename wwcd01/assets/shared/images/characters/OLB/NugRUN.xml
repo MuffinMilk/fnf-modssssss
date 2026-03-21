@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="NugRUN.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="!NUGGETHELP0000" x="2" y="2" width="334" height="385" pivotX="177.5" pivotY="205.35" frameX="-4" frameY="-20" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0001" x="2" y="2" width="334" height="385" frameX="-4" frameY="-20" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0002" x="338" y="2" width="324" height="405" frameX="-14" frameY="0" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0003" x="338" y="2" width="324" height="405" frameX="-14" frameY="0" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0004" x="338" y="2" width="324" height="405" frameX="-14" frameY="0" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0005" x="664" y="2" width="333" height="399" frameX="-11" frameY="-6" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0006" x="664" y="2" width="333" height="399" frameX="-11" frameY="-6" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0007" x="664" y="2" width="333" height="399" frameX="-11" frameY="-6" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0008" x="999" y="2" width="343" height="393" frameX="-8" frameY="-12" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0009" x="999" y="2" width="343" height="393" frameX="-8" frameY="-12" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0010" x="1344" y="2" width="350" height="386" frameX="0" frameY="-19" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0011" x="1344" y="2" width="350" height="386" frameX="0" frameY="-19" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0012" x="1344" y="2" width="350" height="386" frameX="0" frameY="-19" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0013" x="2" y="409" width="345" height="389" frameX="-4" frameY="-16" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0014" x="2" y="409" width="345" height="389" frameX="-4" frameY="-16" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0015" x="2" y="409" width="345" height="389" frameX="-4" frameY="-16" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0016" x="2" y="409" width="345" height="389" frameX="-4" frameY="-16" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETHELP0017" x="2" y="409" width="345" height="389" frameX="-4" frameY="-16" frameWidth="351" frameHeight="405"/>
+	<SubTexture name="!NUGGETRUN0000" x="349" y="409" width="494" height="395" pivotX="51.1" pivotY="0" frameX="0" frameY="0" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0001" x="349" y="409" width="494" height="395" frameX="0" frameY="0" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0002" x="349" y="409" width="494" height="395" frameX="0" frameY="0" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0003" x="845" y="409" width="482" height="403" frameX="-13" frameY="-28" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0004" x="845" y="409" width="482" height="403" frameX="-13" frameY="-28" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0005" x="845" y="409" width="482" height="403" frameX="-13" frameY="-28" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0006" x="1329" y="409" width="337" height="366" frameX="-65" frameY="-152" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0007" x="1329" y="409" width="337" height="366" frameX="-65" frameY="-152" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0008" x="2" y="814" width="412" height="389" frameX="-43" frameY="-38" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0009" x="2" y="814" width="412" height="389" frameX="-43" frameY="-38" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0010" x="2" y="814" width="412" height="389" frameX="-43" frameY="-38" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0011" x="416" y="814" width="466" height="405" frameX="-30" frameY="-40" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0012" x="416" y="814" width="466" height="405" frameX="-30" frameY="-40" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0013" x="416" y="814" width="466" height="405" frameX="-30" frameY="-40" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0014" x="884" y="814" width="303" height="377" frameX="-65" frameY="-136" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETRUN0015" x="884" y="814" width="303" height="377" frameX="-65" frameY="-136" frameWidth="496" frameHeight="518"/>
+	<SubTexture name="!NUGGETWHAT0000" x="1189" y="814" width="316" height="413" pivotX="174.8" pivotY="209.25" frameX="-17" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0001" x="1189" y="814" width="316" height="413" frameX="-17" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0002" x="1507" y="814" width="342" height="418" frameX="0" frameY="0" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0003" x="1507" y="814" width="342" height="418" frameX="0" frameY="0" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0004" x="2" y="1234" width="334" height="412" frameX="-8" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0005" x="2" y="1234" width="334" height="412" frameX="-8" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0006" x="2" y="1234" width="334" height="412" frameX="-8" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0007" x="2" y="1234" width="334" height="412" frameX="-8" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETWHAT0008" x="2" y="1234" width="334" height="412" frameX="-8" frameY="-6" frameWidth="342" frameHeight="419"/>
+	<SubTexture name="!NUGGETslid0000" x="338" y="1234" width="418" height="405" pivotX="212.35" pivotY="204.4" frameX="0" frameY="-5" frameWidth="425" frameHeight="410"/>
+	<SubTexture name="!NUGGETslid0001" x="338" y="1234" width="418" height="405" frameX="0" frameY="-5" frameWidth="425" frameHeight="410"/>
+	<SubTexture name="!NUGGETslid0002" x="758" y="1234" width="425" height="409" frameX="0" frameY="0" frameWidth="425" frameHeight="410"/>
+	<SubTexture name="!NUGGETslid0003" x="758" y="1234" width="425" height="409" frameX="0" frameY="0" frameWidth="425" frameHeight="410"/>
+</TextureAtlas>

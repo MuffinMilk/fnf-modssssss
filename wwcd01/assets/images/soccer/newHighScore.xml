@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="newHighScore.png">
+<SubTexture name="Bubby0000" x="263" y="0" width="263" height="231" frameX="-12" frameY="-13" frameWidth="301" frameHeight="252" />
+<SubTexture name="Oxaya0000" x="0" y="0" width="263" height="234" frameX="-12" frameY="-10" frameWidth="301" frameHeight="252" />
+<SubTexture name="Duncan0000" x="0" y="234" width="263" height="231" frameX="-12" frameY="-13" frameWidth="301" frameHeight="252" />
+<SubTexture name="Ollie0000" x="263" y="234" width="263" height="231" frameX="-12" frameY="-13" frameWidth="301" frameHeight="252" />
+<SubTexture name="TrifleJimmy0000" x="526" y="0" width="263" height="231" frameX="-12" frameY="-13" frameWidth="301" frameHeight="252" />
+<SubTexture name="Jimmy0000" x="526" y="231" width="263" height="231" frameX="-12" frameY="-13" frameWidth="301" frameHeight="252" />
+</TextureAtlas>

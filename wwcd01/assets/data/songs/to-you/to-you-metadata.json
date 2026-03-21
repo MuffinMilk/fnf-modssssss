@@ -1,0 +1,45 @@
+{
+  "version": "2.2.0",
+  "songName": "To You!",
+  "artist": "Landelsoup",
+  "charter": "Brayfruit",
+  "looped": false,
+  "offsets": {
+    "instrumental": 0,
+    "altInstrumentals": {},
+    "vocals": {}
+  },
+  "playData": {
+    "songVariations": [],
+    "difficulties": [
+      "hard"
+    ],
+    "characters": {
+      "player": "darling",
+      "girlfriend": "no-gf",
+      "opponent": "maximillian",
+      "instrumental": "",
+      "altInstrumentals": [],
+      "playerVocals": [
+        "darling"
+      ],
+      "album": "ToYou"
+    },
+    "stage": "Abbey",
+    "noteStyle": "RedNote",
+    "ratings": {
+      "hard": 6
+    },
+    "album": "ToYou",
+    "previewStart": 0,
+    "previewEnd": 15000
+  },
+  "generatedBy": "Manual Wey",
+  "timeFormat": "ms",
+  "timeChanges": [
+    {
+      "t": 0,
+      "bpm": 204
+    }
+  ]
+}

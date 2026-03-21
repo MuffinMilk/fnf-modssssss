@@ -1,0 +1,307 @@
+import funkin.modding.base.ScriptedMusicBeatState;
+import funkin.backend.assets.Paths;
+import funkin.save.Save;
+import funkin.audio.FunkinSound;
+import funkin.util.TouchUtil;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.text.FlxTextBorderStyle;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
+import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.util.FlxSort;
+import flixel.FlxCamera;
+
+class SoccerGameState extends ScriptedMusicBeatState {
+    
+    public var camMenu:FlxCamera;
+
+    var paddleSpeed:Float = 500;
+    var ballSpeed:Float = 600;
+
+    var borderSize:Int = 60;
+    var gameLeft:Float;
+    var gameRight:Float;
+    var gameTop:Float;
+    var gameBottom:Float;
+
+    var bg:FlxSprite;
+    var playerHitbox:FlxSprite;
+    var playerSprite:FlxSprite;
+    var tylerHitbox:FlxSprite;
+    var tylerSprite:FlxSprite;
+    var ball:FlxSprite;
+    var ballTex:FlxSprite;
+
+    var playerIcon:FlxSprite;
+    var opponentIcon:FlxSprite;
+    var highScoreIcon:FlxSprite;
+
+    var scoreText:FlxText; 
+    var highScoreText:FlxText; 
+    var mostWinsText:FlxText; 
+    var playerNameText:FlxText;
+    var pointsText:FlxText; 
+    var opponentNameText:FlxText;
+    var newHighScoreYay:FlxText;
+
+    var scorePoints:Int = 0; 
+    var playerScore:Int = 0; 
+    var tylerScore:Int = 0; 
+
+    var ballStarted:Bool = false;
+    var newHighYuh:Bool = false;
+    var curSkin:Int = 0;
+    var basePitch:Float = 1.0;
+    var isExiting:Bool = false;
+
+    var customBackButton:FlxSprite;
+
+    var skins:Array<Dynamic> = [
+        {name: "Jimmy", color: 0xFF0CCAD4},
+        {name: "Ollie", color: 0xFF15885E},
+        {name: "Duncan", color: 0xFF565150},
+        {name: "TrifleJimmy", color: 0xFF0A97BA},
+        {name: "Oxaya", color: 0xFFFFE344},
+        {name: "Bubby", color: 0xFFA54B44}
+    ];
+
+    override function create() {
+        camMenu = new FlxCamera();
+        FlxG.cameras.reset(camMenu);
+        FlxG.cameras.add(camMenu, false);
+        FlxCamera.defaultCameras = [camMenu];
+
+        super.create();
+
+        if (Save.instance.modOptions.get("soccerHighScore") == null) Save.instance.modOptions.set("soccerHighScore", 0);
+        if (Save.instance.modOptions.get("soccerMostWins") == null) Save.instance.modOptions.set("soccerMostWins", 0);
+        curSkin = Save.instance.modOptions.get("jimmySkin") != null ? Save.instance.modOptions.get("jimmySkin") : 0;
+
+        if (Save.instance.modOptions.get("soccerMode") == 1) {
+            basePitch = 1.35;
+            if (FlxG.sound.music != null) FlxG.sound.music.pitch = basePitch;
+            ballSpeed = 1500;
+        } else {
+            basePitch = 1.0;
+            ballSpeed = 600;
+        }
+
+        gameLeft = borderSize;
+        gameRight = FlxG.width - borderSize;
+        gameTop = borderSize;
+        gameBottom = FlxG.height - borderSize;
+
+        bg = new FlxSprite(0,0).loadGraphic(Paths.image("soccer/field"));
+        bg.setGraphicSize(FlxG.width);
+        bg.updateHitbox();
+        bg.screenCenter();
+        add(bg);
+
+        playerHitbox = new FlxSprite(gameLeft + 20, FlxG.height / 2 - 40).makeGraphic(60, 130, FlxColor.TRANSPARENT);
+        playerHitbox.immovable = true;
+        add(playerHitbox);
+
+        tylerHitbox = new FlxSprite(gameRight - 80, FlxG.height / 2 - 30).makeGraphic(50, 70, FlxColor.TRANSPARENT);
+        tylerHitbox.immovable = true;
+        add(tylerHitbox);
+
+        playerSprite = new FlxSprite();
+        playerSprite.frames = Paths.getSparrowAtlas("soccer/player");
+        playerSprite.animation.addByPrefix("idle", skins[curSkin].name + "_Idle", 24, true);
+        playerSprite.animation.addByPrefix("run", skins[curSkin].name + "_Run", 24, true);
+        playerSprite.animation.play("idle");
+        playerSprite.setGraphicSize(100, 150);
+        playerSprite.updateHitbox();
+        add(playerSprite);
+
+        tylerSprite = new FlxSprite();
+        tylerSprite.frames = Paths.getSparrowAtlas("soccer/soccerKing123");
+        tylerSprite.animation.addByPrefix("up", "up", 24, true);
+        tylerSprite.animation.addByPrefix("down", "down", 24, true);
+        tylerSprite.animation.addByPrefix("win", "win", 2, false);
+        tylerSprite.animation.addByPrefix("lose", "lose", 2, false);
+        tylerSprite.animation.play("down");
+        tylerSprite.setGraphicSize(130, 130);
+        tylerSprite.updateHitbox();
+        add(tylerSprite);
+
+        ball = new FlxSprite().makeGraphic(20, 20, FlxColor.WHITE);
+        ball.visible = false;
+        add(ball);
+
+        ballTex = new FlxSprite().loadGraphic(Paths.image("soccer/ball"));
+        add(ballTex);
+
+        setupUI();
+
+        if (FlxG.onMobile) initCustomBackButton();
+
+        resetRound();
+    }
+
+    function setupUI() {
+        scoreText = new FlxText(0, 50, FlxG.width, "0 - 0", 32);
+        scoreText.setFormat(Paths.font("MDP.ttf"), 48, 0xFFFFFFFF, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(scoreText);
+        
+        highScoreText = new FlxText(20, 15, 400, "High Score: " + Save.instance.modOptions.get("soccerHighScore"), 24);
+        highScoreText.setFormat(Paths.font("MDP.ttf"), 24, 0xFFFFFF00, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(highScoreText);
+
+        mostWinsText = new FlxText(20, 45, 400, "Most Wins: " + Save.instance.modOptions.get("soccerMostWins"), 24);
+        mostWinsText.setFormat(Paths.font("MDP.ttf"), 24, 0xFFFFAE36, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(mostWinsText);
+
+        pointsText = new FlxText(0, 10, FlxG.width, "Score: 0", 30);
+        pointsText.setFormat(Paths.font("MDP.ttf"), 30, 0xFFFFFFFF, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(pointsText);
+
+        playerNameText = new FlxText(borderSize + 70, FlxG.height - 40, 300, skins[curSkin].name, 24);
+        playerNameText.setFormat(Paths.font("MDP.ttf"), 32, skins[curSkin].color, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(playerNameText);
+
+        opponentNameText = new FlxText(FlxG.width - borderSize - 300, FlxG.height - 40, 300, "Tyler", 24);
+        opponentNameText.setFormat(Paths.font("MDP.ttf"), 32, 0xFFFFAE36, "right", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(opponentNameText);
+
+        playerIcon = new FlxSprite(10, FlxG.height - 150);
+        playerIcon.frames = Paths.getSparrowAtlas("soccer/icons");
+        playerIcon.animation.addByPrefix("icon", skins[curSkin].name, 0, false);
+        playerIcon.animation.play("icon");
+        add(playerIcon);
+
+        highScoreIcon = new FlxSprite(400, FlxG.height + 250);
+        highScoreIcon.frames = Paths.getSparrowAtlas("soccer/newHighScore");
+        highScoreIcon.animation.addByPrefix("anim", skins[curSkin].name, 0, false);
+        highScoreIcon.animation.play("anim");
+        add(highScoreIcon);
+
+        newHighScoreYay = new FlxText(highScoreIcon.x + 240, highScoreIcon.y + 170, 300, "NEW HIGH SCORE!!!", 24);
+        newHighScoreYay.setFormat(Paths.font("MDP.ttf"), 32, FlxColor.WHITE, "left", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(newHighScoreYay);
+
+        opponentIcon = new FlxSprite(FlxG.width - 110, FlxG.height - 110);
+        opponentIcon.loadGraphic(Paths.image("soccer/tylerIcon"));
+        opponentIcon.scale.set(0.5, 0.5);
+        opponentIcon.updateHitbox();
+        add(opponentIcon);
+        opponentNameText.x -= 60;
+    }
+
+    function initCustomBackButton():Void {
+        customBackButton = new FlxSprite();
+        customBackButton.frames = Paths.getSparrowAtlas('menu/story/backButton');
+        customBackButton.animation.addByIndices('idle', 'back0', [0], "", 24, false);
+        customBackButton.animation.play('idle');
+        customBackButton.alpha = 0.4;
+        customBackButton.scale.set(0.6, 0.6); 
+        customBackButton.updateHitbox();
+        customBackButton.x = FlxG.width - customBackButton.width - 25;
+        customBackButton.y = 25;
+        add(customBackButton);
+    }
+
+    override function update(e:Float) {
+        super.update(e);
+
+        if (controls.BACK || (FlxG.onMobile && TouchUtil.overlaps(customBackButton) && TouchUtil.justPressed)) {
+            if (FlxG.sound.music != null) FlxG.sound.music.pitch = 1;
+            var state = ScriptedMusicBeatState.init('SoccerModeSelectState');
+            FlxG.switchState(state);
+            return;
+        }
+
+        var isMoving = false;
+        var upP = controls.UI_UP;
+        var downP = controls.UI_DOWN;
+
+        if (FlxG.onMobile) {
+            for (touch in FlxG.touches.list) {
+                if (touch.pressed && !touch.overlaps(customBackButton)) {
+                    if (touch.x < FlxG.width / 2) upP = true;
+                    else downP = true;
+                }
+            }
+        }
+        
+        if (upP) { playerHitbox.y -= paddleSpeed * e; isMoving = true; if (!ballStarted) launchBall(); }
+        if (downP) { playerHitbox.y += paddleSpeed * e; isMoving = true; if (!ballStarted) launchBall(); }
+        
+        playerSprite.animation.play(isMoving ? "run" : "idle");
+
+        playerSprite.setPosition(playerHitbox.x - 14, playerHitbox.y - 25);
+        tylerSprite.setPosition(tylerHitbox.x - 50, tylerHitbox.y - 30);
+        ballTex.setPosition(ball.x - 10, ball.y - 10);
+        ballTex.angle += ball.velocity.x * e * 0.8;
+
+        if (!ballStarted) {
+            ball.setPosition((FlxG.width / 2) - (ball.width / 2), (FlxG.height / 2) - (ball.height / 2));
+            return; 
+        }
+
+        if (ball.velocity.x > 0) {
+            var midT = tylerHitbox.y + (tylerHitbox.height / 2);
+            var midB = ball.y + (ball.height / 2);
+            if (Math.abs(midB - midT) > 15) {
+                if (midB < midT) { tylerHitbox.y -= paddleSpeed * 0.77 * e; tylerSprite.animation.play("up"); }
+                else { tylerHitbox.y += paddleSpeed * 0.77 * e; tylerSprite.animation.play("down"); }
+            }
+        }
+
+        playerHitbox.y = FlxMath.bound(playerHitbox.y, gameTop, gameBottom - playerHitbox.height);
+        tylerHitbox.y = FlxMath.bound(tylerHitbox.y, gameTop, gameBottom - tylerHitbox.height);
+
+        if (ball.y < gameTop) { ball.y = gameTop; ball.velocity.y *= -1; }
+        if (ball.y > gameBottom - ball.height) { ball.y = gameBottom - ball.height; ball.velocity.y *= -1; }
+
+        if (ball.x <= playerHitbox.x + playerHitbox.width && ball.x + ball.width >= playerHitbox.x) {
+            if (ball.y + ball.height >= playerHitbox.y && ball.y <= playerHitbox.y + playerHitbox.height) {
+                ball.x = playerHitbox.x + playerHitbox.width + 1;
+                ball.velocity.x = Math.abs(ball.velocity.x) + 20;
+                ball.velocity.y = (ball.getMidpoint().y - playerHitbox.getMidpoint().y) * 8;
+                scorePoints += 10;
+                updateScore();
+                FunkinSound.playOnce(Paths.sound("soccer/ball"));
+                FunkinSound.playOnce(Paths.sound("soccer/chars/" + skins[curSkin].name + "_" + FlxG.random.int(1, 5)));
+            }
+        }
+
+        if (ball.x + ball.width >= tylerHitbox.x && ball.x <= tylerHitbox.x + tylerHitbox.width) {
+            if (ball.y + ball.height >= tylerHitbox.y && ball.y <= tylerHitbox.y + tylerHitbox.height) {
+                ball.x = tylerHitbox.x - ball.width - 1;
+                ball.velocity.x = -Math.abs(ball.velocity.x) - 20;
+                ball.velocity.y = (ball.getMidpoint().y - tylerHitbox.getMidpoint().y) * 8;
+                FunkinSound.playOnce(Paths.sound("soccer/ball"));
+                FunkinSound.playOnce(Paths.sound("soccer/chars/Tyler_" + FlxG.random.int(1, 5)));
+            }
+        }
+
+        if (ball.x < -50) { tylerScore++; updateScore(); resetRound(); }
+        if (ball.x > FlxG.width + 50) { playerScore++; scorePoints += 100; updateScore(); resetRound(); }
+    }
+
+    function resetRound() {
+        ballStarted = false;
+        ball.velocity.set(0, 0);
+        ball.screenCenter();
+    }
+
+    function launchBall() {
+        ballStarted = true;
+        ball.velocity.set(ballSpeed, 100);
+    }
+
+    function updateScore() {
+        pointsText.text = "Score: " + formatScore(scorePoints);
+        scoreText.text = playerScore + " - " + tylerScore;
+        Save.instance.modOptions.set("soccerHighScore", scorePoints);
+        Save.instance.modOptions.set("soccerMostWins", playerScore);
+    }
+
+    function formatScore(score:Int):String { return Std.string(score); }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="icons.png">
+	<!-- Created with Adobe Animate version 24.0.12.3 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Jimmy 10000" x="2" y="2" width="129" height="132" pivotX="65.65" pivotY="77.25" frameX="-1" frameY="-12" frameWidth="131" frameHeight="145"/>
+	<SubTexture name="Ollie 10001" x="133" y="2" width="131" height="137" frameX="0" frameY="-8" frameWidth="131" frameHeight="145"/>
+	<SubTexture name="Duncan 10002" x="266" y="2" width="123" height="144" frameX="-4" frameY="0" frameWidth="131" frameHeight="145"/>
+	<SubTexture name="Oxaya 10003" x="2" y="148" width="125" height="136" frameX="-2" frameY="-8" frameWidth="131" frameHeight="145"/>
+	<SubTexture name="TrifleJimmy 10004" x="129" y="148" width="129" height="132" frameX="-1" frameY="-12" frameWidth="131" frameHeight="145"/>
+	<SubTexture name="Bubby 10005" x="260" y="148" width="117" height="118" frameX="-7" frameY="-23" frameWidth="131" frameHeight="145"/>
+</TextureAtlas>

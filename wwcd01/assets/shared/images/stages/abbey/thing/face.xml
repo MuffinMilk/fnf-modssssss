@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="face.png">
+<SubTexture name="face animh0000" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0001" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0002" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0003" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0004" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0005" x="0" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0006" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0007" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0008" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0009" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0010" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0011" x="165" y="0" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0012" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0013" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0014" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0015" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0016" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+<SubTexture name="face animh0017" x="0" y="140" width="165" height="140" frameX="-909" frameY="-401" frameWidth="1920" frameHeight="1080" />
+</TextureAtlas>

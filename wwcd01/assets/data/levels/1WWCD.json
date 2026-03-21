@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "name": "DADDY DEAREST",
+  "titleAsset": "storymenu/titles/week1",
+  "props": [
+  ],
+  "visible": false,
+  "background": "#F9CF51",
+  "songs": ["one-last-bite", "to-you"]
+}

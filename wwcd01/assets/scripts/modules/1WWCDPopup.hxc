@@ -1,0 +1,135 @@
+import funkin.modding.module.Module;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import funkin.graphics.FunkinSprite;
+import funkin.play.PlayState;
+import flixel.FlxG;
+import funkin.Conductor;
+import flixel.tweens.FlxEase;
+import funkin.play.components.PopUpStuff;
+import funkin.data.notestyle.NoteStyleRegistry;
+import funkin.modding.events.ScriptEvent;
+
+class OneWWCDPopup extends Module {
+
+    var offsets:Array<Int> = [0, 0];
+    var popupOffsets:Array<Int> = [0, 0];
+    var curCombo:Int = 0;
+    var numCombo:PopUpStuff;
+    var isHUD:Bool = false;
+
+    function new() {
+        super('1WWCDPopup');
+    }
+
+    inline function isAllowedSong():Bool {
+        if (PlayState.instance == null || PlayState.instance.currentSong == null) return false;
+
+        var songId = PlayState.instance.currentSong.id.toLowerCase();
+        return songId == "one-last-bite"; 
+    }
+
+    public override function onCountdownStart(event:ScriptEvent) {
+        super.onCountdownStart(event);
+        
+        if (!isAllowedSong()) return;
+
+        var songId = PlayState.instance.currentSong.id.toLowerCase();
+        switch (songId) {
+            case "one-last-bite":
+                offsets = [0, 0];
+                popupOffsets = [-350, -100];
+        }
+
+        curCombo = 0;
+        
+        if (PlayState.instance.comboPopUps != null)
+            PlayState.instance.comboPopUps.exists = false;
+
+        var noteStyleId:String = "default";
+        if (PlayState.instance.currentChart != null) {
+            noteStyleId = PlayState.instance.currentChart.noteStyle;
+        }
+        
+        var noteStyle = NoteStyleRegistry.instance.fetchEntry(noteStyleId);
+        
+        numCombo = new PopUpStuff(noteStyle);
+        numCombo.zIndex = 1001;
+        PlayState.instance.add(numCombo);
+
+        if (isHUD) numCombo.cameras = [PlayState.instance.camHUD];
+    }
+
+    override function onBeatHit(event:SongTimeScriptEvent) {
+        super.onBeatHit(event);
+
+        if (!isAllowedSong()) return;
+
+        switch(event.beat) {
+            case 70:
+                popupOffsets = [150, -30];
+        }
+    }
+
+    public function displayComboText() {
+        if (!isAllowedSong()) return;
+
+        var combo = new FunkinSprite();
+        combo.loadGraphic(Paths.image("ui/score/combo"));
+
+        combo.zIndex = 900;
+        combo.x = (FlxG.width * 0.474) + 100 - combo.width / 2 + offsets[0];
+        combo.y = (FlxG.camera.height * 0.52) + 30 - combo.height / 2 + offsets[1]; 
+        
+        combo.scrollFactor.set(1, 1);
+        combo.scale.set(0.575, 0.575);
+        combo.acceleration.y = 550;
+        combo.velocity.y -= FlxG.random.int(140, 175);
+        combo.velocity.x -= FlxG.random.int(0, 10);
+
+        PlayState.instance.add(combo);
+
+        FlxTween.tween(combo, {alpha: 0}, Conductor.instance.beatLengthMs * 0.001, {
+            onComplete: function(_) {
+                PlayState.instance.remove(combo, true);
+                combo.destroy();
+            },
+            ease: FlxEase.expoIn
+        });
+
+        if (isHUD) combo.cameras = [PlayState.instance.camHUD];
+    }
+
+    public override function onNoteHit(ev:HitNoteScriptEvent) {
+        super.onNoteHit(ev);
+
+        if (!isAllowedSong()) return;
+        if (!ev.note.noteData.getMustHitNote()) return;
+        
+        curCombo += 1;
+        if (ev.judgement == "bad" || ev.judgement == "shit") curCombo = 0;
+
+        if (numCombo != null) {
+            numCombo.displayRating(ev.judgement);
+
+            for (member in numCombo.members) {
+                if (member != null && member.alive) {
+                    member.scrollFactor.set(1, 1);
+                }
+            }
+            
+            numCombo.offsets = [popupOffsets[0], popupOffsets[1]];
+
+            if (curCombo > 9) {
+                numCombo.displayCombo(curCombo);
+            } else if(curCombo == 0) {
+                numCombo.displayCombo(0);
+            }
+        }
+    }
+
+    override function onNoteMiss(event:NoteScriptEvent) {
+        super.onNoteMiss(event);
+        if (isAllowedSong()) curCombo = 0;
+    }
+}

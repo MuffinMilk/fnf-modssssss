@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="jax.png">
+<SubTexture name="jax idle0000" x="1522" y="0" width="758" height="986" frameX="-164" frameY="-189" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax idle0001" x="770" y="1185" width="756" height="980" frameX="-155" frameY="-182" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax idle0002" x="0" y="1185" width="770" height="985" frameX="-128" frameY="-178" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax thankyouforlickingthosecookiecrumbsoffmystomachlastnightalan0000" x="1526" y="1185" width="445" height="911" frameX="-420" frameY="-211" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singDOWN0000" x="3239" y="0" width="877" height="736" frameX="-196" frameY="-438" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singDOWN0001" x="1755" y="2170" width="873" height="751" frameX="-183" frameY="-420" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singLEFT0000" x="893" y="2170" width="862" height="910" frameX="-1" frameY="-274" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singLEFT0001" x="0" y="2170" width="893" height="942" frameX="-4" frameY="-247" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singRIGHT0000" x="2280" y="979" width="944" height="970" frameX="-309" frameY="-201" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singRIGHT0001" x="2280" y="0" width="959" height="979" frameX="-287" frameY="-183" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singUP0000" x="0" y="0" width="787" height="1185" frameX="-98" frameY="-7" frameWidth="1280" frameHeight="1280" />
+<SubTexture name="jax singUP0001" x="787" y="0" width="735" height="1165" frameX="-166" frameY="-23" frameWidth="1280" frameHeight="1280" />
+</TextureAtlas>

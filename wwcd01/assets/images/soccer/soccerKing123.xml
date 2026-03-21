@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="soccerKing123.png">
+<SubTexture name="lose 0001" x="0" y="0" width="181" height="218" frameX="-7" frameY="-6" frameWidth="193" frameHeight="233" />
+<SubTexture name="lose 0002" x="408" y="0" width="158" height="204" frameX="-19" frameY="-18" frameWidth="193" frameHeight="233" />
+<SubTexture name="down" x="408" y="0" width="158" height="204" frameX="-19" frameY="-18" frameWidth="193" frameHeight="233" />
+<SubTexture name="win 0001" x="181" y="0" width="227" height="209" frameX="-1" frameY="-14" frameWidth="233" frameHeight="233" />
+<SubTexture name="win 0002" x="408" y="0" width="158" height="204" frameX="-19" frameY="-18" frameWidth="193" frameHeight="233" />
+<SubTexture name="up" x="0" y="218" width="158" height="204" frameX="-10" frameY="-18" frameWidth="193" frameHeight="233" />
+</TextureAtlas>

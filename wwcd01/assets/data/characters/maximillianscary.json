@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "name": "ultragay",
+  "assetPath": "characters/bonus/ultragay",
+  "singTime": 6.1,
+  "offsets": [200, 200],
+  "cameraOffsets": [0, 0],
+  "animations": [
+    {
+      "name": "idle",
+      "prefix": "ultragay idle",
+      "frameRate": 6,
+      "looped": true,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singDOWN",
+      "prefix": "ultragay singDOWN",
+      "frameRate": 10,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singRIGHT",
+      "prefix": "ultragay singRIGHT",
+      "frameRate": 10,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singLEFT",
+      "prefix": "ultragay singLEFT",
+      "frameRate": 10,
+      "offsets": [0, 0]
+    },
+    {
+      "name": "singUP",
+      "prefix": "ultragay singUP",
+      "frameRate": 10,
+      "offsets": [0, 0]
+    }
+  ]
+}
