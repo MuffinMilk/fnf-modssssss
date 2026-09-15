@@ -313,6 +313,21 @@
             color: #ffffff;
         }
 
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 4px;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: #ffffff;
+        }
+
         .announcement-body {
             font-size: 14px;
             line-height: 1.6;
@@ -343,14 +358,7 @@
             gap: 0.5rem;
         }
 
-        .king-btn:disabled {
-            background: #231238;
-            color: #725791;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .king-btn:not(:disabled):hover {
+        .king-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
         }
@@ -566,13 +574,14 @@
         <div class="announcement-card">
             <div class="announcement-header">
                 <h2>Announcements</h2>
+                <button class="modal-close-btn" onclick="closeAnnouncementModal()">×</button>
             </div>
             <div class="announcement-body">
                 WSPPPPP so this shi is a new update i might be back and shi i will be adding more games just dont ask for paid games vro i waste a lot of money broski and theres lot of shi now uhhhh lamar is cool and stuff bye have fun and shi
             </div>
             <div class="announcement-footer">
-                <button id="kingBtn" class="king-btn" disabled onclick="closeAnnouncementModal()">
-                    <span id="kingBtnTimer">9s...</span>
+                <button id="kingBtn" class="king-btn" onclick="closeAnnouncementModal()">
+                    yes king awdre
                 </button>
             </div>
         </div>
@@ -593,7 +602,6 @@
                 <button onclick="closeZone()">Close</button>
             </div>
         </div>
-        <!-- Removed restrictive sandbox attributes that were causing games to freeze on loading -->
         <iframe id="zoneFrame"></iframe>
     </div>
 
@@ -627,30 +635,6 @@
         const filterOptions = document.getElementById('filterOptions');
         const featuredZonesWrapper = document.getElementById('featuredZonesWrapper');
         const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLScJ5KSBdHtO4oysyxFD1hBVnsXWV5q9-ED1oO6IqfiMfOkAFw/viewform?usp=publish-editor";
-        
-        let timerSeconds = 9;
-        let timerInterval = null;
-
-        function startAnnouncementTimer() {
-            timerSeconds = 9;
-            const kingBtn = document.getElementById('kingBtn');
-            const timerSpan = document.getElementById('kingBtnTimer');
-            kingBtn.disabled = true;
-            timerSpan.textContent = `${timerSeconds}s...`;
-
-            if (timerInterval) clearInterval(timerInterval);
-
-            timerInterval = setInterval(() => {
-                timerSeconds--;
-                if (timerSeconds > 0) {
-                    timerSpan.textContent = `${timerSeconds}s...`;
-                } else {
-                    clearInterval(timerInterval);
-                    kingBtn.disabled = false;
-                    kingBtn.innerHTML = "yes king awdre";
-                }
-            }, 1000);
-        }
 
         function closeAnnouncementModal() {
             document.getElementById('announcementOverlay').style.display = "none";
@@ -658,7 +642,6 @@
 
         function triggerAnnouncementModal() {
             document.getElementById('announcementOverlay').style.display = "flex";
-            startAnnouncementTimer();
         }
 
         window.addEventListener('load', () => {
@@ -699,7 +682,6 @@
                 const response = await fetch(zonesURL + "?t=" + Date.now());
                 let fetchedZones = await response.json();
 
-                // Explicitly strip out Discord, Comments, and non-game items
                 zones = fetchedZones.filter(z => {
                     const name = (z.name || "").toLowerCase();
                     return z.id !== -1 && z.id !== -2 && z.id !== 0 && !name.includes("comment") && !name.includes("suggest");
@@ -842,54 +824,76 @@
             zoneViewer.style.display = "flex";
 
             let targetUrl = file.url || file.html || "";
-            if (typeof targetUrl === 'string' && (targetUrl.startsWith("http://") || targetUrl.startsWith("https://"))) {
-                zoneFrame.removeAttribute("srcdoc");
-                zoneFrame.src = targetUrl;
-                return;
+            if (typeof targetUrl === 'number') {
+                targetUrl = String(targetUrl);
             }
+            let trimmed = typeof targetUrl === 'string' ? targetUrl.trim() : "";
 
-            if (typeof targetUrl === 'number' || (typeof targetUrl === 'string' && targetUrl.match(/^\d+$/))) {
-                targetUrl = `${htmlURL}/${targetUrl}.html`;
-            } else if (typeof targetUrl === 'string' && targetUrl.includes("{HTML_URL}")) {
-                targetUrl = targetUrl.replace("{HTML_URL}", htmlURL);
-            } else if (typeof targetUrl === 'string' && targetUrl.endsWith(".html") && !targetUrl.includes("<html")) {
-                targetUrl = `${htmlURL}/${targetUrl}`;
-            }
+            // Fetch remote HTML markup if targetUrl is a path or ID
+            if (!trimmed.startsWith("<") && !trimmed.includes("<!DOCTYPE") && !trimmed.includes("<html")) {
+                if (trimmed.match(/^\d+$/)) {
+                    targetUrl = `${htmlURL}/${trimmed}.html`;
+                } else if (trimmed.includes("{HTML_URL}")) {
+                    targetUrl = trimmed.replace("{HTML_URL}", htmlURL);
+                } else if (trimmed.endsWith(".html") && !trimmed.startsWith("http://") && !trimmed.startsWith("https://")) {
+                    targetUrl = `${htmlURL}/${trimmed}`;
+                } else {
+                    targetUrl = trimmed;
+                }
 
-            if (typeof targetUrl === 'string' && targetUrl.startsWith("http")) {
                 try {
-                    const res = await fetch(targetUrl + "?t=" + Date.now());
-                    let htmlContent = await res.text();
-                    if (!htmlContent.includes('<base')) {
-                        htmlContent = `<base href="${htmlURL}/">` + htmlContent;
-                    }
-                    currentLoadedHtml = htmlContent;
-                    
-                    const blob = new Blob([htmlContent], { type: 'text/html' });
-                    zoneFrame.removeAttribute("srcdoc");
-                    zoneFrame.src = URL.createObjectURL(blob);
-                    return;
+                    const res = await fetch(targetUrl);
+                    trimmed = await res.text();
                 } catch (e) {
-                    console.error("Fetch failed, falling back to direct URL assignment:", e);
                     zoneFrame.removeAttribute("srcdoc");
                     zoneFrame.src = targetUrl;
                     return;
                 }
             }
 
-            let htmlContent = targetUrl;
-            if (htmlContent && !htmlContent.includes('<base')) {
-                htmlContent = `<base href="${htmlURL}/">` + htmlContent;
+            currentLoadedHtml = trimmed;
+
+            // Script polyfill to intercept URL construction inside Unity WebGL loaders
+            const unityPatch = `<script>
+            (function(){
+                var NativeURL = window.URL;
+                function FixedURL(url, base) {
+                    var safeBase = base;
+                    if(!safeBase || safeBase === 'about:srcdoc' || (typeof safeBase === 'string' && safeBase.indexOf('blob:') === 0) || safeBase === 'about:blank'){
+                        safeBase = (document.baseURI && document.baseURI !== 'about:srcdoc' && document.baseURI.indexOf('blob:') === -1) ? document.baseURI : window.location.origin;
+                    }
+                    try {
+                        return new NativeURL(url, safeBase);
+                    } catch(e) {
+                        try { return new NativeURL(url, document.baseURI); } catch(err) { return new NativeURL(url); }
+                    }
+                }
+                FixedURL.prototype = NativeURL.prototype;
+                if(Object.getOwnPropertyNames){
+                    Object.getOwnPropertyNames(NativeURL).forEach(function(k){
+                        try { FixedURL[k] = NativeURL[k]; } catch(e){}
+                    });
+                }
+                window.URL = FixedURL;
+            })();
+            <\/script>`;
+
+            let patchedHtml = trimmed;
+            if (patchedHtml.includes('<head>')) {
+                patchedHtml = patchedHtml.replace('<head>', '<head>' + unityPatch);
+            } else if (patchedHtml.includes('<HEAD>')) {
+                patchedHtml = patchedHtml.replace('<HEAD>', '<HEAD>' + unityPatch);
+            } else {
+                patchedHtml = unityPatch + patchedHtml;
             }
-            currentLoadedHtml = htmlContent;
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            zoneFrame.removeAttribute("srcdoc");
-            zoneFrame.src = URL.createObjectURL(blob);
+
+            zoneFrame.removeAttribute("src");
+            zoneFrame.srcdoc = patchedHtml;
         }
 
         function closeZone() {
             zoneViewer.style.display = "none";
-            zoneFrame.srcdoc = "";
+            zoneFrame.removeAttribute("srcdoc");
             zoneFrame.src = "about:blank";
         }
 
@@ -900,10 +904,14 @@
 
         function aboutBlank() {
             const newWindow = window.open("about:blank", "_blank");
-            if (newWindow && currentLoadedHtml) {
-                newWindow.document.open();
-                newWindow.document.write(currentLoadedHtml);
-                newWindow.document.close();
+            if (newWindow) {
+                if (currentLoadedHtml) {
+                    newWindow.document.open();
+                    newWindow.document.write(currentLoadedHtml);
+                    newWindow.document.close();
+                } else if (zoneFrame.src) {
+                    newWindow.location.href = zoneFrame.src;
+                }
             }
         }
 
