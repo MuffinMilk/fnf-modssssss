@@ -1,0 +1,1981 @@
+<html lang="en"><head></head><body data-new-gr-c-s-check-loaded="14.1338.0" data-gr-ext-installed="" data-gr-ext-go-mode="" data-gr-aaa-loaded="14.1338.0" data-gr-aaa-notch-connection-id="1792446880590-0.11235246503659879" data-gr-agent-presence-bridge-connection-id="1792446880594-0.2922947104877631"><module>
+<moduleprefs title="Grand Theft Auto Vice City">
+<content type="html"><!--[CDATA[
+
+<!DOCTYPE html-->
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InMiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmZlMjU5Ii8+PHN0b3Agb2Zmc2V0PSIuNDUiIHN0b3AtY29sb3I9IiNmZjdlYjMiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNjODZiZmYiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJrIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+CjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzJiMTE0MCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzEzMDcxZiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjEyIiBmaWxsPSJ1cmwoI2spIi8+CjxjaXJjbGUgY3g9IjMyIiBjeT0iMzAiIHI9IjE3IiBmaWxsPSJ1cmwoI3MpIi8+CjxnIGZpbGw9IiMxMzA3MWYiIG9wYWNpdHk9Ii44NSI+CjxyZWN0IHg9IjE0IiB5PSIzMCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjIuNCIvPjxyZWN0IHg9IjE0IiB5PSIzNSIgd2lkdGg9IjM2IiBoZWlnaHQ9IjMiLz48cmVjdCB4PSIxNCIgeT0iNDEiIHdpZHRoPSIzNiIgaGVpZ2h0PSIzLjYiLz4KPC9nPgo8cGF0aCBkPSJNMzAgNTIgQzMwIDQyIDMxIDM2IDMzIDMxIGwzIC45IGMtMiA1IC0zIDExIC0zIDIwIHoiIGZpbGw9IiMwZDA0MTYiLz4KPGcgZmlsbD0iIzBkMDQxNiI+CjxwYXRoIGQ9Ik0zMy41IDMxLjUgYy02LTUtMTItNi0xNi0zIDUtMSAxMCAxIDE0IDV6Ii8+CjxwYXRoIGQ9Ik0zMy41IDMxLjUgYzYtNSAxMi02IDE2LTMgLTUtMS0xMCAxLTE0IDV6Ii8+CjxwYXRoIGQ9Ik0zMy41IDMxIGMtMy03LTgtMTEtMTMtMTEgNSAyIDkgNiAxMSAxMnoiLz4KPHBhdGggZD0iTTMzLjUgMzEgYzMtNyA4LTExIDEzLTExIC01IDIgLTkgNiAtMTEgMTJ6Ii8+CjxwYXRoIGQ9Ik0zMy41IDMwLjUgYzAtNiAyLTExIDUtMTQgLTEgNSAtMiAxMCAtMiAxNXoiLz4KPC9nPgo8L3N2Zz4=">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; color: #e8e8f0; font: 15px/1.4 system-ui, sans-serif; overflow: hidden; }
+  #canvas { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; outline: none;
+            cursor: none; background: #000; }
+
+  #overlay { position: fixed; inset: 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+             background: #13071f; transition: opacity .5s ease; }
+  #overlay.done { opacity: 0; pointer-events: none; }
+
+  #sky { position: absolute; inset: 0;
+         background: linear-gradient(180deg, #230838 0%, #4d0f5c 26%, #9c1b70 46%, #e8436f 59%, #ff8c5a 67%, #1b0a2b 67.4%, #13071f 100%); }
+  #stars { position: absolute; left: 0; right: 0; top: 0; height: 46%; opacity: .5;
+           background-image: radial-gradient(1.4px 1.4px at 12% 22%, #fff, transparent),
+                             radial-gradient(1.2px 1.2px at 28% 10%, #ffd9f2, transparent),
+                             radial-gradient(1.6px 1.6px at 46% 30%, #fff, transparent),
+                             radial-gradient(1.2px 1.2px at 63% 14%, #cfe9ff, transparent),
+                             radial-gradient(1.4px 1.4px at 78% 26%, #fff, transparent),
+                             radial-gradient(1.2px 1.2px at 90% 12%, #ffd9f2, transparent),
+                             radial-gradient(1.2px 1.2px at 7% 40%, #fff, transparent),
+                             radial-gradient(1.2px 1.2px at 55% 6%, #fff, transparent);
+           animation: twinkle 4.5s ease-in-out infinite; }
+  @keyframes twinkle { 0%,100% { opacity: .5 } 50% { opacity: .22 } }
+
+  #sun { position: absolute; left: 50%; top: 7%; width: min(286px, 44vw); height: min(286px, 44vw);
+         margin-left: calc(min(286px, 44vw) / -2); border-radius: 50%; overflow: hidden;
+         background: linear-gradient(180deg, #ffe259 0%, #ffb35c 28%, #ff7eb3 60%, #c86bff 100%);
+         box-shadow: 0 0 70px rgba(255,126,179,.55), 0 0 160px rgba(200,107,255,.35);
+         will-change: transform; animation: bob 7s ease-in-out infinite; }
+  #sun::after { content: ""; position: absolute; inset: 0;
+         background: repeating-linear-gradient(180deg,
+            transparent 0 54%, #13071f 54% 56.4%,
+            transparent 56.4% 64%, #13071f 64% 67.2%,
+            transparent 67.2% 75%, #13071f 75% 79.2%,
+            transparent 79.2% 87%, #13071f 87% 92%); }
+  @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+
+  #gridwrap { position: absolute; left: -30%; right: -30%; bottom: 0; height: 33%; overflow: hidden; opacity: .75;
+              transform: perspective(260px) rotateX(74deg); transform-origin: bottom center;
+              -webkit-mask-image: linear-gradient(180deg, transparent, #000 35%); mask-image: linear-gradient(180deg, transparent, #000 35%); }
+  #gridin { position: absolute; left: 0; right: 0; top: -100%; height: 300%; will-change: transform;
+            background:
+              repeating-linear-gradient(90deg, rgba(255,95,168,.7) 0 2px, transparent 2px 64px),
+              repeating-linear-gradient(0deg, rgba(120,230,255,.5) 0 2px, transparent 2px 52px);
+            animation: gridrun 1.8s linear infinite; }
+  @keyframes gridrun { to { transform: translateY(52px) } }
+
+  .palm { position: absolute; bottom: 0; height: min(62vh, 520px); width: auto; fill: #0d0416; pointer-events: none;
+          transform-origin: 50% 100%; will-change: transform; }
+  .palm-l { left: -3%; height: min(72vh, 600px); animation: sway 6s ease-in-out infinite; }
+  .palm-r { right: -4%; transform: scaleX(-1); height: min(58vh, 480px); animation: sway2 7.5s ease-in-out infinite; }
+  @keyframes sway  { 0%,100% { transform: rotate(-1.1deg) } 50% { transform: rotate(1.1deg) } }
+  @keyframes sway2 { 0%,100% { transform: scaleX(-1) rotate(1.3deg) } 50% { transform: scaleX(-1) rotate(-1.3deg) } }
+  @media (max-width: 620px) {
+    .palm-r { display: none }
+    .palm-l { height: min(31vh, 230px); left: -5%; opacity: .45 }
+    #sun { top: 9%; width: min(210px, 52vw); height: min(210px, 52vw); margin-left: calc(min(210px, 52vw) / -2) }
+    #ui { margin-bottom: clamp(20px, 5vh, 48px) }
+  }
+
+  #ui { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 16px;
+        padding: 0 18px 0; margin-bottom: clamp(28px, 8vh, 92px); text-align: center; }
+  #ui::before { content: ""; position: absolute; left: 50%; top: -34px; width: min(760px, 96vw); height: calc(100% + 76px);
+        transform: translateX(-50%); border-radius: 50%; pointer-events: none; z-index: -1;
+        background: radial-gradient(60% 55% at 50% 50%, rgba(10,3,20,.78), rgba(10,3,20,.45) 55%, transparent 76%); }
+
+  #title { font: 800 clamp(22px, 5.2vw, 46px)/1.05 "Trebuchet MS", Verdana, system-ui, sans-serif;
+           letter-spacing: .16em; text-transform: uppercase; color: #fff6fb; margin-bottom: 4px;
+           text-shadow: 0 0 6px #ff5fa8, 0 0 18px #ff2e8d, 0 0 38px rgba(200,107,255,.8), 0 3px 0 rgba(0,0,0,.35); }
+  #title span { color: #7df3ff; text-shadow: 0 0 6px #35d8ff, 0 0 20px #00b4ff, 0 0 40px rgba(0,180,255,.7); }
+  #tagline { font: 600 clamp(9px, 1.7vw, 12px)/1 system-ui, sans-serif; letter-spacing: .34em; text-transform: uppercase;
+             color: #ffc2e4; opacity: .8; margin-top: -10px; }
+
+  #bar { position: relative; width: min(460px, 76vw); height: 14px; border-radius: 999px; background: #1a1220;
+         box-shadow: inset 0 0 0 1px rgba(255,120,200,.28), 0 0 22px rgba(0,0,0,.45); }
+  #clip { position: absolute; left: 0; right: -16px; top: -16px; bottom: -16px; overflow: hidden; }
+  #mover { position: absolute; left: 0; top: 16px; bottom: 16px; width: calc(100% - 16px); transform: translateX(-100%);
+           will-change: transform; }
+  #fill { position: absolute; inset: 0; border-radius: 999px; overflow: hidden;
+          background: linear-gradient(90deg, #ff5fa8, #ff8fd1, #c86bff, #ff4f9a, #ffb3de, #ff5fa8);
+          background-size: 200% 100%; animation: flow 2.4s linear infinite;
+          box-shadow: 0 0 14px rgba(255,95,168,.75), 0 0 30px rgba(200,107,255,.35); }
+  #fill::after { content: ""; position: absolute; inset: 0; border-radius: inherit;
+          background: repeating-linear-gradient(-45deg, rgba(255,255,255,.22) 0 8px, rgba(255,255,255,0) 8px 16px);
+          background-size: 22.6px 100%; animation: stripes .7s linear infinite; }
+  #shine { position: absolute; top: 0; bottom: 0; left: 0; width: 40%; will-change: transform;
+           background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
+           animation: shine 1.3s ease-in-out infinite; }
+  #knob { position: absolute; right: -11px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%;
+          background: radial-gradient(circle at 35% 35%, #fff, #ffc2e4 40%, #ff5fa8 75%);
+          box-shadow: 0 0 10px #ff7fc0, 0 0 20px rgba(255,95,168,.6); }
+  @keyframes shine { from { transform: translateX(-110%); } to { transform: translateX(260%); } }
+  @keyframes flow { to { background-position: 200% 0; } }
+  @keyframes stripes { to { background-position: 22.6px 0; } }
+
+  #pct { display: flex; align-items: baseline; gap: 10px; margin-top: -4px; }
+  #pctNum { font: 800 clamp(16px, 3vw, 22px)/1 ui-monospace, Consolas, monospace; color: #fff;
+            text-shadow: 0 0 10px rgba(255,95,168,.9); letter-spacing: .04em; }
+  #pctLeft { font: 600 11px/1 system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #ffb3de; opacity: .85; }
+  #hint { font: 500 11px/1.5 system-ui, sans-serif; letter-spacing: .06em; color: #e0b8ff; opacity: .65; max-width: 34ch; }
+
+  #oops { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+          background: #13071f; color: #ffd6ec; font: 17px/1.4 system-ui, sans-serif; text-align: center; padding: 24px; z-index: 10; }
+  #oops button { font: inherit; padding: 10px 28px; border: 0; border-radius: 999px; cursor: pointer; color: #1a0612;
+                 background: linear-gradient(90deg, #ff5fa8, #c86bff); box-shadow: 0 0 18px rgba(255,95,168,.6); }
+  #oopsDet { margin-top: 14px; font: 400 11px/1.6 ui-monospace, Consolas, monospace; color: #c9a7e8;
+             opacity: .8; max-width: 92vw; word-break: break-word; user-select: text; -webkit-user-select: text; }
+  #bbox { position: fixed; left: 10px; top: 10px; z-index: 40; max-width: min(620px, 94vw); padding: 12px 14px;
+          border-radius: 10px; background: rgba(12,4,22,.92); border: 1px solid rgba(255,95,168,.45);
+          color: #ffd6ec; font: 400 11px/1.7 ui-monospace, Consolas, monospace; cursor: pointer;
+          user-select: text; -webkit-user-select: text; box-shadow: 0 6px 26px rgba(0,0,0,.6); }
+  #bbox b { color: #ff9ed0; font: 700 12px/1.8 system-ui, sans-serif; letter-spacing: .04em; }
+  #bbox .hd { color: #9ad6ff; }
+  #bbox .cl { color: #8e7aa0; }
+  #vc-help { position: fixed; right: 10px; top: 10px; z-index: 30; width: 38px; height: 36px; border: 1px solid #ff94d0; border-radius: 10px;
+           background: linear-gradient(140deg,#ff559f,#8b40de); scolor: white; font: 900 23px/1 system-ui,sans-serif; cursor:pointer; box-shadow:0 0 16px #a445ad80; }
+  #vc-help:hover { filter: brightness(1.15); transform:translateY(-1px); }
+  #sv { position: fixed; right: 58px; top: 10px; z-index: 30; display: flex; gap: 6px; align-items: center; }
+  #sv button { border: 0; border-radius: 8px; height: 36px; padding: 0 13px; cursor: pointer;
+               background: rgba(0,0,0,.4); color: #ffd6ec; font: 600 12px/1 system-ui, sans-serif;
+               letter-spacing: .03em; opacity: .45; }
+  #sv button:hover { opacity: 1; background: rgba(255,95,168,.35); color: #fff; }
+  #svMsg { position: fixed; right: 10px; top: 54px; z-index: 21; max-width: min(340px, 86vw); display: none;
+           padding: 10px 13px; border-radius: 9px; background: rgba(12,4,22,.95);
+           border: 1px solid rgba(255,95,168,.45); color: #ffd6ec;
+           font: 400 12px/1.6 system-ui, sans-serif; box-shadow: 0 6px 22px rgba(0,0,0,.6); }
+  #svMsg { padding-right: 39px; }
+  #svMsg b { color: #ff9ed0; }
+  #svMsg .sv-close { position:absolute; top:5px; right:7px; margin:0; width:27px; height:27px; padding:0; border-radius:7px;
+                   background:rgba(255,255,255,.12); color:#fff; font-size:20px; font-weight:500; box-shadow:none; }
+  #svMsg button:not(.sv-close) { margin-top: 9px; border: 0; border-radius: 999px; padding: 7px 18px; cursor: pointer;
+                  background: linear-gradient(90deg, #ff5fa8, #ffb46b); color: #1a0612;
+                  font: 700 12px/1 system-ui, sans-serif; }
+
+  /* Compact setup on top of the original Vice City loading artwork. */
+  #vc-setup { position:fixed; inset:0; z-index:45; display:flex; align-items:center; justify-content:center;
+              background:linear-gradient(135deg,rgba(10,3,27,.35),rgba(10,3,27,.68));
+              backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+              padding:10px; box-sizing:border-box; overflow-y:auto; }
+  #vc-setup[hidden], #vc-guide[hidden] { display:none !important; }
+  .vc-panel { box-sizing:border-box; color:#fff; border:1px solid rgba(243,151,210,.25);
+              background:linear-gradient(145deg,rgba(37,16,65,.96),rgba(17,10,36,.97) 80%);
+              box-shadow:0 22px 70px rgba(0,0,0,.54), inset 0 1px rgba(255,255,255,.05);
+              font:13px/1.45 system-ui,-apple-system,Segoe UI,sans-serif; }
+  .vc-panel h2 { font-size:23px; line-height:1.14; margin:2px 0 4px; letter-spacing:-.025em; color:#fff2fb; }
+  .vc-panel p { color:#d7bfdc; margin:0; }
+  .vc-launch { width:min(620px,calc(100vw - 22px)); max-height:calc(100dvh - 16px); overflow:auto;
+               padding:18px 20px 15px; border-radius:17px; }
+  .vc-launch-top { display:flex; align-items:center; justify-content:space-between; margin:0 0 11px; }
+  .vc-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:800;
+                letter-spacing:.19em; color:#d8b6ef; }
+  .vc-dot { display:inline-block; height:6px; width:6px; border-radius:50%; background:#60e9d9;
+            box-shadow:0 0 8px rgba(96,233,217,.85); }
+  .vc-step { font:700 10px/1 ui-monospace,monospace; color:#977eab; letter-spacing:.07em; }
+  .vc-launch-title { display:flex; align-items:center; gap:13px; margin-bottom:13px; }
+  .vc-mark { flex:none; display:grid; place-items:center; height:53px; width:53px; border-radius:12px;
+             background:linear-gradient(140deg,#f96cab,#ab6efa 65%,#6be2fb); color:#270e3c;
+             font:900 23px/1 'Trebuchet MS',sans-serif; letter-spacing:-.09em;
+             box-shadow:0 7px 23px rgba(232,92,186,.3); }
+  .vc-launch-title p { font-size:12px; color:#c1accd; }
+  .vc-launch-label { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;
+                     font-weight:750; font-size:12px; color:#e9dbf2; }
+  .vc-launch-label span { color:#a797bb; font:500 10px/1.2 system-ui,sans-serif; }
+  #vc-presets { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin-bottom:12px; }
+  #vc-presets button { cursor:pointer; text-align:left; min-width:0; border:1px solid #76638965;
+                       padding:10px 9px; border-radius:9px; background:rgba(255,255,255,.045); color:#f3eafb;
+                       font:750 11px/1.2 system-ui,sans-serif; transition:background .15s,border-color .15s; }
+  #vc-presets button:hover { background:rgba(244,147,218,.10); border-color:#bd88da; }
+  #vc-presets button.active { border-color:#ff8bcc; background:rgba(233,109,195,.19);
+                              box-shadow:inset 0 0 0 1px rgba(255,139,204,.33); }
+  #vc-presets small { display:block; margin-top:5px; font:500 10px/1.3 system-ui,sans-serif; color:#c8b3d2; }
+  .vc-launch-save { display:flex; align-items:center; justify-content:space-between; gap:12px;
+                    padding:10px 11px; border:1px solid #8c729557; border-radius:10px;
+                    background:rgba(6,4,20,.20); }
+  .vc-launch-save strong { display:block; font-size:12px; color:#f4e1f7; }
+  .vc-launch-save small { display:block; color:#bda7cc; font-size:10px; margin-top:1px; }
+  .vc-secondary { background:rgba(255,255,255,.055); color:#f0d6f9; border:1px solid #8d6ea5a1;
+                  padding:9px 12px; border-radius:9px; cursor:pointer; font:700 11px/1.2 system-ui,sans-serif;
+                  white-space:nowrap; }
+  .vc-secondary:hover { background:rgba(240,161,232,.14); border-color:#db9df0; }
+  .vc-subtle { font-size:10px; color:#b9aac9; }
+  .vc-file-label { display:block; overflow-wrap:anywhere; min-height:12px; margin:6px 0 0 2px; }
+  #vc-setup-msg { min-height:15px; margin:2px 0 0 2px; font:600 11px/1.3 system-ui,sans-serif; color:#a8f0d8; }
+  .vc-launch-actions { display:flex; align-items:center; gap:10px; margin-top:9px; }
+  .vc-launch-actions .vc-secondary { border:0; background:none; color:#bfaed3; padding:10px 4px; }
+  .vc-launch-actions .vc-secondary:hover { color:#fff; }
+  .vc-primary { border:0; border-radius:9px; background:linear-gradient(90deg,#ff7ba9,#f7b17e);
+                color:#240c29; font:900 12px/1 system-ui,sans-serif; letter-spacing:.07em;
+                padding:14px 20px; cursor:pointer; transition:filter .15s; }
+  .vc-primary:hover { filter:brightness(1.08); }
+  .vc-primary:disabled { opacity:.4; cursor:wait; }
+  #vc-start { flex:1; max-width:225px; margin-left:auto; }
+  .vc-launch-foot { margin-top:6px; color:#8d819a; font-size:10px; text-align:right; }
+
+  #vc-guide { position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center;
+              background:rgba(6,2,17,.75); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+              padding:11px; box-sizing:border-box; }
+  #vc-guide .vc-panel { position:relative; width:min(490px,calc(100vw - 22px)); max-height:calc(100dvh - 18px);
+                        overflow-y:auto; padding:20px 22px; border-radius:15px; }
+  #vc-guide-close { position:absolute; right:12px; top:11px; width:28px; height:28px; border:0; border-radius:8px;
+                    background:#ffffff18; color:#fff; font:21px/1 system-ui,sans-serif; cursor:pointer; }
+  #vc-guide h3 { margin:14px 0 5px; font-size:12px; font-weight:800; letter-spacing:.07em; color:#ffa7d7; }
+  #vc-guide ol { margin:6px 0; padding-left:20px; color:#e9dced; }
+  #vc-guide li { margin:5px 0; }
+  #vc-guide .vc-help-tip { margin:12px 0; padding-left:11px; border-left:2px solid #eb90d6;
+                           color:#d1c0df; font-size:12px; }
+  #vc-guide-done { margin-top:6px; min-width:130px; }
+  #sv button { opacity:.88; }
+  @media(max-width:550px) {
+    #vc-presets { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .vc-launch-title { gap:10px; }
+    .vc-launch { padding:14px 13px; }
+    .vc-mark { height:42px; width:42px; font-size:19px; }
+    .vc-panel h2 { font-size:21px; }
+  }
+  @media(max-height:400px) {
+    #vc-setup { align-items:flex-start; }
+    .vc-launch { padding:10px 13px; }
+    .vc-launch-top { margin-bottom:7px; }
+    .vc-launch-title { margin-bottom:9px; }
+    .vc-mark { height:38px; width:38px; }
+    #vc-presets button { padding:7px 9px; }
+    #vc-presets { margin-bottom:8px; }
+    .vc-launch-save { padding:7px 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #sun, #gridin, .palm, #stars, #shine, #fill, #fill::after { animation: none !important; }
+  }
+</style>
+
+
+<canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()" style="width: 1427px !important; height: 803px !important;"></canvas>
+
+<div id="overlay">
+  <div id="sky"></div>
+  <div id="stars"></div>
+  <div id="sun"></div>
+  <div id="gridwrap"><div id="gridin"></div></div>
+  <svg class="palm palm-l" viewBox="0 0 220 520" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <path d="M104 520 C104 420 96 300 78 206 l26 -8 C118 300 124 420 124 520 z"></path>
+    <path d="M104 208 C58 168 20 160 0 178 c30 -4 62 6 92 36 z"></path>
+    <path d="M104 206 C66 150 60 104 74 68 c-4 42 10 82 40 128 z"></path>
+    <path d="M106 204 C122 142 158 108 206 98 c-44 24 -72 60 -84 112 z"></path>
+    <path d="M108 210 C150 186 190 188 220 208 c-38 -8 -74 -4 -106 14 z"></path>
+    <path d="M104 204 C96 142 110 96 140 66 c-16 40 -20 86 -16 138 z"></path>
+    <path d="M106 212 C138 236 158 268 164 304 c-18 -34 -42 -60 -70 -78 z"></path>
+    <path d="M102 212 C70 234 50 264 42 300 c18 -32 42 -58 72 -74 z"></path>
+    <circle cx="104" cy="204" r="11"></circle>
+  </svg>
+  <svg class="palm palm-r" viewBox="0 0 220 520" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <path d="M104 520 C104 420 96 300 78 206 l26 -8 C118 300 124 420 124 520 z"></path>
+    <path d="M104 208 C58 168 20 160 0 178 c30 -4 62 6 92 36 z"></path>
+    <path d="M104 206 C66 150 60 104 74 68 c-4 42 10 82 40 128 z"></path>
+    <path d="M106 204 C122 142 158 108 206 98 c-44 24 -72 60 -84 112 z"></path>
+    <path d="M108 210 C150 186 190 188 220 208 c-38 -8 -74 -4 -106 14 z"></path>
+    <path d="M104 204 C96 142 110 96 140 66 c-16 40 -20 86 -16 138 z"></path>
+    <path d="M106 212 C138 236 158 268 164 304 c-18 -34 -42 -60 -70 -78 z"></path>
+    <path d="M102 212 C70 234 50 264 42 300 c18 -32 42 -58 72 -74 z"></path>
+    <circle cx="104" cy="204" r="11"></circle>
+  </svg>
+
+  <div id="ui">
+    <div id="title">AwdreLikesMath <span>:)</span></div>
+    <div id="tagline">Welcome to Vice City</div>
+    <div id="bar"><div id="clip"><div id="mover"><div id="fill"><div id="shine"></div></div><div id="knob"></div></div></div></div>
+    <div id="pct"><b id="pctNum">0%</b><span id="pctLeft">100% remaining</span></div>
+    <div id="hint">First launch downloads the full game. Keep this tab open.</div>
+  </div>
+</div>
+  <section id="vc-setup" aria-label="Game setup">
+    <div class="vc-panel vc-launch">
+      <div class="vc-launch-top">
+        <span class="vc-eyebrow"><span class="vc-dot"></span> VICE CITY · QUICK SETUP</span>
+        <span class="vc-step">READ THE Save & load help</span>
+      </div>
+      <div class="vc-launch-title">
+        <div class="vc-mark" aria-hidden="true">VC</div>
+        <div><h2>Welcome to Vice City</h2><p>Choose your graphics. Your game, your settings.</p></div>
+      </div>
+      <div class="vc-launch-label">GRAPHICS QUALITY <span>Choose before starting</span></div>
+      <div id="vc-presets" role="group" aria-label="Graphics quality">
+        <button type="button" data-quality="performance" aria-pressed="false">Performance<small>960px · 30 FPS</small></button>
+        <button type="button" data-quality="balanced" aria-pressed="false">Balanced<small>1600px · 60 FPS</small></button>
+        <button type="button" data-quality="high" class="active" aria-pressed="true">High · Original<small>1920px · 60 FPS</small></button>
+        <button type="button" data-quality="ultra" aria-pressed="false">HELLA GOOD GRAPHICS<small>2560px · 60 FPS</small></button>
+      </div>
+      <div class="vc-launch-save">
+        <div><strong>Have a saved game?</strong><small>Import your .vcs backup before playing.</small></div>
+        <button id="vc-setup-import" class="vc-secondary" type="button">IMPORT SAVE ↑</button>
+      </div>
+      <span id="vc-setup-file" class="vc-subtle vc-file-label">No backup selected</span>
+      <input id="vc-setup-fileinput" type="file" accept=".vcs" hidden="">
+      <div id="vc-setup-msg" role="status" aria-live="polite"></div>
+      <div class="vc-launch-actions">
+        <button id="vc-setup-guide" class="vc-secondary" type="button">? Save &amp; load help</button>
+        <button id="vc-start" class="vc-primary" type="button">PLAY GAME →</button>
+      </div>
+      <div class="vc-launch-foot">Game saves are made at save points inside Vice City.</div>
+    </div>
+  </section>
+
+<div id="oops"><div id="oopsText"></div><button id="oopsBtn"></button></div>
+<button id="vc-help" type="button" title="Save and Load Guide" aria-label="Help: how to save and load">?</button>
+<div id="sv"><button id="svGet" title="Download your progress as a file">SAVE</button><button id="svPut" title="Restore progress from a file">LOAD</button></div>
+<input id="svFile" type="file" accept=".vcs" style="display:none">
+<div id="svMsg" role="status"></div>
+<div id="vc-guide" role="dialog" aria-modal="true" aria-labelledby="vc-guide-title" hidden="">
+  <div class="vc-panel">
+    <button id="vc-guide-close" type="button" aria-label="Close help">×</button>
+    <h2 id="vc-guide-title">Save &amp; Load Guide</h2>
+    <p>Keep your progress safe with a .vcs backup.</p>
+    <h3>HOW TO SAVE READ BECAUSE IT DOESNT SAVE PROCESS</h3>
+    <ol>
+      <li>Go to a <b>save point</b> inside Vice City and save your game there.</li>
+      <li>After saving, press <b>ESC</b>, then <b>SAVE</b> (top right) to download your <b>.vcs</b> backup.</li>
+      <li>Keep the file. You will need it to restore your progress.</li>
+    </ol>
+    <h3>HOW TO LOAD</h3>
+    <ol>
+      <li>Choose <b>IMPORT SAVE</b> before playing, or <b>LOAD</b> (top right) during the game.</li>
+      <li>If no saved game appears at the main menu, select <b>Start New Game → New Game</b> first.</li>
+      <li>Once gameplay starts, press <b>ESC → Load Game</b> and choose your saved slot.</li>
+    </ol>
+    <div class="vc-help-tip"><b>Load Game empty?</b> Return to gameplay. Open and close the <b>ESC</b> menu <b>twice</b>, then open <b>ESC → Load Game</b> again.</div>
+    <button id="vc-guide-done" type="button" class="vc-primary">GOT IT</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var QUALITY = {
+    performance: { w:960, fps:30 }, balanced:{ w:1600, fps:60 },
+    high:{ w:1920, fps:60 }, ultra:{ w:2560, fps:60 }
+  };
+  var selected = 'high';
+  try { if (QUALITY[localStorage.getItem('vc_quality_v2')]) selected=localStorage.getItem('vc_quality_v2'); } catch(e){}
+  window.__vcQuality = function () { return QUALITY[selected]; };
+  window.__vcPendingSave = null;
+  window.__vcStarted = false;
+  window.__vcParseSave = function (data) {
+    var buf = data instanceof Uint8Array ? data : new Uint8Array(data);
+    if (buf.length < 10 || buf.length > 64 * 1048576 || buf[0]!==86 || buf[1]!==67 || buf[2]!==83 || buf[3]!==49)
+      throw new Error('Choose a valid .vcs file.');
+    var len = new DataView(buf.buffer,buf.byteOffset,8).getUint32(4,true);
+    if (len<2 || len > 1048576 || 8+len>buf.length) throw new Error('Invalid save manifest.');
+    var man=JSON.parse(new TextDecoder().decode(buf.subarray(8,8+len)));
+    if (!Array.isArray(man) || !man.length || man.length>256) throw new Error('Invalid save file list.');
+    var p=8+len, names={}, entries=[];
+    for (var i=0; i<man.length; i++) {
+      var entry=man[i], path=entry && entry.p, n=entry && entry.n;
+      if (typeof path!=='string' || !/^[a-zA-Z0-9_ .\\/-]+$/.test(path) ||
+          path[0]==='/' || path.indexOf('\\')>=0 || path.split('/').some(function(seg){return !seg || seg==='.' || seg==='..';}) ||
+          Object.prototype.hasOwnProperty.call(names,path) || !Number.isSafeInteger(n) || n<0 || n>16*1048576 || p+n>buf.length)
+        throw new Error('Invalid or unsafe save entry.');
+      names[path]=true; entries.push({path:path,data:buf.slice(p,p+n)}); p+=n;
+    }
+    if (p!==buf.length) throw new Error('Invalid file size.');
+    if (!entries.some(function(e){return /(?:^|\/)GTAVCsf\d+\.b$/i.test(e.path);}))
+      throw new Error('This file contains no Vice City game save slots.');
+    return entries;
+  };
+  window.__vcApplySave = function (fs,entries) {
+    if (!fs || !fs.writeFile) throw new Error('Game storage not ready.');
+    entries.forEach(function(entry) {
+      var full='/userfiles/'+entry.path;
+      var seg=full.split('/'), d='';
+      for(var i=1;i<seg.length-1;i++){ d+='/'+seg[i]; try{fs.mkdir(d);}catch(e){ if(!e || e.errno!==20)throw e; } }
+      fs.writeFile(full,entry.data);
+    });
+    return entries.length;
+  };
+  // reVC.js uses Emscripten IDBFS v21: database /userfiles, store FILE_DATA.
+  // Perform the save import entirely before the WASM game boots.
+  // Its normal FS.syncfs(true) will then load a fully committed save on first launch.
+  window.__vcPersistPrelaunch = function(entries) {
+    if (!window.indexedDB) return Promise.reject(new Error('Browser storage is unavailable.'));
+    return new Promise(function(resolve,reject) {
+      var settled=false, db=null, request;
+      function fail(err) {
+        if (settled) return;
+        settled=true;
+        try { if (db) db.close(); } catch(ignore){}
+        reject(err instanceof Error ? err : new Error(String(err || 'Could not store the save.')));
+      }
+      try { request=indexedDB.open('/userfiles',21); }
+      catch(e) { fail(e); return; }
+      request.onblocked=function(){ fail(new Error('Close other Vice City tabs and try again.')); };
+      request.onerror=function(){ fail(request.error || new Error('Save database unavailable.')); };
+      request.onupgradeneeded=function(e) {
+        var database=e.target.result, tx=e.target.transaction, st;
+        if (database.objectStoreNames.contains('FILE_DATA')) st=tx.objectStore('FILE_DATA');
+        else st=database.createObjectStore('FILE_DATA');
+        if (!st.indexNames.contains('timestamp')) st.createIndex('timestamp','timestamp',{unique:false});
+      };
+      request.onsuccess=function(){
+        db=request.result;
+        if (settled) { db.close(); return; }
+        var tx;
+        try {
+          tx=db.transaction(['FILE_DATA'],'readwrite');
+          var st=tx.objectStore('FILE_DATA'), now=new Date(), dirs={};
+          entries.forEach(function(item) {
+            var parts=item.path.split('/'), dir='/userfiles';
+            for(var i=0;i<parts.length-1;i++) {
+              dir+='/'+parts[i];
+              if (!dirs[dir]) {
+                dirs[dir]=true;
+                // S_IFDIR | rwxrwxrwx. Same shape as IDBFS remote entries.
+                st.put({timestamp:now,mode:16895},dir);
+              }
+            }
+            // S_IFREG | rw-rw-rw-. One fully committed transaction for all backup files.
+            st.put({timestamp:now,mode:33206,contents:item.data},'/userfiles/'+item.path);
+          });
+        } catch(e) { try { if(tx) tx.abort(); }catch(ignore){} fail(e); return; }
+        tx.oncomplete=function(){
+          if(settled)return;
+          settled=true;
+          try{db.close();}catch(ignore){}
+          console.info('[VC-SAVE] Prelaunch import committed: '+entries.length+' file(s).');
+          resolve(entries.length);
+        };
+        tx.onerror=tx.onabort=function(){
+          fail(tx.error || new Error('Save could not be written to browser storage.'));
+        };
+      };
+    });
+  };
+  function $(id){return document.getElementById(id);}
+  function paint() {
+    document.querySelectorAll('#vc-presets button').forEach(function(btn){
+      var active=btn.getAttribute('data-quality')===selected;
+      btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',active?'true':'false');
+    });
+  }
+  document.querySelectorAll('#vc-presets button').forEach(function(btn){btn.addEventListener('click',function(){
+    selected=btn.getAttribute('data-quality'); try{localStorage.setItem('vc_quality_v2',selected);}catch(e){} paint();
+  });});
+  paint();
+  window.__vcGuideOpen = function () {
+    $('vc-guide').hidden=false;
+    try { document.exitPointerLock && document.exitPointerLock(); } catch(e){}
+  };
+  window.__vcGuideClose = function () { $('vc-guide').hidden=true; };
+  $('vc-help').addEventListener('click',window.__vcGuideOpen);
+  $('vc-setup-guide').addEventListener('click',window.__vcGuideOpen);
+  $('vc-guide-close').addEventListener('click',window.__vcGuideClose);
+  $('vc-guide-done').addEventListener('click',window.__vcGuideClose);
+  $('vc-guide').addEventListener('click',function(e){if(e.target===this)window.__vcGuideClose();});
+  window.addEventListener('keydown',function(e){if(e.key==='Escape' && !$('vc-guide').hidden){
+    e.preventDefault();e.stopImmediatePropagation();window.__vcGuideClose();
+  }},true);
+  $('vc-setup-import').addEventListener('click',function(){$('vc-setup-fileinput').value='';$('vc-setup-fileinput').click();});
+  $('vc-setup-fileinput').addEventListener('change',function(){
+    var f=this.files && this.files[0]; if(!f)return;
+    $('vc-start').disabled=true; $('vc-setup-msg').textContent='Checking save file…';
+    f.arrayBuffer().then(function(b){
+      // Release all temporary file bytes before starting reVC.wasm.js.
+      var parsed=window.__vcParseSave(b);
+      return window.__vcPersistPrelaunch(parsed);
+    }).then(function(count){
+      $('vc-setup-file').textContent=f.name;
+      $('vc-setup-msg').textContent='Backup ready ('+count+' file(s)). Press PLAY GAME.';
+      window.__vcPendingSave=null;
+    }).catch(function(e){
+      window.__vcPendingSave=null;
+      $('vc-setup-file').textContent='No backup imported';
+      $('vc-setup-msg').textContent='Could not import: '+(e.message||'Storage error.');
+      console.error('[VC-SAVE] Prelaunch import failed:',e);
+    }).finally(function(){$('vc-start').disabled=false;});
+  });
+  $('vc-start').addEventListener('click',function(){
+    if(window.__vcStarted)return;
+    window.__vcStarted=true;
+    $('vc-setup').hidden=true;
+    if(typeof window.__vcBoot==='function')window.__vcBoot();
+  });
+})();
+</script>
+
+<script>
+if (window.__VCN === undefined) window.__VCN = 0;
+window.__VCN++;
+if (window.__VCN > 1) {
+  try {
+    console.warn('[VC] This page contains the game more than once. Copy #' + window.__VCN + ' was stopped.');
+    var w = document.createElement('div');
+    w.style.cssText = 'position:fixed;left:10px;bottom:10px;z-index:99999;max-width:min(420px,90vw);padding:10px 13px;border-radius:9px;background:rgba(12,4,22,.95);border:1px solid rgba(255,95,168,.5);color:#ffd6ec;font:400 12px/1.6 system-ui,sans-serif';
+    w.textContent = 'This page loads the game twice. The duplicate was stopped - remove the extra embed.';
+    (document.body || document.documentElement).appendChild(w);
+  } catch (e) {}
+  throw 0;
+}
+</script>
+<script>
+if (window.__VCN > 1) throw 0;
+window.GAME_CDN  = "https://cdn.jsdelivr.net/npm/nxd-k7-1@1.0.0/";
+window.GAME_LANG = "en";
+window.GAME_U = function (name) {
+  var b = String(window.GAME_CDN || "").replace(/\/+$/, "");
+  return b ? b + "/" + name : name;
+};
+</script>
+
+<script>
+if (window.__VCN > 1) throw 0;
+
+(function () {
+  var LANG = window.GAME_LANG || "en";
+  function noop() {}
+  function res(v) { return Promise.resolve(v); }
+
+  function deep() {
+    var f = function () { return res(deep()); };
+    return new Proxy(f, {
+      get: function (t, p) {
+        if (p === "then" || p === "catch" || p === "finally") return undefined;
+        if (typeof p === "symbol") return undefined;
+        return deep();
+      },
+      apply: function () { return res(undefined); }
+    });
+  }
+
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem("vc_player") || "{}") || {}; } catch (e) { store = {}; }
+  function persist() { try { localStorage.setItem("vc_player", JSON.stringify(store)); } catch (e) {} }
+
+  var playerObj = {
+    getData: function (keys) {
+      if (!keys || !keys.length) return res(store);
+      var o = {};
+      for (var i = 0; i < keys.length; i++) if (store[keys[i]] !== undefined) o[keys[i]] = store[keys[i]];
+      return res(o);
+    },
+    setData: function (d) { for (var k in d) store[k] = d[k]; persist(); return res(true); },
+    getStats: function () { return res({}); },
+    setStats: function () { return res(true); },
+    incrementStats: function () { return res({}); },
+    getName: function () { return "Player"; },
+    getPhoto: function () { return ""; },
+    getUniqueID: function () { return "local-player"; },
+    getMode: function () { return "lite"; },
+    isAuthorized: function () { return false; },
+    getPayingStatus: function () { return "unknown"; },
+    signature: "",
+    scopePermissions: { avatar: "not_set", public_name: "not_set" }
+  };
+
+  var lbApi = {
+    setScore: function () { return res(true); },
+    setLeaderboardScore: function () { return res(true); },
+    getDescription: function (n) {
+      return res({ appID: "0", default: true, title: { en: n },
+        description: { invert_sort_order: false, score_format: { options: { decimal_offset: 0 } }, type: "numeric" } });
+    },
+    getLeaderboardDescription: function (n) { return lbApi.getDescription(n); },
+    getEntries: function () { return res({ leaderboard: {}, ranges: [], userRank: 0, entries: [] }); },
+    getLeaderboardEntries: function () { return lbApi.getEntries(); },
+    getPlayerEntry: function () {
+      var e = new Error("no entry"); e.code = "LEADERBOARD_PLAYER_NOT_PRESENT";
+      return Promise.reject(e);
+    },
+    getLeaderboardPlayerEntry: function () { return lbApi.getPlayerEntry(); }
+  };
+
+  var fsState = { status: "off" };
+
+  var base = {
+    environment: {
+      app: { id: "0" },
+      browser: { lang: LANG },
+      i18n: { lang: LANG, tld: "com" },
+      payload: null
+    },
+    deviceInfo: {
+      type: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? "mobile" : "desktop",
+      isMobile: function () { return /iPhone|iPod|Android/i.test(navigator.userAgent); },
+      isDesktop: function () { return !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent); },
+      isTablet: function () { return /iPad/i.test(navigator.userAgent); },
+      isTV: function () { return false; }
+    },
+    adv: {
+      showFullscreenAdv: function (o) {
+        var c = (o && o.callbacks) || {};
+        setTimeout(function () { try { c.onClose && c.onClose(false); } catch (e) {} }, 0);
+      },
+      showRewardedVideo: function (o) {
+        var c = (o && o.callbacks) || {};
+        setTimeout(function () {
+          try { c.onOpen && c.onOpen(); } catch (e) {}
+          try { c.onRewarded && c.onRewarded(); } catch (e) {}
+          try { c.onClose && c.onClose(); } catch (e) {}
+        }, 0);
+      },
+      showBannerAdv: function () { return res({ stickyAdvIsShowing: false, reason: "adv_is_not_connected" }); },
+      hideBannerAdv: function () { return res({ stickyAdvIsShowing: false }); },
+      getBannerAdvStatus: function () { return res({ stickyAdvIsShowing: false, reason: "adv_is_not_connected" }); }
+    },
+    features: {
+      LoadingAPI: { ready: noop },
+      GameplayAPI: { start: noop, stop: noop },
+      GamesAPI: { getAllGames: function () { return res({ games: [], developerURL: "" }); } }
+    },
+    leaderboards: lbApi,
+    getLeaderboards: function () { return res(lbApi); },
+    getPlayer: function () { return res(playerObj); },
+    getPayments: function () { return Promise.reject(new Error("payments unavailable")); },
+    getStorage: function () { return res(window.localStorage); },
+    getFlags: function () { return res({}); },
+    feedback: {
+      canReview: function () { return res({ value: false, reason: "NO_AUTH" }); },
+      requestReview: function () { return res({ feedbackSent: false }); }
+    },
+    shortcut: {
+      canShowPrompt: function () { return res({ canShow: false }); },
+      showPrompt: function () { return res({ outcome: "dismissed" }); }
+    },
+    screen: {
+      fullscreen: {
+        get status() { return fsState.status; },
+        request: function () {
+          try {
+            var el = document.documentElement;
+            var fn = el.requestFullscreen || el.webkitRequestFullscreen;
+            if (fn) { var r = fn.call(el); if (r && r.catch) r.catch(function () {}); }
+          } catch (e) {}
+          fsState.status = "on";
+          return res(true);
+        },
+        exit: function () {
+          try { if (document.exitFullscreen) { var r = document.exitFullscreen(); if (r && r.catch) r.catch(function () {}); } } catch (e) {}
+          fsState.status = "off";
+          return res(true);
+        }
+      }
+    },
+    auth: { openAuthDialog: function () { return Promise.reject(new Error("no auth")); } },
+    isAvailableMethod: function () { return res(false); },
+    dispatchEvent: function () { return res(true); },
+    on: function () { return noop; },
+    off: function () { return true; },
+    EVENT_HISTORY_BACK: "HISTORY_BACK",
+    EVENT_GAME_API_PAUSE: "game_api_pause",
+    EVENT_GAME_API_RESUME: "game_api_resume"
+  };
+
+  document.addEventListener("fullscreenchange", function () {
+    fsState.status = document.fullscreenElement ? "on" : "off";
+  });
+
+  var proxied = new Proxy(base, {
+    get: function (t, p) {
+      if (p === "then" || p === "catch" || p === "finally") return undefined;
+      if (p in t) return t[p];
+      if (typeof p === "symbol") return undefined;
+      return deep();
+    }
+  });
+
+  window.YaGames = { init: function () { return res(proxied); } };
+  window.yandexMetricaCounterId = 0;
+  if (typeof window.ym !== "function") window.ym = function () {};
+})();
+</script>
+
+<script>
+if (window.__VCN > 1) throw 0;
+
+(function () {
+  var faked = false, target = null, realDesc = null, plDenied = false;
+  try { realDesc = Object.getOwnPropertyDescriptor(Document.prototype, "pointerLockElement"); } catch (e) {}
+
+  function realLocked() {
+    try { return realDesc && realDesc.get ? realDesc.get.call(document) : null; } catch (e) { return null; }
+  }
+  try {
+    Object.defineProperty(Document.prototype, "pointerLockElement", {
+      configurable: true,
+      get: function () { var r = realLocked(); return r ? r : (faked ? target : null); }
+    });
+  } catch (e) {}
+
+  function fire() { try { document.dispatchEvent(new Event("pointerlockchange")); } catch (e) {} }
+
+  function fakeLock(el) {
+    if (faked && target === el) return;
+    faked = true; target = el;
+    try { el.style.cursor = "none"; } catch (e) {}
+    fire();
+  }
+  function fakeUnlock() {
+    if (!faked) return;
+    faked = false;
+    try { if (target) target.style.cursor = "none"; } catch (e) {}
+    target = null;
+    fire();
+  }
+
+  var realRPL = Element.prototype.requestPointerLock;
+  Element.prototype.requestPointerLock = function () {
+    var el = this, ok = false;
+    if (plDenied) { fakeLock(el); return; }
+    try {
+      var r = realRPL ? realRPL.apply(el, arguments) : undefined;
+      if (r && typeof r.then === "function") {
+        r.then(function () { ok = true; }).catch(function () { if (!ok) { plDenied = true; fakeLock(el); } });
+      }
+    } catch (e) { plDenied = true; fakeLock(el); return; }
+    setTimeout(function () { if (!realLocked() && !faked) { plDenied = true; fakeLock(el); } }, 160);
+  };
+
+  var realEPL = document.exitPointerLock;
+  document.exitPointerLock = function () {
+    fakeUnlock();
+    try { if (realEPL && realLocked()) return realEPL.call(document); } catch (e) {}
+  };
+
+  window.addEventListener("keydown", function (e) { if (e.key === "Escape" && faked) fakeUnlock(); }, true);
+  window.addEventListener("blur", function () { if (faked) fakeUnlock(); });
+
+})();
+</script>
+
+<script>
+if (window.__VCN > 1) throw 0;
+
+  var U = window.GAME_U;
+  function fit169(w, h) { if (w / h > 16 / 9) w = h * 16 / 9; else h = w * 9 / 16; return [w, h]; }
+  function fitCanvas() {
+    var s = fit169(innerWidth, innerHeight), c = document.getElementById('canvas');
+    c.style.setProperty('width', Math.round(s[0]) + 'px', 'important');
+    c.style.setProperty('height', Math.round(s[1]) + 'px', 'important');
+  }
+  var WEAK = (navigator.deviceMemory > 0 && navigator.deviceMemory <= 4) ||
+             (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency <= 4);
+  function renderSize() {
+    // Correctly use THIS iframe's viewport, never window.screen dimensions.
+    // Apply the selected upper resolution limit without globally lowering graphics.
+    var q = window.__vcQuality ? window.__vcQuality() : {w:1920,fps:60};
+    var css=fit169(Math.max(innerWidth||0,320),Math.max(innerHeight||0,180));
+    var dpr=Math.max(1,Math.min(window.devicePixelRatio||1,2));
+    var displayPixels=Math.max(640,Math.round(css[0]*dpr));
+    var w=Math.max(640,Math.min(q.w,displayPixels));
+    w=Math.round(w/16)*16; // exact 16:9 and multiple-of-16 framebuffer dimensions
+    return [w,w*9/16];
+  }
+  window.addEventListener('resize', fitCanvas); fitCanvas();
+  new MutationObserver(function () {
+    var c = document.getElementById('canvas'); if (!c.style.width || !c.style.height) fitCanvas();
+  }).observe(document.getElementById('canvas'), { attributes: true, attributeFilter: ['style'] });
+
+  var gameLang = 'en', fatalShown = false;
+  function flagOn(q, key) {
+    try { if (new RegExp('[?&]' + q + '=1').test(location.search)) return true; } catch (e) {}
+    try { return localStorage.getItem(key) === '1'; } catch (e) { return false; }
+  }
+  var DEBUG = flagOn('debug', 'vc_debug');
+  var LOG_MAX = 500, logRing = [], logTotal = 0;
+  function ringPush(tag, t) {
+    logTotal++;
+    if (logRing.length >= LOG_MAX) logRing.shift();
+    logRing.push(tag + String(t).slice(0, 280));
+  }
+  window.__log = function (n) { return logRing.slice(-(n || LOG_MAX)).join('\n'); };
+  window.__logInfo = function () { return { kept: logRing.length, total: logTotal, debug: DEBUG }; };
+
+  window.__diagText = function (tag) {
+    var d = {};
+    try { if (window.__diag) d = window.__diag(); } catch (e) {}
+    return 'why=' + (tag || '-') +
+           '  contextLost=' + d.contextLost +
+           '  frames=' + d.frames +
+           '  stall=' + d.stallSec + 's' +
+           '  paused=' + d.paused +
+           '  hidden=' + d.hidden +
+           '  focus=' + d.hasFocus +
+           '  state=' + d.gameState +
+           '  canvas=' + d.canvas +
+           '  heap=' + d.heapMB +
+           '  cache=' + d.cache +
+           '  logs=' + d.logTotal;
+  };
+
+  function showDead(msg, tag) {
+    ringPush('! ', 'STOP: ' + (tag || msg));
+    var box = document.getElementById('oops');
+    if (!box || box.style.display === 'flex') return;
+    var det = window.__diagText(tag);
+    ringPush('! ', det);
+    var txt = document.getElementById('oopsText');
+    txt.textContent = '';
+    var l1 = document.createElement('div');
+    l1.textContent = msg;
+    var l2 = document.createElement('div');
+    l2.id = 'oopsDet';
+    l2.textContent = det;
+    txt.appendChild(l1); txt.appendChild(l2);
+    var b = document.getElementById('oopsBtn');
+    b.textContent = 'Reload';
+    b.onclick = function () { location.reload(); };
+    box.style.display = 'flex';
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'VC_STOP', detail: det, log: window.__log(60) }, '*');
+      }
+    } catch (e) {}
+  }
+
+  function fatal(e) {
+    var t = String(e && (e.stack || e.message) || e);
+    console.error('FATAL: ' + t);
+    if (fatalShown || !/RuntimeError|Aborted|abort\(|unreachable|out of bounds|null function|signature mismatch|LinkError|CompileError/i.test(t)) return;
+    fatalShown = true;
+    showDead('Something went wrong. Please reload the page.', t.slice(0, 120));
+  }
+
+  var ysdk = null;
+  var ysdkReady = (window.YaGames ? YaGames.init() : Promise.reject('YaGames not found'))
+    .then(function (s) { ysdk = s; return s; })
+    .catch(function () { return null; });
+  function ysdkCall(fn) { ysdkReady.then(function (s) { if (s && s.features) try { fn(s.features); } catch (e) {} }); }
+
+  var adShowing = false;
+  function showFullscreenAd() {
+    return ysdkReady.then(function (s) {
+      if (!s || !s.adv || typeof s.adv.showFullscreenAdv !== 'function' || adShowing) return false;
+      var gp = s.features && s.features.GameplayAPI;
+      adShowing = true;
+      return new Promise(function (resolve) {
+        var finished = false;
+        function resume(wasShown) {
+          if (finished) return; finished = true; adShowing = false;
+          adPause(false);
+          try { if (gp) gp.start(); } catch (e) {}
+          if (typeof Module !== 'undefined' && Module.canvas) Module.canvas.focus();
+          resolve(!!wasShown);
+        }
+        adPause(true);
+        try { if (gp) gp.stop(); } catch (e) {}
+        try {
+          s.adv.showFullscreenAdv({ callbacks: {
+            onClose: function (wasShown) { resume(wasShown); },
+            onError: function () { resume(false); },
+            onOffline: function () { resume(false); }
+          } });
+        } catch (e) { resume(false); }
+      });
+    });
+  }
+
+  var gameStarted = false;
+  var pauseBy = { hidden: document.hidden, blur: false, ad: false }, audioCtxs = [];
+  (function () {
+    var AC = window.AudioContext || window.webkitAudioContext; if (!AC || AC.reVCWrapped) return;
+    function Wrapped(o) {
+      var c = o === undefined ? new AC() : new AC(o);
+      if (audioCtxs.indexOf(c) < 0) { audioCtxs.push(c); if (audioCtxs.length > 8) audioCtxs.shift(); }
+      return c;
+    }
+    Wrapped.prototype = AC.prototype; Wrapped.reVCWrapped = true;
+    window.AudioContext = Wrapped; if (window.webkitAudioContext) window.webkitAudioContext = Wrapped;
+  })();
+  function applyPause() {
+    var p = pauseBy.ad ? 2 : (pauseBy.hidden || pauseBy.blur) ? 1 : 0;
+    if (typeof Module === 'undefined' || p === (Module.reVCPaused | 0)) return;
+    Module.reVCPaused = p;
+    audioCtxs.forEach(function (c) { try { if (p) c.suspend(); else c.resume(); } catch (e) {} });
+    if (gameStarted) ysdkCall(function (f) { if (f.GameplayAPI) { if (p) f.GameplayAPI.stop(); else f.GameplayAPI.start(); } });
+    if (p) syncSaves();
+  }
+  function adPause(on) { pauseBy.ad = on; applyPause(); }
+  document.addEventListener('visibilitychange', function () { pauseBy.hidden = document.hidden; applyPause(); });
+  window.addEventListener('blur', function () { pauseBy.blur = true; applyPause(); });
+  window.addEventListener('focus', function () { pauseBy.blur = false; applyPause(); });
+  window.addEventListener('pagehide', function () { syncSaves(); });
+  ['pointerdown', 'mousedown', 'keydown', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      if (!e.isTrusted) return;
+      if (pauseBy.blur) { pauseBy.blur = false; applyPause(); }
+      if (!(Module.reVCPaused | 0)) audioCtxs.forEach(function (c) { if (c.state === 'suspended') c.resume(); });
+    }, true);
+  });
+  setInterval(function () {
+    if (!pauseBy.blur) return;
+    if (document.hidden) return;
+    var f = true;
+    try { f = document.hasFocus(); } catch (e) {}
+    if (f) { pauseBy.blur = false; applyPause(); ringPush('! ', 'blur pause auto-cleared'); }
+  }, 2000);
+
+  var SAVE_DIR = '/userfiles', savesReady = false, syncing = false, syncAgain = false;
+  function mountSaves() {
+    try { FS.mkdir(SAVE_DIR); } catch (e) {}
+    if (typeof IDBFS === 'undefined') { console.warn('IDBFS is not linked'); return; }
+    try { FS.mount(IDBFS, {}, SAVE_DIR); } catch (e) { console.warn('saves: mount failed', e); return; }
+    Module.addRunDependency('reVC-saves');
+    FS.syncfs(true, function (err) {
+      if (err) console.error('[VC-SAVE] Failed to mount saved games:', err);
+      else console.info('[VC-SAVE] Saved games mounted before native game startup.');
+      savesReady = !err;
+      Module.removeRunDependency('reVC-saves');
+    });
+  }
+  function syncSaves() {
+    if (!savesReady) return;
+    if (syncing) { syncAgain = true; return; }
+    syncing = true;
+    FS.syncfs(false, function (err) {
+      syncing = false; if (err) console.warn('saves: store failed', err);
+      if (syncAgain) { syncAgain = false; syncSaves(); }
+    });
+  }
+
+  var overlay = document.getElementById('overlay'), moverEl = document.getElementById('mover'), shownP = 0;
+  var pctNumEl = document.getElementById('pctNum'), pctLeftEl = document.getElementById('pctLeft');
+  function sliderNow() {
+    var m = getComputedStyle(moverEl).transform, w = moverEl.offsetWidth || 1;
+    if (!m || m === 'none') return shownP;
+    var p = m.split(','); return Math.max(0, Math.min(1, 1 + parseFloat(p[4]) / w));
+  }
+  function sliderSet(p, sec) {
+    shownP = Math.max(0, Math.min(1, p));
+    moverEl.style.transition = sec > 0 ? 'transform ' + sec + 's cubic-bezier(.2,.65,.3,1)' : 'none';
+    moverEl.style.transform = 'translateX(' + ((shownP - 1) * 100).toFixed(2) + '%)';
+  }
+  function creep(to, sec) { if (to > sliderNow() + 0.002) sliderSet(to, sec); }
+  function sliderRestart() { sliderSet(0, 0); void moverEl.offsetWidth; }
+
+  var lastPct = -1, pctRAF = 0;
+  function pctTick() {
+    pctRAF = requestAnimationFrame(pctTick);
+    var p = Math.round(sliderNow() * 100);
+    if (p !== lastPct) {
+      lastPct = p;
+      if (pctNumEl) pctNumEl.textContent = p + '%';
+      if (pctLeftEl) pctLeftEl.textContent = p >= 100 ? 'Starting the game' : (100 - p) + '% remaining';
+    }
+  }
+  function pctStart() { if (!pctRAF) pctTick(); }
+  function pctStop() { if (pctRAF) { cancelAnimationFrame(pctRAF); pctRAF = 0; } }
+  pctStart();
+  function showErr(t) { console.warn(t); }
+
+  var Module = {
+    canvas: document.getElementById('canvas'),
+    preRun: [mountSaves],
+    locateFile: function (p) { return U(p); },
+    reVCSyncSaves: function () { syncSaves(); },
+    reVCLoading: function () { gameLoadStep(); },
+    reVCLoadStart: function () { loadSteps = 0; showGameLoading(); },
+    reVCLoadEnd: function () { hideGameLoading(); },
+    print: function (t) { if (DEBUG) console.log(t); else ringPush('', t); trackState(t); },
+    printErr: function (t) { if (DEBUG) console.warn(t); else ringPush('! ', t); },
+    setStatus: function (t) { if (t && DEBUG) console.log('status: ' + t); },
+    instantiateWasm: function (imports, done) { return fixVideoModes(imports, done); },
+    onAbort: function (what) { fatal('Aborted(' + what + ')'); },
+    onRuntimeInitialized: function () {
+      gameStarted = true;
+      sliderSet(1, .35); overlay.classList.add('done'); fitCanvas(); Module.canvas.focus();
+      setTimeout(pctStop, 700);
+      setTimeout(function () { overlay.style.display = 'none'; }, 600);
+      ysdkCall(function (f) {
+        if (f.LoadingAPI) f.LoadingAPI.ready();
+        if (f.GameplayAPI) f.GameplayAPI.start();
+      });
+    }
+  };
+
+  var frameCount = 0, watchArmed = false, stopped = false, stallSec = 0, lastFrameCount = -1;
+  (function () {
+    function hookClear(P) {
+      if (!P || !P.clear || P.__vcHooked) return;
+      var orig = P.clear;
+      P.clear = function () { frameCount++; return orig.apply(this, arguments); };
+      P.__vcHooked = true;
+    }
+    hookClear(window.WebGLRenderingContext && window.WebGLRenderingContext.prototype);
+    hookClear(window.WebGL2RenderingContext && window.WebGL2RenderingContext.prototype);
+
+    var cv = document.getElementById('canvas');
+    cv.addEventListener('webglcontextlost', function (e) {
+      console.error('[VC] WebGL context lost (possible GPU reset/VRAM exhaustion)');
+      try { e.preventDefault(); } catch (err) {}
+      stopped = true;
+      try { syncSaves(); } catch (err) {}
+      showDead('The graphics driver dropped this game. Press Reload to continue.', 'webglcontextlost');
+    }, false);
+    cv.addEventListener('webglcontextrestored', function () {
+      ringPush('! ', 'webglcontextrestored');
+      showDead('The graphics driver dropped this game. Press Reload to continue.', 'webglcontextrestored');
+    }, false);
+
+    setInterval(function () {
+      if (stopped || !gameStarted) { lastFrameCount = frameCount; return; }
+      var paused = (Module.reVCPaused | 0);
+      if (document.hidden || paused) { lastFrameCount = frameCount; stallSec = 0; return; }
+      if (frameCount > lastFrameCount) { watchArmed = true; stallSec = 0; }
+      else if (watchArmed) { stallSec += 5; }
+      lastFrameCount = frameCount;
+      if (stallSec >= 20) {
+        stopped = true;
+        try { syncSaves(); } catch (e) {}
+        showDead('The game stopped responding. Press Reload to continue.', 'frame stall ' + stallSec + 's');
+      }
+    }, 5000);
+
+    window.__diag = function () {
+      var gl = null, lost = 'n/a';
+      try {
+        gl = cv.getContext('webgl2', { failIfMajorPerformanceCaveat: false }) || cv.getContext('webgl');
+        if (gl) lost = gl.isContextLost();
+      } catch (e) { lost = 'err'; }
+      var mem = window.performance && performance.memory;
+      return {
+        frames: frameCount, stallSec: stallSec, stopped: stopped, armed: watchArmed,
+        contextLost: lost,
+        paused: (typeof Module !== 'undefined') ? (Module.reVCPaused | 0) : 'n/a',
+        hidden: document.hidden, hasFocus: (function () { try { return document.hasFocus(); } catch (e) { return 'err'; } })(),
+        pauseBy: pauseBy.hidden + '/' + pauseBy.blur + '/' + pauseBy.ad,
+        gameState: gameState,
+        canvas: cv.width + 'x' + cv.height,
+        heapMB: mem ? (mem.usedJSHeapSize / 1048576 | 0) + ' / ' + (mem.jsHeapSizeLimit / 1048576 | 0) : 'n/a',
+        logTotal: logTotal, cache: cacheHits + '/' + cacheMiss
+      };
+    };
+  })();
+
+  (function () {
+    var PFX = 'vc_bb_', tabId, previousId = null;
+    try {
+      // A new ID per page load preserves the previous run's crash samples.
+      previousId = sessionStorage.getItem('vc_tab');
+      tabId = String(Date.now()) + '-' + Math.floor(Math.random() * 1e6);
+      sessionStorage.setItem('vc_tab', tabId);
+    } catch (e) { tabId = 'x' + Math.floor(Math.random() * 1e6); }
+    var KEY = PFX + tabId, OPEN = KEY + '_open', TS = KEY + '_t';
+    var ring = [], t0 = Date.now(), expect = 0, maxLag = 0, lastF = 0;
+
+    function wasmMB() {
+      var c = [];
+      try { if (typeof Module !== 'undefined' && Module) c.push(Module); } catch (e) {}
+      try { if (window.Module && c[0] !== window.Module) c.push(window.Module); } catch (e) {}
+      try { if (window.unityInstance && window.unityInstance.Module) c.push(window.unityInstance.Module); } catch (e) {}
+      for (var i = 0; i < c.length; i++) {
+        var M = c[i];
+        try { if (M.HEAPU8 && M.HEAPU8.length) return M.HEAPU8.length / 1048576 | 0; } catch (e) {}
+        try { if (M.HEAP8 && M.HEAP8.length) return M.HEAP8.length / 1048576 | 0; } catch (e) {}
+        try { if (M.wasmMemory && M.wasmMemory.buffer) return M.wasmMemory.buffer.byteLength / 1048576 | 0; } catch (e) {}
+        try { if (M.asm && M.asm.memory && M.asm.memory.buffer) return M.asm.memory.buffer.byteLength / 1048576 | 0; } catch (e) {}
+        try { if (M.buffer && M.buffer.byteLength) return M.buffer.byteLength / 1048576 | 0; } catch (e) {}
+      }
+      try { if (window.wasmMemory && window.wasmMemory.buffer) return window.wasmMemory.buffer.byteLength / 1048576 | 0; } catch (e) {}
+      try { if (window.HEAPU8 && window.HEAPU8.length) return window.HEAPU8.length / 1048576 | 0; } catch (e) {}
+      try { if (window.buffer && window.buffer.byteLength) return window.buffer.byteLength / 1048576 | 0; } catch (e) {}
+      return 0;
+    }
+
+    var maxTask = 0, blobLive = 0;
+    try {
+      var po = new PerformanceObserver(function (list) {
+        var en = list.getEntries();
+        for (var i = 0; i < en.length; i++) { var d = en[i].duration | 0; if (d > maxTask) maxTask = d; }
+      });
+      po.observe({ entryTypes: ['longtask'] });
+    } catch (e) {}
+    try {
+      var _cou = URL.createObjectURL, _rou = URL.revokeObjectURL;
+      URL.createObjectURL = function () { blobLive++; return _cou.apply(URL, arguments); };
+      URL.revokeObjectURL = function () { if (blobLive > 0) blobLive--; return _rou.apply(URL, arguments); };
+    } catch (e) {}
+
+    function snap() {
+      var m = window.performance && performance.memory;
+      var wasm = 0;
+      try { wasm = wasmMB(); } catch (e) {}
+      var dom = 0;
+      try { dom = document.getElementsByTagName('*').length; } catch (e) {}
+      var mt = maxTask; maxTask = 0;
+      var fps = frameCount - lastF;
+      lastF = frameCount;
+      return [
+        (Date.now() - t0) / 1000 | 0,
+        fps,
+        m ? (m.usedJSHeapSize / 1048576 | 0) : -1,
+        m ? (m.jsHeapSizeLimit / 1048576 | 0) : -1,
+        wasm,
+        (typeof Module !== 'undefined' ? (Module.reVCPaused | 0) : -1),
+        document.hidden ? 1 : 0,
+        maxLag | 0,
+        mt,
+        dom,
+        blobLive,
+        (window.__net ? window.__net.inflight : -1),
+        (window.__net ? window.__net.sync : -1),
+        (gameState || '-').replace('GS_', ''),
+        (window.__net ? window.__net.last : '-')
+      ].join(',');
+    }
+
+    function write() {
+      try {
+        if (ring.length >= 30) ring.shift();
+        ring.push(snap());
+        localStorage.setItem(KEY, ring.join('|'));
+        localStorage.setItem(TS, String(Date.now()));
+        localStorage.setItem(OPEN, '1');
+      } catch (e) {}
+      maxLag = 0;
+    }
+
+    var wk = null;
+    try {
+      var wsrc = [
+        "var hist=[],last=0,dead=0,exp=Date.now()+1000,tick=0,froze=0,bgSaid=0;",
+        "function bgNow(){var s=hist[hist.length-1];if(!s)return 0;var p=s.split(',');return p[6]==='1'?1:0;}",
+        "onmessage=function(e){",
+        "  last=Date.now();",
+        "  if(dead){dead=0;console.warn('[VC-WATCH] main thread recovered after '+froze+'s');}",
+        "  hist.push(e.data); if(hist.length>30)hist.shift();",
+        "};",
+        "setInterval(function(){",
+        "  var now=Date.now(), drift=now-exp; exp=now+1000; tick++;",
+        "  if(drift<0)drift=0;",
+        "  if(!last)return;",
+        "  var since=now-last, bg=bgNow(), lim=bg?150000:7000;",
+        "  if(since>lim){",
+        "    froze=since/1000|0;",
+        "    if(!dead){",
+        "      dead=1;",
+        "      console.error('[VC-WATCH] ================ MAIN THREAD FROZE ================');",
+        "      console.error('[VC-WATCH] tab visible at freeze: '+(bg?'NO (was in background)':'YES'));",
+        "      console.error('[VC-WATCH] worker drift at freeze: '+drift+' ms  (>500 = whole browser/PC stalled, ~0 = only the game thread is stuck)');",
+        "      console.error('[VC-WATCH] last '+hist.length+' samples -> sec,fps,jsMB,jsLimit,wasmMB,paused,hidden,lagMs,taskMs,dom,blob,net,syncXHR,state,lastReq');",
+        "      for(var i=0;i<hist.length;i++) console.error('[VC-WATCH] '+hist[i]);",
+        "      console.error('[VC-WATCH] ===================================================');",
+        "    } else {",
+        "      console.error('[VC-WATCH] still frozen '+froze+'s   workerDrift='+drift+'ms   last='+hist[hist.length-1]);",
+        "    }",
+        "  } else if(bg && since>7000){",
+        "    if(now-bgSaid>30000){ bgSaid=now; console.log('[VC-WATCH] tab in background - Chrome is throttling its timers, this is NOT a freeze  ('+(since/1000|0)+'s since last sample)'); }",
+        "  } else if(tick%10===0){",
+        "    console.log('[VC-WATCH] alive  '+hist[hist.length-1]+'   wDrift='+drift+'ms');",
+        "  }",
+        "},1000);",
+        "console.log('[VC-WATCH] monitor thread started');"
+      ].join("\n");
+      wk = new Worker(URL.createObjectURL(new Blob([wsrc], { type: 'text/javascript' })));
+      window.__wk = wk;
+    } catch (e) { wk = null; }
+
+    try { localStorage.setItem(OPEN, '1'); localStorage.setItem(TS, String(Date.now())); } catch (e) {}
+    expect = Date.now() + 1000;
+    setInterval(function () {
+      var now = Date.now(), lag = now - expect;
+      if (lag > maxLag) maxLag = lag;
+      expect = now + 1000;
+      write();
+      if (wk) { try { wk.postMessage(ring[ring.length - 1]); } catch (e) {} }
+    }, 1000);
+
+    function close() { try { localStorage.setItem(OPEN, '0'); } catch (e) {} }
+    window.addEventListener('pagehide', close);
+    window.addEventListener('beforeunload', close);
+
+    function drop(k) {
+      try { localStorage.removeItem(k); localStorage.removeItem(k + '_open'); localStorage.removeItem(k + '_t'); } catch (e) {}
+    }
+
+    var old = [], nowMs = Date.now();
+    try {
+      var all = [];
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (!k || k.indexOf(PFX) !== 0 || k === KEY) continue;
+        if (k.slice(-5) === '_open' || k.slice(-2) === '_t') continue;
+        all.push(k);
+      }
+      for (var n = 0; n < all.length; n++) {
+        var kk = all[n], v = localStorage.getItem(kk);
+        var ts = parseInt(localStorage.getItem(kk + '_t') || '0', 10) || 0;
+        var age = nowMs - ts;
+        if (!v || !ts) { drop(kk); continue; }
+        // A dirty session from this same tab should be reportable immediately.
+        if (age < 12000 && kk !== PFX + previousId) continue;
+        if (localStorage.getItem(kk + '_open') !== '1') { drop(kk); continue; }
+        if (age > 86400000) { drop(kk); continue; }
+        old.push({ k: kk, v: v, age: age });
+        drop(kk);
+      }
+    } catch (e) {}
+
+    window.__last = function () {
+      return old.map(function (o) { return o.v.split('|').join('\n'); }).join('\n--\n');
+    };
+
+    if (old.length) {
+      var parts = [], lastRow = '';
+      for (var j = 0; j < old.length; j++) {
+        var mins = Math.round(old[j].age / 60000);
+        var rr = old[j].v.split('|');
+        lastRow = rr[rr.length - 1];
+        parts.push('<span class="cl">-- stopped ~' + (mins < 1 ? 'just now' : mins + ' min ago') + '</span><br>' + rr.join('<br>'));
+      }
+      var box = document.createElement('div');
+      box.id = 'bbox';
+      box.innerHTML = '<b>Previous session froze - last 24 seconds</b><br>' +
+                 '<span class="hd">sec, fps, jsMB, jsLimit, wasmMB, paused, hidden, lagMs, taskMs, dom, blob, net, syncXHR, state, lastReq</span><br>' +
+                 parts.join('<br>') + '<br><span class="cl">click to dismiss</span>';
+      document.body.appendChild(box);
+      box.addEventListener('click', function () { if (box.parentNode) box.parentNode.removeChild(box); });
+      try { ringPush('! ', 'prev session dirty: ' + lastRow); } catch (e) {}
+    }
+  })();
+
+  window.__net = { inflight: 0, sync: 0, last: '-', total: 0 };
+  function netTag(u) {
+    try {
+      u = String(u || '');
+      var n = u.split('?')[0].split('/').pop();
+      return (n || u).replace(/[,|]/g, '_').slice(-28) || '-';
+    } catch (e) { return '-'; }
+  }
+  function netStart(u) {
+    window.__net.inflight++; window.__net.total++;
+    window.__net.last = netTag(u);
+  }
+  function netEnd() { if (window.__net.inflight > 0) window.__net.inflight--; }
+
+  var _fetch = window.fetch.bind(window);
+  function trackedFetch(req, init, tagUrl) {
+    netStart(tagUrl);
+    var p;
+    try { p = _fetch(req, init); } catch (e) { netEnd(); throw e; }
+    return p.then(function (r) { netEnd(); return r; }, function (e) { netEnd(); throw e; });
+  }
+  window.fetch = function (input, init) {
+    var url = typeof input === 'string' ? input : (input && input.url) || '';
+    if (url && !/^(https?:|blob:|data:|\/\/)/i.test(url)) {
+      var q = url.indexOf('?'), tail = q >= 0 ? url.slice(q) : '';
+      var name = (q >= 0 ? url.slice(0, q) : url).split('/').pop();
+      if (name) return trackedFetch(U(name) + tail, init, name);
+    }
+    return trackedFetch(input, init, url);
+  };
+
+  (function () {
+    try {
+      var XP = XMLHttpRequest.prototype, _open = XP.open, _send = XP.send;
+      XP.open = function (m, u, async) {
+        this.__u = u;
+        this.__sync = (arguments.length > 2 && async === false);
+        return _open.apply(this, arguments);
+      };
+      XP.send = function () {
+        var self = this;
+        if (self.__sync) { window.__net.sync++; window.__net.last = 'SYNC:' + netTag(self.__u); }
+        else { netStart(self.__u); self.addEventListener('loadend', function () { netEnd(); }); }
+        return _send.apply(self, arguments);
+      };
+    } catch (e) {}
+  })();
+
+  var PACK = null, packTotal = 0, packDone = 0, partTime = Date.now(), partSec = 3;
+  var CHUNK_PARALLEL = 3;
+
+  var CACHE_DB = 'gplus_assets', CACHE_STORE = 'files', CACHE_VER = 1;
+  var CACHE_TTL = 30 * 24 * 60 * 60 * 1000;
+  var CACHE_MIN_FREE = 320 * 1024 * 1024;
+  var cacheOn = !flagOn('nocache', 'vc_nocache');
+  var cacheHits = 0, cacheMiss = 0, dbPromise = null;
+
+  try {
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persisted().then(function (ok) { if (!ok) return navigator.storage.persist(); });
+    }
+  } catch (e) {}
+
+  function cacheOpen() {
+    if (dbPromise) return dbPromise;
+    dbPromise = new Promise(function (resolve) {
+      var done = false;
+      function fin(v) { if (!done) { done = true; resolve(v); } }
+      try {
+        if (!cacheOn || !window.indexedDB) return fin(null);
+        var rq = indexedDB.open(CACHE_DB, CACHE_VER);
+        rq.onupgradeneeded = function (e) {
+          var db = e.target.result;
+          if (!db.objectStoreNames.contains(CACHE_STORE)) {
+            var st = db.createObjectStore(CACHE_STORE, { keyPath: 'url' });
+            st.createIndex('t', 't');
+          }
+        };
+        rq.onsuccess = function (e) { fin(e.target.result); };
+        rq.onerror = function () { fin(null); };
+        rq.onblocked = function () { fin(null); };
+        setTimeout(function () { fin(null); }, 8000);
+      } catch (e) { fin(null); }
+    });
+    return dbPromise;
+  }
+
+  function cacheTx(mode) {
+    return cacheOpen().then(function (db) {
+      if (!db) return null;
+      try { return db.transaction(CACHE_STORE, mode); } catch (e) { return null; }
+    });
+  }
+
+  function cacheGet(url) {
+    return cacheTx('readonly').then(function (tx) {
+      if (!tx) return null;
+      return new Promise(function (resolve) {
+        try {
+          var rq = tx.objectStore(CACHE_STORE).get(url);
+          rq.onsuccess = function () {
+            var v = rq.result;
+            if (v && v.buf && (Date.now() - v.t) < CACHE_TTL) resolve(v.buf);
+            else resolve(null);
+          };
+          rq.onerror = function () { resolve(null); };
+        } catch (e) { resolve(null); }
+      });
+    }).catch(function () { return null; });
+  }
+
+  function cachePut(url, buf) {
+    if (!cacheOn) return Promise.resolve();
+    return cacheTx('readwrite').then(function (tx) {
+      if (!tx) return;
+      return new Promise(function (resolve) {
+        try {
+          tx.oncomplete = function () { resolve(); };
+          tx.onerror = tx.onabort = function () {
+            var n = (tx.error && tx.error.name) || '';
+            if (n === 'QuotaExceededError') { cacheOn = false; cacheTrim(); }
+            resolve();
+          };
+          tx.objectStore(CACHE_STORE).put({ url: url, buf: buf, t: Date.now() });
+        } catch (e) { resolve(); }
+      });
+    }).catch(function () {});
+  }
+
+  function cacheSweep(cutoff, limit) {
+    return cacheTx('readwrite').then(function (tx) {
+      if (!tx) return;
+      try {
+        var st = tx.objectStore(CACHE_STORE);
+        var range = cutoff ? IDBKeyRange.upperBound(cutoff) : null;
+        var n = 0;
+        var rq = st.index('t').openCursor(range);
+        rq.onsuccess = function () {
+          var c = rq.result;
+          if (!c) return;
+          if (limit && n >= limit) return;
+          try { c.delete(); } catch (e) {}
+          n++; c.continue();
+        };
+      } catch (e) {}
+    }).catch(function () {});
+  }
+
+  function cacheTrim() { return cacheSweep(null, 14); }
+
+  function cacheDropOld() {
+    return cacheTx('readwrite').then(function (tx) {
+      if (!tx) return;
+      try {
+        var st = tx.objectStore(CACHE_STORE);
+        var rq = st.openKeyCursor ? st.openKeyCursor() : st.openCursor();
+        rq.onsuccess = function () {
+          var c = rq.result;
+          if (!c) return;
+          var k = String(c.primaryKey || '');
+          if (k.indexOf('/gh/gulamen/') >= 0) { try { st.delete(c.primaryKey); } catch (e) {} }
+          c.continue();
+        };
+      } catch (e) {}
+    }).catch(function () {});
+  }
+
+  cacheDropOld();
+  cacheSweep(Date.now() - CACHE_TTL, 0);
+
+  try {
+    if (navigator.storage && navigator.storage.estimate) {
+      navigator.storage.estimate().then(function (s) {
+        if (s && s.quota && s.usage !== undefined && (s.quota - s.usage) < CACHE_MIN_FREE) {
+          cacheOn = false;
+          console.warn('[cache] yetersiz kota, devre disi');
+        }
+      }).catch(function () {});
+    }
+  } catch (e) {}
+
+  function cacheFetch(url) {
+    return cacheGet(url).then(function (hit) {
+      if (hit) { cacheHits++; return hit; }
+      return _fetch(url).then(function (r) { return okBuf(r, url); }).then(function (buf) {
+        cacheMiss++;
+        cachePut(url, buf);
+        return buf;
+      });
+    });
+  }
+
+  var decoder = null;
+  function getDecoder() {
+    if (decoder) return decoder;
+    decoder = (function () {
+      try {
+        new DecompressionStream('brotli');
+        return Promise.resolve({ kind: 'native' });
+      } catch (e) {}
+      return import('https://cdn.jsdelivr.net/npm/brotli-dec-wasm@2.3.2/index.js')
+        .then(function (m) {
+          var d = m && m.default;
+          return (d && typeof d.then === 'function') ? d : (d || m);
+        })
+        .then(function (m) { return { kind: 'wasm', mod: m }; })
+        .catch(function () {
+          return import(U('brotli-decode.min.js')).then(function (m) { return { kind: 'js', fn: m.BrotliDecode }; });
+        });
+    })();
+    return decoder;
+  }
+
+  function brotliTo(out, off, bytes, expect, label) {
+    return getDecoder().then(function (d) {
+      if (d.kind === 'native') {
+        var reader = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('brotli')).getReader(), pos = off;
+        return (function pump() {
+          return reader.read().then(function (r) {
+            if (r.done) {
+              if (pos - off !== expect) throw new Error('bad size after decode: ' + label);
+              return;
+            }
+            out.set(r.value, pos); pos += r.value.length; return pump();
+          });
+        })();
+      }
+      var dec;
+      if (d.kind === 'wasm') dec = d.mod.decompress(bytes);
+      else { var r2 = d.fn(new Int8Array(bytes.buffer, bytes.byteOffset, bytes.length)); dec = new Uint8Array(r2.buffer, r2.byteOffset, r2.length); }
+      if (!dec || dec.length !== expect) throw new Error('bad size after decode: ' + label);
+      out.set(dec, off);
+    });
+  }
+
+  function okBuf(r, name) {
+    if (!r.ok) throw new Error(r.status + ': ' + name);
+    return r.arrayBuffer();
+  }
+
+  function tick(bytes) {
+    packDone += bytes;
+    var now = Date.now(); partSec = Math.max(1, (now - partTime) / 1000); partTime = now;
+    if (!packTotal) return;
+    var f = packDone / packTotal;
+    creep(0.06 + 0.84 * f, 0.4);
+    creep(0.06 + 0.84 * Math.min(1, f + 0.035), partSec * 1.5);
+    if (packDone >= packTotal) creep(0.97, 9);
+  }
+
+  function chunkUrl(c) {
+    if (typeof c === 'string') return U(c);
+    var base = (PACK && PACK.bases && PACK.bases[c[0]]) || '';
+    base = String(base).replace(/\/+$/, '');
+    return base ? base + '/' + c[1] : U(c[1]);
+  }
+
+  function fetchChunks(list) {
+    var bufs = new Array(list.length), i = 0, active = 0, failed = null;
+    return new Promise(function (resolve, reject) {
+      function pump() {
+        if (failed) return;
+        if (i >= list.length && active === 0) {
+          var total = 0, k;
+          for (k = 0; k < bufs.length; k++) total += bufs[k].length;
+          var merged = new Uint8Array(total), off = 0;
+          for (k = 0; k < bufs.length; k++) { merged.set(bufs[k], off); off += bufs[k].length; bufs[k] = null; }
+          resolve(merged);
+          return;
+        }
+        while (active < CHUNK_PARALLEL && i < list.length) {
+          (function (idx, url) {
+            active++;
+            cacheFetch(url).then(function (b) {
+              bufs[idx] = new Uint8Array(b);
+              tick(b.byteLength);
+              active--; pump();
+            }).catch(function (e) { failed = e; reject(e); });
+          })(i, list[i]);
+          i++;
+        }
+      }
+      pump();
+    });
+  }
+
+  function putPart(out, off, merged, part) {
+    if (merged.length === part.raw) { out.set(merged, off); return Promise.resolve(); }
+    return brotliTo(out, off, merged, part.raw, part.name);
+  }
+
+  var dataPromise = null;
+  function loadDataPackage() {
+    var e = PACK && PACK['reVC-data.data'];
+    if (!e) return null;
+    var out = new Uint8Array(e.size), off = 0, i = 0;
+    function next() {
+      if (i >= e.parts.length) {
+        if (off !== e.size) throw new Error('package size mismatch: ' + off + ' != ' + e.size);
+        return out.buffer;
+      }
+      var part = e.parts[i++];
+      var list = part.chunks && part.chunks.length ? part.chunks : [part.name];
+      return fetchChunks(list.map(chunkUrl))
+        .then(function (merged) { return putPart(out, off, merged, part); })
+        .then(function () { off += part.raw; return next(); });
+    }
+    return next().then(function (buf) {
+      var hintEl = document.getElementById('hint');
+      if (hintEl) hintEl.textContent = cacheMiss === 0 ? 'Loaded from your device cache.'
+        : 'Game data saved on this device. Next launch will be instant.';
+      ringPush('', '[cache] hit ' + cacheHits + ' / miss ' + cacheMiss);
+      return buf;
+    }).catch(function (err) { fatal('data: ' + err); throw err; });
+  }
+  Module.reVCLoadPackage = function () { return dataPromise || (dataPromise = loadDataPackage()); };
+  try { indexedDB.deleteDatabase('EM_PRELOAD_CACHE'); } catch (e) {}
+
+  function preparePack() {
+    return cacheFetch(U('styles.json')).then(function (buf) {
+      try { return JSON.parse(new TextDecoder().decode(new Uint8Array(buf))); } catch (e) { return null; }
+    }).then(function (m) {
+      if (!m) throw new Error('pack.json missing');
+      PACK = m;
+      var e = m['reVC-data.data'];
+      if (!e) throw new Error('pack.json: reVC-data.data missing');
+      packTotal = 0;
+      e.parts.forEach(function (p) { packTotal += p.raw; });
+    });
+  }
+
+  (function () {
+    var P = window.WebGL2RenderingContext && WebGL2RenderingContext.prototype;
+    if (!P) return;
+    var orig = P.shaderSource;
+    P.shaderSource = function (sh, src) {
+      if (typeof src === 'string' && src.indexOf('#version 310 es') === 0)
+        src = '#version 300 es' + src.slice(15);
+      return orig.call(this, sh, src);
+    };
+  })();
+
+  function fixVideoModes(imports, done) {
+    function imp(name) {
+      for (var m in imports) { var o = imports[m]; if (!o) continue;
+        if (typeof o[name] === 'function') return { o: o, k: name };
+        for (var k in o) if (typeof o[k] === 'function' && (o[k].name === '_' + name || o[k].name === name)) return { o: o, k: k };
+      }
+      return null;
+    }
+    function wrap(name, f) { var r = imp(name); if (!r) return; var orig = r.o[r.k]; r.o[r.k] = f(orig); }
+    var ex = null, modePtr = 0;
+    function heap32() { return typeof HEAP32 !== 'undefined' ? HEAP32 : new Int32Array(ex.memory.buffer); }
+    function mode() {
+      if (!modePtr) modePtr = (typeof _malloc === 'function' ? _malloc : ex.malloc)(24);
+      var c = Module.canvas;
+      heap32().set([c.width || innerWidth, c.height || innerHeight, 8, 8, 8, 60], modePtr >>> 2);
+      return modePtr;
+    }
+    wrap('glfwGetVideoMode', function () { return function () { return mode(); }; });
+    var clientApi = 0x30001;
+    wrap('glfwWindowHint', function (hint) { return function (h, v) { if (h === 0x22001) clientApi = v; return hint(h, v); }; });
+    wrap('glfwCreateWindow', function (create) { return function (w, h, title, monitor, share) {
+      return clientApi === 0x30002 ? create(w, h, title, 0, share) : 0; }; });
+    wrap('glfwGetVideoModes', function () { return function (monitor, countPtr) {
+      var p = mode(); heap32()[countPtr >>> 2] = 1; return p; }; });
+    wrap('clock_time_get', function (clockGet) { return function (id, precision, ptime) {
+      return clockGet(id === 4 ? 1 : id, precision, ptime); }; });
+    function ready(r) { ex = r.instance.exports; done(r.instance); }
+    var wasmUrl = U('reVC.wasm.js');
+    cacheFetch(wasmUrl)
+      .then(function (b) { return WebAssembly.instantiate(b, imports); })
+      .then(ready, function () {
+        return _fetch(wasmUrl, { cache: 'reload' })
+          .then(function (r) { return okBuf(r, wasmUrl); })
+          .then(function (b) { return WebAssembly.instantiate(b, imports); })
+          .then(ready);
+      }).catch(function (e) { fatal(e); });
+    return {};
+  }
+
+  var gameState = '', loadSteps = 0, LOAD_STEPS = 95;
+  function trackState(t) {
+    if (!t || typeof t !== 'string' || t.indexOf('gGameState') < 0) return;
+    var m = /gGameState = (GS_\w+)/.exec(t); if (!m) return;
+    gameState = m[1];
+    if (gameState === 'GS_INIT_PLAYING_GAME') { loadSteps = 0; showGameLoading(); }
+    else if (gameState === 'GS_PLAYING_GAME') hideGameLoading();
+  }
+  var lastStepAt = 0;
+  function gameLoadStep() {
+    loadSteps++;
+    var now = Date.now(); if (now - lastStepAt < 250) return; lastStepAt = now;
+    var real = Math.min(1, loadSteps / LOAD_STEPS);
+    creep(Math.min(0.97, 0.9 * real + 0.12), 6);
+  }
+  function showGameLoading() {
+    overlay.style.display = 'flex'; overlay.classList.remove('done');
+    sliderRestart(); creep(0.88, 12); pctStart();
+  }
+  function hideGameLoading() {
+    sliderSet(1, .35); overlay.classList.add('done'); Module.canvas.focus();
+    setTimeout(function () {
+      pctStop();
+      if (overlay.classList.contains('done')) overlay.style.display = 'none';
+    }, 600);
+  }
+
+  function injectScript(src, url, next) {
+    var s = document.createElement('script');
+    s.src = url;
+    s.onload = function () { if (next) next(); };
+    s.onerror = function () { console.warn('failed to load ' + src); };
+    document.body.appendChild(s);
+  }
+
+  function load(src, next) {
+    var url = U(src);
+    cacheFetch(url).then(function (buf) {
+      var blobUrl = URL.createObjectURL(new Blob([buf], { type: 'text/javascript' }));
+      var s = document.createElement('script');
+      s.src = blobUrl;
+      s.onload = function () { setTimeout(function () { URL.revokeObjectURL(blobUrl); }, 0); if (next) next(); };
+      s.onerror = function () { URL.revokeObjectURL(blobUrl); injectScript(src, url, next); };
+      document.body.appendChild(s);
+    }).catch(function () { injectScript(src, url, next); });
+  }
+
+  function pickLanguage() {
+    return ysdkReady.then(function (s) {
+      var code = '';
+      if (s) { try { code = (s.environment && s.environment.i18n && s.environment.i18n.lang) || ''; } catch (e) {} }
+      else code = navigator.language || navigator.userLanguage || 'en';
+      var lang = /^(ru|be|uk|kk|uz)/i.test(code) ? 'ru' : 'en';
+      gameLang = lang;
+      return lang;
+    });
+  }
+
+  if (DEBUG) {
+    setInterval(function () {
+      var m = window.performance && performance.memory;
+      console.log('[watch] ' + JSON.stringify(window.__diag()));
+      if (m) console.log('[heap] ' + (m.usedJSHeapSize / 1048576 | 0) + ' / ' + (m.jsHeapSizeLimit / 1048576 | 0) + ' MiB');
+    }, 30000);
+  }
+
+  function startGame() {
+    var rs = renderSize(); Module.canvas.width = rs[0]; Module.canvas.height = rs[1];
+    sliderRestart(); creep(0.06, 1.5);
+    var quality = window.__vcQuality ? window.__vcQuality() : {fps:60};
+    Module.reVCMaxFPS = quality.fps;
+    console.info('[VC] graphics: ' + rs.join('x') + ' @ ' + quality.fps + ' FPS');
+    preparePack().then(function () {
+      Module.reVCLoadPackage();
+      load('reVC-data.js', function () {
+        pickLanguage().then(function (lang) { Module['arguments'] = ['-lang', lang]; load('reVC.js'); });
+      });
+    }).catch(function (e) { showErr('pack: ' + e); fatal('pack: ' + e); });
+  }
+  window.__vcBoot = startGame;
+
+  window.__vcCrashDump = function () {
+    var current = {};
+    try { current = window.__diag(); } catch (e) {}
+    var rows = [];
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (/^vc_bb_/.test(k) && !/_open$|_t$/.test(k)) {
+          var v = localStorage.getItem(k) || '';
+          rows.push({ key: k, last: v.split('|').slice(-20) });
+        }
+      }
+    } catch (e) {}
+    return JSON.stringify({ diagnostics: current, previousSessions: rows, gameLog: window.__log(100) }, null, 2);
+  };
+
+  Module.canvas.addEventListener('click', function () {
+    Module.canvas.focus();
+    if (gameState === 'GS_PLAYING_GAME' && document.pointerLockElement !== Module.canvas && Module.canvas.requestPointerLock)
+      try { var r = Module.canvas.requestPointerLock(); if (r && r.catch) r.catch(function () {}); } catch (e) {}
+  });
+
+  (function () {
+    var btnGet = document.getElementById('svGet'), btnPut = document.getElementById('svPut');
+    var inp = document.getElementById('svFile'), box = document.getElementById('svMsg');
+    if (!btnGet || !btnPut || !inp || !box) return;
+    var hideT = 0;
+
+    function say(html, keep) {
+      box.innerHTML = '<button type="button" class="sv-close" aria-label="Close notice">&times;</button><div>'+html+'</div>';
+      box.style.display = 'block';
+      clearTimeout(hideT);
+      if (!keep) hideT = setTimeout(function () { box.style.display = 'none'; }, 7500);
+    }
+    box.addEventListener('click',function(e){if(e.target.closest('.sv-close')) {
+      clearTimeout(hideT); box.style.display='none';
+    }});
+    function back() { try { Module.canvas.focus(); } catch (e) {} }
+
+    function fsObj() {
+      try { if (typeof FS !== 'undefined' && FS && FS.readdir) return FS; } catch (e) {}
+      try { if (Module && Module.FS && Module.FS.readdir) return Module.FS; } catch (e) {}
+      return null;
+    }
+    function walk(fs, dir, out) {
+      var list;
+      try { list = fs.readdir(dir); } catch (e) { return; }
+      for (var i = 0; i < list.length; i++) {
+        var n = list[i];
+        if (n === '.' || n === '..') continue;
+        var p = (dir === '/' ? '' : dir) + '/' + n, st;
+        try { st = fs.stat(p); } catch (e) { continue; }
+        if (fs.isDir(st.mode)) walk(fs, p, out);
+        else { try { out.push({ p: p, d: fs.readFile(p, { encoding: 'binary' }) }); } catch (e) {} }
+      }
+    }
+    function mkdirs(fs, path) {
+      var parts = path.split('/'), cur = '';
+      for (var i = 1; i < parts.length - 1; i++) {
+        cur += '/' + parts[i];
+        try { fs.mkdir(cur); } catch (e) {}
+      }
+    }
+    function stamp() {
+      var d = new Date(), z = function (n) { return (n < 10 ? '0' : '') + n; };
+      return d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + '-' + z(d.getHours()) + z(d.getMinutes());
+    }
+
+    btnGet.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    btnPut.addEventListener('mousedown', function (e) { e.preventDefault(); });
+
+    btnGet.addEventListener('click', function () {
+      back();
+      var fs = fsObj();
+      if (!fs) { say('Game is still loading. Try again in a moment.'); return; }
+      var files = [];
+      walk(fs, SAVE_DIR, files);
+      if (!files.some(function(e){return /(?:^|\/)GTAVCsf\d+\.b$/i.test(e.p);})) {
+        say('<b>No save found.</b><br>First save at an in-game save point. Then click the SAVE button in the top-right corner to download your .vcs backup.');
+        return;
+      }
+      try {
+        var man = [], total = 0, i;
+        for (i = 0; i < files.length; i++) {
+          man.push({ p: files[i].p.slice(SAVE_DIR.length + 1), n: files[i].d.length });
+          total += files[i].d.length;
+        }
+        var mb = new TextEncoder().encode(JSON.stringify(man));
+        var head = new Uint8Array(8);
+        head[0] = 86; head[1] = 67; head[2] = 83; head[3] = 49;
+        new DataView(head.buffer).setUint32(4, mb.length, true);
+        var parts = [head, mb];
+        for (i = 0; i < files.length; i++) parts.push(files[i].d);
+        var url = URL.createObjectURL(new Blob(parts, { type: 'application/octet-stream' }));
+        var a = document.createElement('a');
+        a.href = url; a.download = 'vicecity-' + stamp() + '.vcs';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { try { URL.revokeObjectURL(url); } catch (e) {} }, 4000);
+        var names = [], slotsOut = [];
+        for (i = 0; i < man.length; i++) {
+          var nm = man[i].p, sm = /GTAVCsf(\d+)\./i.exec(nm);
+          if (sm && slotsOut.indexOf(sm[1]) < 0) slotsOut.push(sm[1]);
+          names.push('&#9679; ' + nm + '  <span style="opacity:.6">' + Math.max(1, man[i].n / 1024 | 0) + ' KB</span>');
+        }
+        slotsOut.sort();
+        say('<b>Downloaded.</b> ' + Math.max(1, total / 1024 | 0) + ' KB' +
+            (slotsOut.length ? ' &mdash; slot ' + slotsOut.join(', ') : '') + '<br>' +
+            '<span style="opacity:.75;font-size:11px">' + names.join('<br>') + '</span>', true);
+      } catch (e) {
+        say('Could not build the save file.');
+      }
+    });
+
+    btnPut.addEventListener('click', function () { back(); inp.value = ''; inp.click(); });
+
+    inp.addEventListener('change', function () {
+      var f = inp.files && inp.files[0];
+      if (!f) return;
+      var fs = fsObj();
+      if (!fs) { say('Game is still loading. Try again in a moment.'); return; }
+      var rd = new FileReader();
+      rd.onerror = function () { say('Could not read that file.'); };
+      rd.onload = function () {
+        try {
+          var entries = window.__vcParseSave(rd.result);
+          var n = window.__vcApplySave(fs,entries);
+          fs.syncfs(false, function (err) {
+            if (err) { say('<b>Import failed to sync.</b> Please try again.'); return; }
+            var slots=[];
+            entries.forEach(function(x){var m=/(?:^|\/)GTAVCsf(\d+)\.b$/i.exec(x.path);
+              if (m && slots.indexOf(m[1])<0)slots.push(m[1]); });
+            slots.sort();
+            say('<b>Backup imported:</b> ' + n + ' file(s). Slot ' + slots.join(', ') + '.<br>' +
+                'If your save is missing, start <b>New Game</b>, return to gameplay, open and close <b>ESC twice</b>, then try <b>ESC → Load Game</b>.' +
+                '<br><span class="vc-subtle">Do not reload before trying the in-game menu.</span>',true);
+          });
+        } catch (e) {
+          say('<b>Invalid .vcs file.</b> ' + String(e.message || 'The backup may be damaged.').replace(/[<>&]/g,' '));
+        }
+      };
+      rd.readAsArrayBuffer(f);
+    });
+  })();
+
+  window.addEventListener('error', function (e) { fatal(e.error || e.message); });
+  window.addEventListener('unhandledrejection', function (e) { var r = e.reason, t = String(r && (r.name + ' ' + r.message) || r);
+    if (/NotAllowedError|Pointer ?Lock|Permissions check|user gesture|fullscreen/i.test(t)) { e.preventDefault(); return; }
+    fatal(r); });
+</script>
+<style>
+  #ad-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(728px, calc(100% - 20px));
+    height: 90px;
+    background: rgba(0, 0, 0, 0.90);
+    display: none;
+    z-index: 99999;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.45);
+    box-sizing: border-box;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  #ad-container.hidden {
+    transform: translate(-50%, 100%);
+  }
+
+  #ad-iframe {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 745px;
+    height: 90px;
+    border: 0;
+    display: block;
+    overflow: hidden;
+    pointer-events: auto;
+    box-sizing: content-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #ad-iframe::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  #close-ad {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: not-allowed;
+    opacity: 0.72;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+  }
+  #close-ad.enabled {
+    cursor: pointer;
+    opacity: 1;
+  }
+  #close-ad::before {
+    content: '↓';
+    margin-right: 4px;
+  }
+
+  #ad-right-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+    z-index: 99999;
+  }
+
+  @media (max-width: 440px) {
+    #ad-container {
+      width: calc(100% - 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0;
+    }
+    #ad-iframe {
+      width: 728px;
+    }
+  }
+</style>
+
+
+
+<script>
+if (window.__VCN > 1) throw 0;
+
+  (function () {
+    const showDelay = 2000;
+    const countdownStart = 12;
+    const reappearDelay = 150000;
+    const adContainer = document.getElementById('ad-container');
+    const closeBtn = document.getElementById('close-ad');
+
+    function showAd() {
+      adContainer.style.display = 'block';
+      adContainer.classList.remove('hidden');
+      adContainer.setAttribute('aria-hidden', 'false');
+
+      let timeLeft = countdownStart;
+      closeBtn.textContent = `Close (${timeLeft})`;
+      closeBtn.disabled = true;
+      closeBtn.classList.remove('enabled');
+
+      const t = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          closeBtn.textContent = `Close (${timeLeft})`;
+        } else {
+          clearInterval(t);
+          closeBtn.disabled = false;
+          closeBtn.classList.add('enabled');
+          closeBtn.textContent = 'Close ↓';
+        }
+      }, 1000);
+    }
+
+    setTimeout(showAd, showDelay);
+
+    closeBtn.addEventListener('click', () => {
+      if (closeBtn.disabled) return;
+      adContainer.classList.add('hidden');
+      adContainer.setAttribute('aria-hidden', 'true');
+      setTimeout(showAd, reappearDelay);
+    });
+  })();
+</script>
+
+
+
+
+]]&gt;</content>
+</moduleprefs></module></body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"></grammarly-desktop-integration><grammarly-assistant-notch-view role="presentation" data-grammarly-ignore-keyboard-events="true" data-grammarly-notch-instance-id="check:0bdbc1aa-f357-447c-800d-5406942eb626" data-grammarly-shadow-root="true" class="dnXmp" style="visibility: visible !important; --rem: 16;"></grammarly-assistant-notch-view></html>
